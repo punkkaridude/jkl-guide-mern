@@ -1,3 +1,3 @@
 # jkl-guide-mern
 
-# testi että toimiiko impin git push
+# testiä että toimiiko impin git push
