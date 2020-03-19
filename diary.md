@@ -47,7 +47,7 @@ Kokoustimme torstaina klo 9:45 - X*
 * Asetettu admin-käyttäjälle kaikki mahdolliset oikeudet, näiden kanssa oli ongelmaa datan kirjoittamisen kanssa.
 * Mongossa myös jonkinlainen mapdata-tietokanta saatu alulle, JSONIn lisäyksessä pientä häikkää
 * Käyttäjätunnukset teamssissa kanavalla.
-* 
+* Asennettu myös MongoDB Compass jonne host on ***mongodb://root:root66@139.59.152.124:27017***
 
 #### Digital Oceanin uudelleenconffaus
 * Kristian oli saanut viestiä DO:lta että meidän palvelinta on käytetty ilmeisesti epäilyttävään toimintaan. Krisu hoiti uuden palvelimen alulle torstaina 18.3. omatoimisesti. 
