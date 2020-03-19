@@ -40,9 +40,15 @@ Kokoustimme torstaina klo 9:45 - X*
 #### Uusi MERN - repo GitHubissa
 * Kloonailtu koneelle ja testattu pushin ja pullin toimivuus
 
+#### MongoDB tulilla
+* Mongoon tehty testitietokanta onnistuneesti
+* Käyttäjätunnukset teamssissa kanavalla.
+* Impi etsii loitsuja Mongoon, jotta saataisiin oikeaa dataa lisättyä tietokantaan.
+
 #### Digital Oceanin uudelleenconffaus
 * Kristian oli saanut viestiä DO:lta että meidän palvelinta on käytetty ilmeisesti epäilyttävään toimintaan. Krisu hoiti uuden palvelimen alulle. 
 * Uusi DigitalOceanin IP 139.59.152.124
 * Käyttäjätunnukset nimillä, salasanat teamssissa kanavalla.
 * Kun Puttyä käytetään, suljetaan heti kun ei enää tarvita niin tiedonsiirtorajat eivät ylity.
+
 
