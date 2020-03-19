@@ -33,8 +33,6 @@
     "react-transition-group": "^4.3.0"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "firebase deploy",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
