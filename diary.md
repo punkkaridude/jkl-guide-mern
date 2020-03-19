@@ -37,6 +37,9 @@ Kokoustimme maanantaina klo 9:30 - 15:30*
 *Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
 Kokoustimme torstaina klo 9:45 - X*
 
+#### Uusi MERN - repo GitHubissa
+* Kloonailtu koneelle ja testattu pushin ja pullin toimivuus
+
 #### Digital Oceanin uudelleenconffaus
 * Kristian oli saanut viestiä DO:lta että meidän palvelinta on käytetty ilmeisesti epäilyttävään toimintaan. Krisu hoiti uuden palvelimen alulle. 
 * Uusi DigitalOceanin IP 139.59.152.124
