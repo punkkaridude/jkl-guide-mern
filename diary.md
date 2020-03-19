@@ -41,4 +41,5 @@ Kokoustimme torstaina klo 9:45 - X*
 * Kristian oli saanut viestiä DO:lta että meidän palvelinta on käytetty ilmeisesti epäilyttävään toimintaan. Krisu hoiti uuden palvelimen alulle. 
 * Uusi DigitalOceanin IP 139.59.152.124
 * Käyttäjätunnukset nimillä, salasanat teamssissa kanavalla.
+* Kun Puttyä käytetään, suljetaan heti kun ei enää tarvita niin tiedonsiirtorajat eivät ylity.
 
