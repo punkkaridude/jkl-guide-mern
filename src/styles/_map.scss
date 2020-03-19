@@ -1,0 +1,199 @@
+#map {
+  background-color: $PrimaryFontCol;
+  border: $border;
+  position: relative;
+  @include media-breakpoint-between(md, xl) {
+    height: 45vh;
+  }
+  @include media-breakpoint-down(md) {
+    height: 40vh;
+    margin: 8px 0 8px 0;
+  }
+  @include media-breakpoint-down(sm) {
+    height: 40vh;
+    margin: 8px 0 8px 0;
+  }
+  .mapContainer {
+    margin: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: $PrimaryFontCol;
+    border: $border;
+  }
+  .sidebarStyle {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 12px;
+    background-color: #404040a8;
+    border-radius: 10px;
+    color: #ffffff;
+    z-index: 1 !important;
+    padding: 6px;
+    font-weight: lighter;
+    font-size: 0.8em;
+    @include media-breakpoint-between(xs,sm){
+      font-size: 0.6rem;
+      padding: 3px;
+      border-radius: 5px;
+    }
+  }
+}
+
+#mapParent {
+  background-color: $PrimaryFontCol;
+  position: relative;
+  border: $border;
+  @include media-breakpoint-between(md, xl) {
+    height: 65vh;
+  }
+  @include media-breakpoint-down(md) {
+    height: 50vh;
+    margin: 8px 0 8px 0;
+  }
+  @include media-breakpoint-down(sm) {
+    height: 45vh;
+    margin: 8px 0 8px 0;
+  }
+  .mapContainer {
+    margin: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: greenyellow;
+    border: $border;
+  }
+  .sidebarStyle {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 12px;
+    background-color: #404040a8;
+    border-radius: 10px;
+    color: #ffffff;
+    z-index: 1 !important;
+    padding: 6px;
+    font-weight: lighter;
+    font-size: 0.8em;
+    @include media-breakpoint-between(xs,sm){
+        font-size: 0.6rem;
+        padding: 3px;
+        border-radius: 5px;
+    }
+  }
+}
+
+.mapboxgl-marker {
+  background-image: url("../img/placeholder.svg");
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.mapboxgl-popup {
+  max-width: 200px;
+}
+.mapboxgl-popup-content {
+  z-index: 100;
+  border: $border;
+  text-align: center;
+  font-family: $FontFam;
+  h1 {
+    font-size: 1rem;
+    color: $blackColor;
+  }
+}
+
+#mapappWrapper {
+  height: 100%;
+  position: relative;
+  @include media-breakpoint-down(sm) {
+    margin-top: 8px;
+  }
+  form {
+    > div#searchForm {
+      @include media-breakpoint-only(xs) {
+        padding: 10px;
+      }
+      @include media-breakpoint-between(sm, lg) {
+        padding-bottom: 0;
+
+      }
+      #searchInput {
+        > input {
+          
+          background-color: $inputbackColor;
+          &::placeholder {
+            color: #7c7b76;
+            font-style: italic;
+          }
+          &:hover {
+            background-color: #e7e7e7;
+          }
+        }
+      }
+      #searchBtn > button {
+        transition: transform 0.2s;
+        &:hover {
+          transform: scale(1.02);
+          background-color: rgb(141, 138, 133);
+          border: 1px rgb(82, 79, 79) solid;
+          svg {
+            fill: rgb(0, 255, 170);
+          }
+        }
+        > svg {
+          height: 100%;
+          fill: rgb(85, 85, 85);
+        }
+      }
+      input,
+      button {
+        border: $border;
+      }
+      #asyncresult {
+        z-index: 50;
+        @include media-breakpoint-between(sm, xl) {
+          transform: translateY(calc(1.5em + 1rem + 0.5rem));
+          position: absolute;
+        }
+        @include media-breakpoint-only(xs) {
+          position: inherit;
+        }
+        ul {
+          padding-left: 0;
+          border: $border;
+          border-radius: 10px;
+          background-color: $PrimaryFontCol;
+          list-style-type: none;
+
+          > li {
+            cursor: pointer;
+            padding: 8px 16px;
+            &:first-child {
+              border-top-left-radius: 10px;
+              border-top-right-radius: 10px;
+            }
+            &:last-child {
+              border-bottom-left-radius: 10px;
+              border-bottom-right-radius: 10px;
+            }
+            &:focus,
+            &:hover {
+              background-color: #929292;
+              outline: $borderColor;
+              font-size: 1.1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

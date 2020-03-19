@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css?family=Righteous|Roboto:300,300i,400,700&display=swap&subset=latin-ext");
+
+$BackGroundCol: #4b3f3f;
+$SecondBgroundCol: #99eee5;
+$PrimaryFontCol: #fefefa;
+$blackColor: #242424;
+$borderColor: #b1b1b1;
+$inputbackColor: #f2f2f2;
+$border: 1px $borderColor solid;
+$FontFam: "Roboto", sans-serif;
+$FontFamHeading: "Righteous", cursive;
+
+@mixin bigHFont {
+  font-family: $FontFamHeading;
+  color: $PrimaryFontCol;
+  font-size: 62px;
+  text-shadow: 2px 2px 4px #555555;
+}
+
+@mixin smallHFont {
+  font-family: $FontFamHeading;
+  color: $PrimaryFontCol;
+  font-size: 40px;
+  text-shadow: 2px 2px 4px #555555;
+}
+
+@mixin smallerHFont {
+  font-family: $FontFamHeading;
+  color: $blackColor;
+  font-size: 18.5px;
+}

@@ -1,0 +1,31 @@
+#faqWrapper:nth-child(1) {
+  div.card {
+    position: relative;
+    border: $border;
+  }
+  #qContainer {
+    @include media-breakpoint-between(lg, xl) {
+      position: absolute;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    > div.card {
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      border-radius: 0%;
+    }
+  }
+  h4 {
+    font-weight: lighter;
+  }
+  @include media-breakpoint-between(xs, sm) {
+    h4 {
+      font-size: 1.2rem;
+    }
+    p {
+      font-size: 0.9rem;
+    }
+  }
+}

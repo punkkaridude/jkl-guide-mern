@@ -1,0 +1,38 @@
+// FOOTER //
+
+#sticky-footer {
+  z-index: 999;
+  background-color: $SecondBgroundCol;
+  box-shadow: 0 -6px 18px -5px rgba(0, 0, 0, 0.473);
+  footer {
+    #centerCR {
+      @include media-breakpoint-between(xs, sm) {
+        display: none;
+      }
+    }
+    #rightCR {
+      @include media-breakpoint-between(md, xl) {
+        display: none;
+      }
+    }
+    > #someIcons {
+      > div {
+        transition: all 0.2s;
+        width: 35px;
+        height: 35px;
+        margin-right: 8px;
+        &:hover {
+          transform: scale(1.05);
+        }
+        @include media-breakpoint-between(xs, sm) {
+          width: 24px;
+          height: 24px;
+        }
+        > svg {
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

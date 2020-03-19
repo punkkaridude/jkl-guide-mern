@@ -1,0 +1,180 @@
+#loginContainer,  #regContainer{
+    height: 100vh;
+    background-image: url("../img/bg.png");
+    background-color: $SecondBgroundCol;
+    background-position: 0 0;
+    background-repeat: repeat;
+    background-size: 200%;
+    position: relative;
+    animation: bgMove 5s linear infinite;
+    @include media-breakpoint-only(xs){
+        background-size: 300%;
+        animation: bgMove 50s linear infinite;
+    }
+    @include media-breakpoint-only(sm){
+        animation: bgMove 50s linear infinite;
+    }
+    @include media-breakpoint-only(md){
+        animation: bgMove 50s linear infinite;
+    }
+    @include media-breakpoint-between(lg,xl){
+
+        animation: bgMove 50s linear infinite;
+    }
+    > .colorLayer{
+        position: absolute;
+        height: 100%;
+        background-color:rgba(144, 238, 218, 0.842);
+    }
+    @keyframes bgMove {
+        from {
+            background-position: 0 0;
+        }
+        to{
+            background-position: 100% 0;
+        }
+    }
+    
+}
+
+#regContainer{
+    label{
+        @include media-breakpoint-between(xs,sm){
+            font-size: 0.9rem;
+        }
+    }
+    button.register{
+        background-color: rgb(53, 184, 112);
+        border: 2px rgb(43, 151, 92) solid;
+        &:hover{
+            background-color: rgb(58, 201, 122);
+            border: 2px rgb(48, 168, 102) solid;  
+        }
+    }
+}
+
+#loginApp{
+    background: $SecondBgroundCol;
+    font-family: $FontFam;
+    h1{
+        @include bigHFont();
+        font-size: 5rem;
+        @include media-breakpoint-between(xs,sm){
+            font-size: 2.5rem;
+        }
+    }
+    h2{
+        @include smallHFont();
+        @include media-breakpoint-between(xs,sm){
+            font-size: 2rem;
+            padding: 0;
+        }
+    }
+    input{
+        transition: all .2s; 
+        background-color: $inputbackColor;
+        border: $border;
+        &::placeholder{
+            color: #929292;
+            font-style: italic; 
+        }
+        &:hover{
+            background-color: #e2dfdf;
+        }
+    }
+    label{
+        color: $blackColor;
+    }
+    button{
+        color: $blackColor;
+        &#login{
+            transition: all .2s;
+            background-color: rgb(28, 126, 88);
+            border: 2px rgb(25, 107, 76) solid;
+            &:hover{
+                transform: scale(1.02);
+                background-color: rgb(33, 141, 100);
+                border: 2px rgb(29, 122, 87) solid;
+            }
+        }
+        &#reg{
+            transition: all .2s;
+            background-color: rgb(53, 184, 112);
+            border: 2px rgb(43, 151, 92) solid;
+            &:hover{
+                transform: scale(1.02);
+                background-color: rgb(57, 199, 121);
+                border: 2px rgb(48, 168, 102) solid;
+            }
+        }
+    }  
+}
+
+
+@keyframes lineAnim{
+    to{ stroke-dashoffset: 0;}
+}
+@keyframes svgFill{
+    from { fill: transparent;}
+    to{ fill: #FEFEFA;}
+}
+
+#jklGuideLogo{
+    @include media-breakpoint-between(xs,md){
+        height: 100%;
+        width: 100%;
+    }
+    svg, path{
+        overflow: visible;
+    }
+
+    filter: drop-shadow( 2px 2px 4px #555555);
+    animation: svgFill 0.5s ease forwards 3s; 
+    > path{
+        &:nth-child(1){
+            stroke-dasharray: 193.5;
+            stroke-dashoffset: 193.5;
+            animation: lineAnim 2s ease forwards;
+        }
+        &:nth-child(2){
+            stroke-dasharray: 355.6;
+            stroke-dashoffset: 355.6;
+            animation: lineAnim 2s ease forwards 0.2s;
+        }
+        &:nth-child(3){
+            stroke-dasharray: 238;
+            stroke-dashoffset: 238;
+            animation: lineAnim 2s ease forwards 0.4s;
+        }
+        &:nth-child(4){
+            stroke-dasharray: 108.59;
+            stroke-dashoffset: 108.59;
+            animation: lineAnim 2s ease forwards 0.6s;
+        }
+        &:nth-child(5){
+            stroke-dasharray: 337.7;
+            stroke-dashoffset: 337.7;
+            animation: lineAnim 2s ease forwards 0.8s;
+        }
+        &:nth-child(6){
+            stroke-dasharray: 265.1;
+            stroke-dashoffset: 265.1;
+            animation: lineAnim 2s ease forwards 1s;
+        }
+        &:nth-child(7){
+            stroke-dasharray: 187.5;
+            stroke-dashoffset: 187.5;
+            animation: lineAnim 2s ease forwards 1.2s;
+        }
+        &:nth-child(8){
+            stroke-dasharray: 330.3;
+            stroke-dashoffset: 330.3;
+            animation: lineAnim 2s ease forwards 1.4s;
+        }
+        &:nth-child(9){
+            stroke-dasharray: 266.6;
+            stroke-dashoffset: 266.6;
+            animation: lineAnim 2s ease forwards 1.6s;
+        }
+    }
+}

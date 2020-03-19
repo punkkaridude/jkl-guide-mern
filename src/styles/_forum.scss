@@ -1,0 +1,78 @@
+#forumContainer,
+#favoriteContainer {
+  height: 100%;
+  padding: 0;
+  @include media-breakpoint-between(xs, sm) {
+    margin: 8px 0 8px 0;
+  }
+  > .card {
+    background-color: $PrimaryFontCol;
+    border: $border;
+    .card-header {
+      @include smallerHFont();
+      &.title {
+        transition: transform 0.2;
+        border-top: 1px $borderColor solid;
+        padding: 8px 16px;
+
+        > h2 {
+          color: $blackColor;
+          font-size: 1.2rem;
+          font-weight: lighter;
+          padding: 0;
+          margin: 0;
+          @include media-breakpoint-between(xs, md) {
+            font-size: 1rem;
+          }
+        }
+        > p.date {
+          padding: 0;
+          margin: 0;
+          font-size: 0.8rem;
+          text-align: end;
+          white-space: nowrap;
+          @include media-breakpoint-between(xs, md) {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+    .card-body {
+      overflow: auto;
+      max-height: 15vh;
+      padding-top: 8px;
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+      > p {
+        font-size: 1rem;
+        margin: 0;
+        padding: 0;
+        @include media-breakpoint-between(xs, md) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+#forumWrapper:nth-child(1) {
+  > div.card {
+    position: relative;
+  }
+  #fContainer {
+    border: $border;
+    @include media-breakpoint-between(lg, xl) {
+      position: absolute;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    > div.card {
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      border-radius: 0%;
+    }
+  }
+}
