@@ -93,6 +93,7 @@ class Register extends React.Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePwd = this.onChangePwd.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
   onChangeName(e){
     this.setState({
@@ -110,8 +111,8 @@ class Register extends React.Component {
     });
   }
   onChangePwd(e){
-    const pwd1 = document.getElementById("pwd1").nodeValue;
-    const pwd2 = document.getElementById("pwd2").nodeValue;
+    const pwd1 = document.getElementById("pwd1").value;
+    const pwd2 = document.getElementById("pwd2").value;
     if(pwd1 === pwd2){
       this.setState({
         password: e.target.value
@@ -120,6 +121,7 @@ class Register extends React.Component {
   }
   onSubmit(e) {
     e.preventDefault();
+    console.log("perkele");
     const user = {
       fullname: this.state.fullname,
       username: this.state.username,
@@ -129,7 +131,7 @@ class Register extends React.Component {
 
     console.log(user);
 
-    window.location = "/";
+    //window.location = "/";
   }
   render() {
     return (
@@ -178,7 +180,6 @@ class Register extends React.Component {
                   className="form-control form-control-lg shadow"
                   type="password"
                   placeholder="*******"
-                  onChange={this.onChangePwd}
                 ></input>
               </div>
               <div className="form-group col-sm-6  mb-0 mb-sm-3">
@@ -188,18 +189,17 @@ class Register extends React.Component {
                   className="form-control form-control-lg shadow"
                   type="password"
                   placeholder="********"
+                  onChange={this.onChangePwd}
                 ></input>
               </div>
               <div className="pt-sm-2 mt-sm-4 col-12 text-center">
-                <Link to="/">
                   <button
-                    type="button"
+                    type="submit"
                     className="register col-6 btn-lg shadow mt-4 mt-sm-0"
                     // onClick={console.log("log in")}
                   >
                     Register
                   </button>
-                </Link>
               </div>
             </div>
           </form>
