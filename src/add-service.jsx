@@ -198,44 +198,44 @@ export default class Addservice extends React.Component {
                             <div className="d-flex flex-wrap align-content-start">
                                 <div className="col-12 p-0">
                                     <label className="col-form-label pb-0">Service name</label>
-                                    <input className="form-control" type='text' placeholder='Enter name'></input>
+                                    <input className="form-control" type='text' placeholder='Enter name' onChange={this.onChangeName}></input>
                                 </div>
                                 <div id="addressline" className="form-inline justify-content-between col-12 p-0">
                                     <label className="col-form-label col-10 pb-0 pl-0 m-0 justify-content-start">Address</label>
-                                    <input className="form-control col-9" type='text' placeholder='Streetname, streetnumber, house/apartment'></input>
-                                    <input className="form-control col-3" type="number" placeholder="postalcode"></input>
+                                    <input className="form-control col-9" type='text' placeholder='Streetname, streetnumber, house/apartment'onChange={this.onChangeAddress}></input>
+                                    <input className="form-control col-3" type="number" placeholder="postalcode" onChange={this.onChangePostal}></input>
                                 </div>
                                 <div className="form-row m-0 p-0 col-12">
                                     <div className="form-group m-0 p-0 pr-sm-2 col-sm-6">
                                         <label className="col-form-label pb-0 justify-content-start">City</label>
-                                        <input className="form-control" type='text' placeholder="Enter city name"></input>
+                                        <input className="form-control" type='text' placeholder="Enter city name" onChange={this.onChangeCity}></input>
                                     </div>
                                     <div className="form-group m-0 p-0  col-sm-6">
                                         <label className="col-form-label pb-0 justify-content-start">Country</label>
-                                        <input className="form-control" type='text' placeholder="Enter Country name"></input>
+                                        <input className="form-control" type='text' placeholder="Enter Country name" onChange={this.onChangeCountry}></input>
                                     </div>
                                 </div>
                                 <div className="col-12 p-0">
                                     <label className="col-form-label pb-0">Email</label>
-                                    <input className="form-control" type='text' placeholder='@'></input>
+                                    <input className="form-control" type='text' placeholder='@' onChange={this.onChangeEmail}></input>
                                 </div>
                                 <div className="col-12 p-0">
                                     <label className="col-form-label pb-0">Phonenumber</label>
-                                    <input className="form-control" type='text' placeholder='+358'></input>
+                                    <input className="form-control" type='text' placeholder='+358' onChange={this.onChangePhone}></input>
                                 </div>  
                                 <div className="col-12 p-0">
                                     <label className="col-form-label pb-0">Website</label>
-                                    <input className="form-control" type='text' placeholder='https://'></input>
+                                    <input className="form-control" type='text' placeholder='https://' onChange={this.onChangeWebsite}></input>
                                 </div>
                             </div>
                             <div className="d-flex flex-wrap flex-fill mb-3">
                                 <div className="col-sm-8 p-0 d-flex flex-column flex-fill mr-sm-3">
                                         <label className="col-form-label pb-0">Service details</label>
-                                        <textarea className="form-control flex-fill" type='text'></textarea>
+                                        <textarea className="form-control flex-fill" type='text' onChange={this.onChangeDetails}></textarea>
                                 </div>
                                 <div className="p-0 d-flex flex-column flex-fill">
                                         <label className="col-form-label pb-0">Image</label>
-                                        <div id="imgbase" className="form-control" type='text'><p>.jpg .png .gif</p></div>
+                                        <div id="imgbase" className="form-control" type='text' onChange={this.onChangeImage}><p>.jpg .png .gif</p></div>
                                 </div>    
                             </div>
                             <div className="input-group shadow">
@@ -258,12 +258,12 @@ export default class Addservice extends React.Component {
                                     <div ref={el => this.mapContainer = el} className="mapContainer"/>
                                 </div>  
                                 <div id="coordinates" className="form-inline justify-content-between mt-sm-3 col-12 p-0 mb-3">
-                                    <input className="form-control mt-3 mt-sm-0 col-sm-6" type='text' placeholder="Longitude"></input>
-                                    <input className="form-control mt-3 mt-sm-0 col-sm-6" type='text' placeholder="Latitude"></input>
+                                    <input className="form-control mt-3 mt-sm-0 col-sm-6" type='text' placeholder="Longitude" onChange={this.onChangeLongitude}></input>
+                                    <input className="form-control mt-3 mt-sm-0 col-sm-6" type='text' placeholder="Latitude" onChange={this.onChangeLatitude}></input>
                                 </div>
                             </div>
                             <div className="text-right">
-                                <button type="submit" className="btn-lg col-sm-6">Submit</button>
+                                <button type="submit" className="btn-lg col-sm-6" onSubmit={this.onSubmit}>Submit</button>
                             </div>
                         </div>
                     </form>
