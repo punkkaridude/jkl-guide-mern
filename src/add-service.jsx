@@ -143,10 +143,9 @@ export default class Addservice extends React.Component {
       }
 
     onSubmit(e) {
-        e.preventDefault();
-        console.log("Service added");
-        const service = {
-
+      e.preventDefault();
+      console.log("Service added");
+      const service = {
         name: this.state.name,
         address: this.state.address,
         postalcode: this.state.postalcode,
@@ -159,28 +158,28 @@ export default class Addservice extends React.Component {
         image: this.state.image,
         longitude: this.state.longitude,
         latitude: this.state.latitude
-        };
+      };
+      
+      console.log(service);
 
-        console.log(service);
-//paska kun ei toimi
-    axios.post('http://localhost:5000/JKL-Guide/Add-service/add', service)
-      .then(res => {
-        console.log(res.data);
-        this.setState({
-            name: '',
-            address: '',
-            postalcode: '',
-            city: '',
-            country: '',
-            email: '',
-            phone: '',
-            website: '',
-            details: '',
-            image: '',
-            longitude: '',
-            latitude: ''
-        });
-        window.location = "/";
+      axios.post('http://localhost:5000/JKL-Guide/Add-service/add', service)
+        .then(res => {
+          console.log(res.data);
+          this.setState({
+              name: '',
+              address: '',
+              postalcode: '',
+              city: '',
+              country: '',
+              email: '',
+              phone: '',
+              website: '',
+              details: '',
+              image: '',
+              longitude: '',
+              latitude: ''
+          });
+          window.location = "/";
       })
     }
 
@@ -193,7 +192,7 @@ export default class Addservice extends React.Component {
             >
             { props =>
                 <div style={props} id="addserviceWrapper" className="d-flex justify-content-around flex-wrap">
-                    <form className="d-flex justify-content-around flex-wrap">
+                    <form onSubmit={this.onSubmit} className="d-flex justify-content-around flex-wrap">
                         <div className="col-md-6 d-flex flex-column pl-xl-5">
                             <div className="d-flex flex-wrap align-content-start">
                                 <div className="col-12 p-0">
@@ -263,7 +262,7 @@ export default class Addservice extends React.Component {
                                 </div>
                             </div>
                             <div className="text-right">
-                                <button type="submit" className="btn-lg col-sm-6" onSubmit={this.onSubmit}>Submit</button>
+                                <button type="submit" className="btn-lg col-sm-6">Submit</button>
                             </div>
                         </div>
                     </form>
