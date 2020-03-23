@@ -132,7 +132,7 @@ class Register extends React.Component {
 
     console.log(user);
 
-    axios.post('http://localhost:5000/Register', user)
+    axios.post('http://localhost:5000/Register/add', user)
       .then(res => {
         console.log(res.data);
         this.setState({

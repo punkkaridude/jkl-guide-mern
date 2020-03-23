@@ -23,8 +23,8 @@ connection.once('open', () => {
 const userRouter = require('./routes/users');
 const addserviceRouter = require('./routes/addservice');
 
-app.use('/', userRouter);
-app.use('/', addserviceRouter);
+app.use('/Register', userRouter);
+app.use('/JKL-Guide/Add-service', addserviceRouter);
 
 app.listen(port, () => {
     console.log(`server is running on port ${port}`);

@@ -7,7 +7,7 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/JKL-Guide/Add-service').post((req, res) => {
+router.route('/add').post((req, res) => {
     const name = req.body.name;
     const address = req.body.address;
     const postalcode = req.body.postalcode;
