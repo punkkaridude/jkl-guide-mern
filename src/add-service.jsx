@@ -159,7 +159,7 @@ export default class Addservice extends React.Component {
             longitude: '',
             latitude: ''
         });
-        window.location = "/";
+        window.location = "/JKL-Guide/Add-service";
       })
   }
   render() {
