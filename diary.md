@@ -81,6 +81,7 @@ Kokoustimme maanantaina klo 9:30 - 15:30*
 * Myös kohteitten lisäys Insomnian kautta onnistui JSON-formaatissa suoraan tietokantaan osoitteeseen ***localhost:5000/JKL-Guide/Add-service/add***
 
 #### Tietokanta
+* Kristian perehtyi tällä kerralla tietokantoihin samalla kun auttoi muita.
 * Tietokannan suojausta DigitalOceanissa nostettiin ottamalla palomuuri sekä autentikaatio käyttöön. 
 * Firebase- tietokannan käyttö on nyt myös vaihdettu omaan mongodb-tietokantaamme. Firebase toimi aluksi lähinnä esimerkin tasolla.
 * Rekisteröityjen käyttäjien lisääminen tietokantaan onnistuu nyt hashatun salasanan kera. Tässä oleellisina työkaluina toimivat Bcrypt ja Mongoose.
