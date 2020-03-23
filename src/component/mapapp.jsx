@@ -74,7 +74,7 @@ export default class mapApp extends React.Component {
   handleonChange = e => {
     const value = e.target.value;
     const expression = new RegExp(`${value}`, "i");
-    const url = "https://jkl-guide.firebaseio.com/.json";
+    const url = "http://localhost:5000/JKL-Guide/Add-service";
 
     if (this.state.tag === true) this.setState({ tag: false });
     if (value.length > 0 && e.keyCode !== 40 && e.keyCode !== 38) {
@@ -83,16 +83,16 @@ export default class mapApp extends React.Component {
       let lng = [];
       let lat = [];
       $.ajax({
-        url: url,
+        url: url, method: 'GET',
         success: searchResults => {
           console.log("AJAX success");
           ///console.log(searchResults)
-          const services = searchResults.features;
+          const services = searchResults;
           services.forEach(element => {
-            let name = element.properties.name;
-            let addr = element.properties.address;
-            let long = element.geometry.coordinates[0];
-            let latt = element.geometry.coordinates[1];
+            let name = element.name;
+            let addr = element.address;
+            let long = element.longitude;
+            let latt = element.latitude;
             if (expression.test(name)) {
               names.push(name);
               address.push(addr);
