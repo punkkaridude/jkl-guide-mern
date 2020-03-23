@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Link } from "react-router-dom";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap";
@@ -131,7 +132,17 @@ class Register extends React.Component {
 
     console.log(user);
 
-    //window.location = "/";
+    axios.post('http://localhost:5000/Register', user)
+      .then(res => {
+        console.log(res.data);
+        this.setState({
+          username: '',
+          fullname: '',
+          email: '',
+          password: ''
+        });
+        window.location = "/";
+      })
   }
   render() {
     return (
@@ -157,6 +168,7 @@ class Register extends React.Component {
                   id="username"
                   className="form-control form-control-lg shadow"
                   type="text"
+                  minLength="5"
                   placeholder="username"
                   value={this.state.username}
                   onChange={this.onChangeUsername}
@@ -210,7 +222,7 @@ class Register extends React.Component {
 }
 
 class Login extends React.Component {
-  
+
   render() {
     return (
       <div id="loginContainer" className="container-fluid p-0 m-0">
