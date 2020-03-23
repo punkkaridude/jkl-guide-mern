@@ -144,7 +144,6 @@ export default class Addservice extends React.Component {
 
     onSubmit(e) {
       e.preventDefault();
-      console.log("Service added");
       const service = {
         name: this.state.name,
         address: this.state.address,
