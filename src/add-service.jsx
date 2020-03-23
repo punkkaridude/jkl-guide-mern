@@ -162,7 +162,7 @@ export default class Addservice extends React.Component {
         };
 
         console.log(service);
-
+//paska kun ei toimi
     axios.post('http://localhost:5000/JKL-Guide/Add-service/add', service)
       .then(res => {
         console.log(res.data);
