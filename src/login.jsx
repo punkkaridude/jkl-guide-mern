@@ -222,7 +222,14 @@ class Register extends React.Component {
 }
 
 class Login extends React.Component {
-
+  constructor(props){
+    super(props);
+    this.state = {
+      username = '',
+      password = ''
+    }
+    
+  }
   render() {
     return (
       <div id="loginContainer" className="container-fluid p-0 m-0">

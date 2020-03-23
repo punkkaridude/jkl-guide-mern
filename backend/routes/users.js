@@ -14,7 +14,7 @@ router.route('/add').post((req, res) => {
     const password = req.body.password;
     const newUser = new User();
     newUser.fullname = fullname;
-    newUser.username = username;
+    newUser.username = username.toLowerCase();
     newUser.email = email;
     newUser.password = newUser.generateHash(password);
 
