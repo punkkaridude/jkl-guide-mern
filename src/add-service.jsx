@@ -4,6 +4,7 @@ import 'bootstrap';
 import React from 'react';
 import './styles/site.scss';
 import mapboxgl from 'mapbox-gl';
+import axios from "axios";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Spring, config } from 'react-spring/renderprops';
 
@@ -14,8 +15,37 @@ export default class Addservice extends React.Component {
             lng: 25.7466,
             lat: 62.2373,
             zoom: 10.42,
+            name: '',
+            address: '',
+            postalcode: '',
+            city: '',
+            country: '',
+            email: '',
+            phone: '',
+            website: '',
+            details: '',
+            image: '',
+            longitude: '',
+            latitude: ''
+
         }
+
         this.componentDidMount = this.componentDidMount.bind(this);
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeAddress = this.onChangeAddress.bind(this);
+        this.onChangePostal = this.onChangePostal.bind(this);
+        this.onChangeCity = this.onChangeCity.bind(this);
+        this.onChangeCountry = this.onChangeCountry.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangePhone = this.onChangePhone.bind(this);
+        this.onChangeWebsite = this.onChangeWebsite.bind(this);
+        this.onChangeDetails = this.onChangeDetails.bind(this);
+        this.onChangeImage = this.onChangeImage.bind(this);
+        this.onChangeLongitude = this.onChangeLatitude.bind(this);
+        this.onChangeLatitude = this.onChangeLatitude.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+
+
     }
 
     componentDidMount(){
@@ -40,6 +70,120 @@ export default class Addservice extends React.Component {
         })
     }
 
+    onChangeName(e){
+        this.setState({
+          name: e.target.value
+        });
+      }
+
+    onChangeAddress(e){
+        this.setState({
+          address: e.target.value
+        });
+      }
+
+    onChangePostal(e){
+        this.setState({
+          postalcode: e.target.value
+        });
+      }
+
+    onChangeCity(e){
+        this.setState({
+          city: e.target.value
+        });
+      }
+
+    onChangeCountry(e){
+        this.setState({
+          country: e.target.value
+        });
+      }
+    
+    onChangeEmail(e){
+        this.setState({
+          email: e.target.value
+        });
+      }
+    
+    onChangePhone(e){
+        this.setState({
+          phone: e.target.value
+        });
+      }
+
+    onChangeWebsite(e){
+        this.setState({
+          website: e.target.value
+        });
+      }
+    
+    onChangeDetails(e){
+        this.setState({
+          details: e.target.value
+        });
+      }
+
+    onChangeImage(e){
+        this.setState({
+          image: e.target.value
+        });
+      }
+    
+    onChangeLongitude(e){
+        this.setState({
+          longitude: e.target.value
+        });
+      }
+    
+    onChangeLatitude(e){
+        this.setState({
+          latitude: e.target.value
+        });
+      }
+
+    onSubmit(e) {
+        e.preventDefault();
+        console.log("Service added");
+        const service = {
+
+        name: this.state.name,
+        address: this.state.address,
+        postalcode: this.state.postalcode,
+        city: this.state.city,
+        country: this.state.country,
+        email: this.state.email,
+        phone: this.state.phone,
+        website: this.state.website,
+        details: this.state.details,
+        image: this.state.image,
+        longitude: this.state.longitude,
+        latitude: this.state.latitude
+        };
+
+        console.log(service);
+
+        axios.post('http://localhost:5000/JKL-Guide/Add-service', service)
+      .then(res => {
+        console.log(res.data);
+        this.setState({
+            name: '',
+            address: '',
+            postalcode: '',
+            city: '',
+            country: '',
+            email: '',
+            phone: '',
+            website: '',
+            details: '',
+            image: '',
+            longitude: '',
+            latitude: ''
+        });
+        window.location = "/";
+      })
+    }
+    
     render() {
         return (
             <Spring
