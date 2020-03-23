@@ -35,7 +35,7 @@ Kokoustimme maanantaina klo 9:30 - 15:30*
 ### Torstai 19.3.2020 - Alkutoimenpiteet jatkuvat
 
 *Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
-Kokoustimme torstaina klo 9:45 - X*
+Kokoustimme torstaina klo 9:45 - 15:45*
 
 #### Uusi MERN - repo GitHubissa
 * Päivitetty applikaatio MERN-applikaatioksi
@@ -54,3 +54,36 @@ Kokoustimme torstaina klo 9:45 - X*
 * Uusi DigitalOceanin IP 139.59.152.124
 * Käyttäjätunnukset nimillä, salasanat teamssissa kanavalla.
 * Kun Puttyä käytetään, suljetaan heti kun ei enää tarvita niin tiedonsiirtorajat eivät ylity.
+
+-------------------------
+-------------------------
+### Perjantai 20.3.2020 - Ekat toimivat komponentit sovelluksessa!
+
+:sunglasses:
+
+#### Rekisteröintisivu
+* Kristian rakensi rekisteröintisivun reitit ja mallit omatoimisesti perjantaina
+* Valmiita tuotoksia perjantailta siis ***user.model.js*** sekä ***users.js***
+* Käyttäjien lisäys Insomnian kautta onnistui JSON-formaatissa suoraan tietokantaan osoitteeseen ***localhost:5000/Register/add***
+
+-------------------------
+-------------------------
+### Maanantai 23.3.2020 - Lisää toimivia komponentteja sovelluksessa!
+
+*Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
+Kokoustimme maanantaina klo 9:30 - 15:30*
+
+* Otimme porukalla käyttöön Insomnia-appplikaation ja asensimme Axios-paketin backendiä varten.
+
+#### Kohteitten lisäyssivu
+* Iina sai rakenneltua sivun kohteitten lisäämisen toimintakuntoon Kristianin hyvillä jeeseillä
+* Valmiita tuotoksia maanantailta siis ***addservice.model.js***, ***add-service.jsx*** sekä ***addservice.js***
+* Myös kohteitten lisäys Insomnian kautta onnistui JSON-formaatissa suoraan tietokantaan osoitteeseen ***localhost:5000/JKL-Guide/Add-service/add***
+
+#### Tietokanta
+* Tietokannan suojausta DigitalOceanissa nostettiin ottamalla palomuuri sekä autentikaatio käyttöön. 
+* Firebase- tietokannan käyttö on nyt myös vaihdettu omaan mongodb-tietokantaamme. Firebase toimi aluksi lähinnä esimerkin tasolla.
+* Rekisteröityjen käyttäjien lisääminen tietokantaan onnistuu nyt hashatun salasanan kera. Tässä oleellisina työkaluina toimivat Bcrypt ja Mongoose.
+
+#### Kirjatumissivun toimintaan perehtyminen
+* Veeti on tänään koonnut tietoa aiheesta ja alkaa demottelemaan kirjautumissivua ja sen komponentteja toimintakuntoon.
