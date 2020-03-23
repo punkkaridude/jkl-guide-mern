@@ -39,7 +39,7 @@ export default class Addservice extends React.Component {
     this.onChangeWebsite = this.onChangeWebsite.bind(this);
     this.onChangeDetails = this.onChangeDetails.bind(this);
     this.onChangeImage = this.onChangeImage.bind(this);
-    this.onChangeLongitude = this.onChangeLatitude.bind(this);
+    this.onChangeLongitude = this.onChangeLongitude.bind(this);
     this.onChangeLatitude = this.onChangeLatitude.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
