@@ -20,7 +20,20 @@ router.route('/add').post((req, res) => {
     const image = req.body.image;
     const longitude = req.body.longitude;
     const latitude = req.body.latitude;
-    const newService = new Service({name, address, postalcode, city, country, email, phone, website, details, image, longitude, latitude});
+    const newService = new Service({
+        name, 
+        address, 
+        postalcode, 
+        city, 
+        country, 
+        email, 
+        phone, 
+        website, 
+        details, 
+        image, 
+        longitude, 
+        latitude
+    });
 
     newService.save()
         .then(() => res.json('Service added!'))
