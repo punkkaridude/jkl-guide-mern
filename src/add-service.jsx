@@ -163,7 +163,7 @@ export default class Addservice extends React.Component {
 
         console.log(service);
 
-        axios.post('http://localhost:5000/JKL-Guide/Add-service', service)
+    axios.post('http://localhost:5000/JKL-Guide/Add-service/add', service)
       .then(res => {
         console.log(res.data);
         this.setState({
@@ -183,7 +183,7 @@ export default class Addservice extends React.Component {
         window.location = "/";
       })
     }
-    
+
     render() {
         return (
             <Spring
