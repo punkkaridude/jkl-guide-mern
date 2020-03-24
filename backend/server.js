@@ -11,7 +11,11 @@ app.use(cors());
 app.use(express.json());
 
 const uri = process.env.DB_URI;
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
+mongoose.connect(uri, { 
+    useNewUrlParser: true, 
+    useCreateIndex: true,
+    useFindAndModify: false
+}
 
 );
 
@@ -26,9 +30,10 @@ const addserviceRouter = require('./routes/addservice');
 const loginRouter = require('./routes/login');
 
 app.use('/Register', userRouter);
-//VOISKO OLLA JOKU TÄMMÖNEN?
 
+//VOISKO OLLA JOKU TÄMMÖNEN?
 app.use('/', loginRouter);
+
 app.use('/JKL-Guide/Add-service', addserviceRouter);
 
 app.listen(port, () => {

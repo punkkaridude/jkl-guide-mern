@@ -11,7 +11,7 @@ router.route('/').get((req, res) => {
 router.route('/Login').post((req, res, next) => {
     const { body } = req;
     const { password } = body;
-    let { username } = username;
+    let { username } = body;
     //jos username input on tyhjä
     if(!username) {
         return res.send({
@@ -33,7 +33,7 @@ router.route('/Login').post((req, res, next) => {
         {
             username
         },
-        (err, user) => {
+        (err, users) => {
             //server error
             if (err) {
                 return res.send({
@@ -42,7 +42,7 @@ router.route('/Login').post((req, res, next) => {
                 });
             }
             //jos tunnusta ei ole olemassa
-            if (user.length != 1) {
+            if (users.length != 1) {
                 return res.send({
                     success: false,
                     mes: "Error: Invalid username!"
@@ -82,9 +82,9 @@ router.route('/Login').post((req, res, next) => {
 });
 
 //verifoidaan sessio
-router.route("/verify", (req, res, next) => {
+router.route("/Verify").get((req, res, next) => {
     const { query } = req;
-    const { token } = query;
+    const { token } = query; //Verify?token=test
     //etsitään sessio joka vastaa oikeaa tokenia eikä ole poistettu
     UserSession.find(
         {
@@ -118,32 +118,24 @@ router.route("/verify", (req, res, next) => {
 });
 
 //logout ja session tokenin poisto!
-router.route("/logout", (req, res, next) => {
+router.route("/Logout").get((req, res, next) => {
     const { query } = req;
     const { token } = query;
     //etsitään tokenia vastaava sessio ja poistetaan muuttamlla isDeleted: true
     UserSession.findOneAndUpdate(
         {
-            _id: token,
+            userId: token,
             isDeleted: false
         }, 
         {
             $set: { isDeleted: true }
         },
         null,
-        //jos tunnus on olemassa
         (err, sessions) => {
             if (err) {
                 return res.send({
                     success: false,
                     mes: "Error: Server error."
-                });
-            }
-            //jos sessiota ei ole olemassa
-            if (sessions.length != 1) {
-                return res.send({
-                    success: false,
-                    mes: "Error: Invalid token."
                 });
             }
             //logout onnistui!!
