@@ -233,16 +233,33 @@ class Login extends React.Component {
     this.onSubmit = this.onSubmit(this);
   }
 
-  onChangeUsername(){
-
+  onChangeUsername(e){
+    this.setState( {
+      username: e.target.value
+    });
   }
 
-  onChangePwd(){
-
+  onChangePwd(e){
+    this.setState( {
+      password: e.target.value
+    });
   }
   
   onSubmit(){
-
+    const user = {
+      username: this.state.username,
+      password: this.state.password
+    }
+    console.log(user)
+    axios.post('http://localhost:5000/Login', user)
+      .then(res => {
+        console.log(res.data);
+        this.setState({
+          username: '',
+          password: ''
+        });
+        window.location = "/JKL-Guide"
+      })
   }
 
   render() {
@@ -250,7 +267,7 @@ class Login extends React.Component {
       <div id="loginContainer" className="container-fluid p-0 m-0">
         <div className="colorLayer container-fluid d-flex flex-column align-items-center">
           <h1 className="text-center pt-4">Welcome to {JklGuideLogo}</h1>
-          <form className="text-center">
+          <form className="text-center" onSubmit={this.onSubmit}>
             <div className="pt-5 pb-0 d-flex flex-column align-items-center">
               <h2 className="m-sm-0">Login</h2>
               <div className="form-group">
@@ -260,7 +277,7 @@ class Login extends React.Component {
                   type="text"
                   placeholder="username"
                   id="username"
-                  onChange=""
+                  onChange={this.onChangeUsername}
                 ></input>
               </div>
               <div className="form-group">
@@ -269,6 +286,8 @@ class Login extends React.Component {
                   className="form-control form-control-lg shadow"
                   type="password"
                   placeholder="********"
+                  id="pwd"
+                  onChange={this.onChangePwd}
                 ></input>
               </div>
               <div className="col-12 px-0 pt-2">
