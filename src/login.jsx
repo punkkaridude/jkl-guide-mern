@@ -228,9 +228,22 @@ class Login extends React.Component {
       username: '',
       password: ''
     }
-    
+    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangePwd = this.onChangePwd.bind(this);
+    this.onSubmit = this.onSubmit(this);
+  }
+
+  onChangeUsername(){
+
+  }
+
+  onChangePwd(){
+
   }
   
+  onSubmit(){
+
+  }
 
   render() {
     return (
@@ -246,6 +259,8 @@ class Login extends React.Component {
                   className="form-control form-control-lg shadow"
                   type="text"
                   placeholder="username"
+                  id="username"
+                  onChange=""
                 ></input>
               </div>
               <div className="form-group">
