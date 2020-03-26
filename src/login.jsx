@@ -258,7 +258,7 @@ class Login extends React.Component {
           username: '',
           password: ''
         });
-        window.location = "/JKL-Guide"
+        //window.location = "/JKL-Guide"
       })
   }
 
