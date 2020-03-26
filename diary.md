@@ -103,5 +103,7 @@ Kokoustimme maanantaina klo 9:30 - 14:30 *
 * Ilmeisesti otamme käyttöön Passportin
 * Tavoite olisi saada eri käyttäjäroolit toimintakuntoon palveluun, admin- ja peruskäyttäjän roolit selviksi
 * Videotutoriaali-overload. 
-
+* Kristian aloitti Passportin työstämisen työhömme videotutoriaalin avulla.
+* Veeti jatkoi tiedon etsimistä ja demotti authenticator-metodeja.
+* Tämän jälkeen myös Veeti hyppäsi työstämään Passporttia eteenpäin.
 
