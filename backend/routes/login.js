@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const User = require('../models/user.model');
-const UserSession = require('../models/usersession.model');
-
+//const UserSession = require('../models/usersession.model');
+const passport = require('passport');
+const passportConfig = require('../passport');
+const JWT = require('jsonwebtoken')
 router.route('/').get((req, res) => {
     User.find()
     .then(user => res.json(user))
@@ -71,6 +73,7 @@ router.route('/Login').post((req, res, next) => {
                 }
                 //login onnistui!
                 return res.send({
+                    user: username,
                     success: true,
                     mes: "Valid sign in.",
                     //luodaan session token!

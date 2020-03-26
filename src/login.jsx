@@ -226,11 +226,13 @@ class Login extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      loggedIn: false,
+      token: ''
     }
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangePwd = this.onChangePwd.bind(this);
-    this.onSubmit = this.onSubmit(this);
+    this.onLogin = this.onLogin.bind(this);
   }
 
   onChangeUsername(e){
@@ -245,21 +247,32 @@ class Login extends React.Component {
     });
   }
   
-  onSubmit(){
+  onLogin(e){
+    e.preventDefault();
     const user = {
       username: this.state.username,
       password: this.state.password
-    }
-    console.log(user)
+    };
+    console.log(user);
     axios.post('http://localhost:5000/Login', user)
       .then(res => {
         console.log(res.data);
-        this.setState({
-          username: '',
-          password: ''
-        });
-        //window.location = "/JKL-Guide"
-      })
+        if(res.data.success === true){
+          this.setState({
+            loggedIn: true,
+            token: res.data.token
+          });
+        }
+        else {
+          this.setState({
+            username: '',
+            password: '',
+            loggedIn: false,
+            token: ''
+          })
+        }
+        console.log(this.state)
+      });
   }
 
   render() {
@@ -267,7 +280,7 @@ class Login extends React.Component {
       <div id="loginContainer" className="container-fluid p-0 m-0">
         <div className="colorLayer container-fluid d-flex flex-column align-items-center">
           <h1 className="text-center pt-4">Welcome to {JklGuideLogo}</h1>
-          <form className="text-center" onSubmit={this.onSubmit}>
+          <form className="text-center" onSubmit={this.onLogin}>
             <div className="pt-5 pb-0 d-flex flex-column align-items-center">
               <h2 className="m-sm-0">Login</h2>
               <div className="form-group">
@@ -278,6 +291,7 @@ class Login extends React.Component {
                   placeholder="username"
                   id="username"
                   onChange={this.onChangeUsername}
+                  value={this.state.username}
                 ></input>
               </div>
               <div className="form-group">
@@ -288,18 +302,18 @@ class Login extends React.Component {
                   placeholder="********"
                   id="pwd"
                   onChange={this.onChangePwd}
+                  value={this.state.password}
                 ></input>
               </div>
               <div className="col-12 px-0 pt-2">
-                <Link to="/JKL-Guide">
                   <button
+                    type="submit"
                     id="login"
                     className="login col-12 btn-lg shadow"
                     // onClick={console.log("log in")}
                   >
                     Log in
                   </button>
-                </Link>
               </div>
               <h2 className=" col-12 py-0 py-sm-3">or</h2>
               <div className="col-12 p-0">
