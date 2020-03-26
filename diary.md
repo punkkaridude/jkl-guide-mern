@@ -88,3 +88,18 @@ Kokoustimme maanantaina klo 9:30 - 15:30*
 
 #### Kirjatumissivun toimintaan perehtyminen
 * Veeti on tänään koonnut tietoa aiheesta ja alkaa demottelemaan kirjautumissivua ja sen komponentteja toimintakuntoon.
+
+-------------------------
+-------------------------
+### Torstai 26.3.2020 - Autentikaation kanssa kikkailua
+
+*Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
+Kokoustimme maanantaina klo 9:30 - x *
+
+* Tämä päivä painottui itsenäiseen työskentelyyn hyvin pitkälti.
+
+#### Tutustuminen RBACiin eli role based access controlliin
+* Iina tutustui erilaisiin menetelmiin RBACin toteuttamiseksi (Auth0, Passport.js)
+* Ilmeisesti otamme käyttöön Passportin
+* Tavoite olisi saada eri käyttäjäroolit toimintakuntoon palveluun, admin- ja peruskäyttäjän roolit selviksi
+* Videotutoriaali-overload. 
