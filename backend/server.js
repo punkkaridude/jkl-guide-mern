@@ -27,12 +27,12 @@ connection.once('open', () => {
 const userRouter = require('./routes/users');
 const addserviceRouter = require('./routes/addservice');
 //VOISKO OLLA JOKU TÄMMÖNEN?
-const loginRouter = require('./routes/login');
+//const loginRouter = require('./routes/login');
 
 app.use('/Register', userRouter);
 
 //VOISKO OLLA JOKU TÄMMÖNEN?
-app.use('/', loginRouter);
+app.use('/', userRouter);
 
 app.use('/JKL-Guide/Add-service', addserviceRouter);
 
