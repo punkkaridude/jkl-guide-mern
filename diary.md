@@ -94,7 +94,7 @@ Kokoustimme maanantaina klo 9:30 - 15:30*
 ### Torstai 26.3.2020 - Autentikaation kanssa kikkailua
 
 *Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
-Kokoustimme maanantaina klo 9:30 - x *
+Kokoustimme maanantaina klo 9:30 - 14:30 *
 
 * Tämä päivä painottui itsenäiseen työskentelyyn hyvin pitkälti.
 
@@ -103,3 +103,5 @@ Kokoustimme maanantaina klo 9:30 - x *
 * Ilmeisesti otamme käyttöön Passportin
 * Tavoite olisi saada eri käyttäjäroolit toimintakuntoon palveluun, admin- ja peruskäyttäjän roolit selviksi
 * Videotutoriaali-overload. 
+
+
