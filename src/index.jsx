@@ -12,7 +12,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap";
 import "./styles/site.scss";
-import LoginApp from "./login";
+import  Register from "./component/register";
+import Login from "./component/login";
 import Frontpage from "./frontpage";
 class App extends React.Component {
   constructor(props) {
@@ -24,7 +25,8 @@ class App extends React.Component {
   render() {
     return (
       <div id="componentWrapper">
-        <Route exact path="/" component={LoginApp} />
+        <Route exact path="/" component={Login} />
+        <Route exact path="/Register" component={Register} />
         <Route path="/JKL-Guide" component={Frontpage}/>
       </div>
     );

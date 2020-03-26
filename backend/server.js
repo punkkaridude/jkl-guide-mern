@@ -1,41 +1,40 @@
 const express = require('express');
-const cors = require('cors');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 
 require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 
 const uri = process.env.DB_URI;
-mongoose.connect(uri, { 
+mongoose.connect(uri, {
+    useUnifiedTopology: true,
     useNewUrlParser: true, 
     useCreateIndex: true,
     useFindAndModify: false
-}
-
+    }
 );
 
 const connection = mongoose.connection;
-connection.once('open', () => {
-    console.log("MongoDB database connection established successfully");
+connection.once('open', (err) => {
+    if(err) console.log(err)
+    else console.log("MongoDB database connection established successfully");
 });
 
 const userRouter = require('./routes/users');
-const addserviceRouter = require('./routes/addservice');
+const serviceRouter = require('./routes/service');
 //VOISKO OLLA JOKU TÄMMÖNEN?
 //const loginRouter = require('./routes/login');
 
-app.use('/Register', userRouter);
-
-//VOISKO OLLA JOKU TÄMMÖNEN?
 app.use('/', userRouter);
 
-app.use('/JKL-Guide/Add-service', addserviceRouter);
+app.use('/JKL-Guide', serviceRouter);
 
-app.listen(port, () => {
-    console.log(`server is running on port ${port}`);
+app.listen(port, (err) => {
+    if(err) console.log(err)
+    else console.log(`server is running on port ${port}`);
 });

@@ -74,7 +74,7 @@ export default class mapApp extends React.Component {
   handleonChange = e => {
     const value = e.target.value;
     const expression = new RegExp(`${value}`, "i");
-    const url = "http://localhost:5000/JKL-Guide/Add-service";
+    const url = "/JKL-Guide/Service";
 
     if (this.state.tag === true) this.setState({ tag: false });
     if (value.length > 0 && e.keyCode !== 40 && e.keyCode !== 38) {

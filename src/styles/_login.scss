@@ -34,10 +34,7 @@
             background-position: 100% 0;
         }
     }
-    
-}
-
-#regContainer{
+    font-family: $FontFam;
     label{
         @include media-breakpoint-between(xs,sm){
             font-size: 0.9rem;
@@ -51,11 +48,6 @@
             border: 2px rgb(48, 168, 102) solid;  
         }
     }
-}
-
-#loginApp{
-    background: $SecondBgroundCol;
-    font-family: $FontFam;
     h1{
         @include bigHFont();
         font-size: 5rem;
@@ -107,9 +99,8 @@
                 border: 2px rgb(48, 168, 102) solid;
             }
         }
-    }  
+    }
 }
-
 
 @keyframes lineAnim{
     to{ stroke-dashoffset: 0;}

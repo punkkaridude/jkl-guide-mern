@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
     role: {
         type: String,
         enum: ['user','admin'],
-        default: 'user'
+        required: true
     },
     isDeleted:{
         type: Boolean,
@@ -31,17 +31,20 @@ const UserSchema = new mongoose.Schema({
     },
 });
 
-UserSchema.methods.generateHash = function(password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(9));
-};
-
-UserSchema.methods.validPassword = function(password, cb) {
-    bcrypt.compareSync(password, this.password, (err, isMatch)=>{
-        if(err)
-            return cb(err);
+UserSchema.pre('save', function(next){
+    if(!this.isModified('password'))
+        return next();
+    bcrypt.hash(this.password, 10,(err, passwordHash)=>{
+        if(err) return next(err)
+        this.password = passwordHash;
+        next();
+    });
+});
+UserSchema.methods.validPassword = function(password, cb){
+    bcrypt.compare(password, this.password, (err, isMatch)=>{
+        if(err) return cb(err);
         else{
-            if(!isMatch)
-                return cb(null, isMatch);
+            if(!isMatch) return cb(null, isMatch);
             return cb(null,this);
         }
     });

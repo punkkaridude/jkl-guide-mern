@@ -1,13 +1,13 @@
 const router = require('express').Router();
-let Service = require('../models/addservice.model');
+let Service = require('../models/service.model');
 
-router.route('/').get((req, res) => {
+router.route('/Service').get((req, res) => {
     Service.find()
     .then(service => res.json(service))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/add').post((req, res) => {
+router.route('/Add-service').post((req, res) => {
     const name = req.body.name;
     const address = req.body.address;
     const postalcode = req.body.postalcode;
