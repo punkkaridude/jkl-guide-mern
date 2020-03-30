@@ -119,7 +119,7 @@ const Nav = props => {
           </Link> : null
         }
         <Link to="/">
-          <div className="dropdown-item">Log out</div>
+          <div className="dropdown-item" onClick={onClickLogout}>Log out</div>
         </Link>
       </>
     );
