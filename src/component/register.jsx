@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import AuthService from '../Services/AuthService';
 import {AuthContext} from '../Context/AuthContext';
 import { Link } from "react-router-dom";
@@ -14,7 +14,7 @@ const Register = props => {
   const [message, setMessage] = useState(null);
   let timeID = useRef(null);
 
-  useEffect(() => {
+  useEffect(() =>{
     return () => {
       clearTimeout(timeID)
     }
@@ -38,7 +38,7 @@ const Register = props => {
       setMessage(message);
       resetForm();
       if(!message.msgError){
-        timerID = setTimeout(()=>{
+        timeID = setTimeout(()=>{
           props.history.push('/')
         }, 2000)
       }  
