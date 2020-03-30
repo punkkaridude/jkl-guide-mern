@@ -94,7 +94,7 @@ Kokoustimme maanantaina klo 9:30 - 15:30*
 ### Torstai 26.3.2020 - Autentikaation kanssa kikkailua
 
 *Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
-Kokoustimme maanantaina klo 9:30 - 14:30 *
+Kokoustimme torstaina klo 9:30 - 14:30 *
 
 * Tämä päivä painottui itsenäiseen työskentelyyn hyvin pitkälti.
 
@@ -106,4 +106,21 @@ Kokoustimme maanantaina klo 9:30 - 14:30 *
 * Kristian aloitti Passportin työstämisen työhömme videotutoriaalin avulla.
 * Veeti jatkoi tiedon etsimistä ja demotti authenticator-metodeja.
 * Tämän jälkeen myös Veeti hyppäsi työstämään Passporttia eteenpäin.
+
+-------------------------
+-------------------------
+### Maanantai 30.3.2020 - Suojauksia ja ulkoasun kanssa kikkailua
+
+*Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
+Kokoustimme maanantaina klo 9:30 - X *
+
+#### Suojaukset
+* Lorem
+
+
+#### Ulkoasu
+* Iina otti asiakseen lähteä nätittämään guiden ulkoasua, paikallinen kopio projektista tehty kikkailuja varten
+* Liikkuvaa karttataustaa ja headerin asettelua päivitetty
+* Tutustuttu SCSSän kiemuroihin ja siihen miten ulkoasua on rakennettu
+* Mapboxin tyyleihin tutustumista
 
