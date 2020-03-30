@@ -123,4 +123,5 @@ Kokoustimme maanantaina klo 9:30 - X *
 * Liikkuvaa karttataustaa ja headerin asettelua päivitetty
 * Tutustuttu SCSSän kiemuroihin ja siihen miten ulkoasua on rakennettu
 * Mapboxin tyyleihin tutustumista
+* Rekisteröintisivulle backspace- tai raksipainikkeen kehittely. Yleisesti myös takaisinpäin menoa varten.
 
