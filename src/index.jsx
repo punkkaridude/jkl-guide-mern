@@ -5,6 +5,8 @@ import  Register from "./component/register";
 import Login from "./component/login";
 import Frontpage from "./frontpage";
 import AuthProvider from './Context/AuthContext';
+import PrivateRoute from './hocs/PrivateRoute';
+import PublicRoute from './hocs/PublicRoute';
 
 import "react-app-polyfill/ie9";
 import "react-app-polyfill/ie11";
@@ -27,9 +29,9 @@ class App extends React.Component {
   render() {
     return (
       <div id="componentWrapper">
-        <Route exact path="/" component={Login} />
-        <Route exact path="/Register" component={Register} />
-        <Route path="/JKL-Guide" component={Frontpage}/>
+        <PublicRoute path="/" component={Login} />
+        <PublicRoute path="/Register" component={Register} />
+        <PrivateRoute path="/JKL-Guide" roles={["user", "admin"]} component={Frontpage}/>
       </div>
     );
   }
