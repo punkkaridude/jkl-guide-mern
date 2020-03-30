@@ -153,40 +153,71 @@ const Nav = props => {
           id="navbarNavDropdown"
         >
           <ul className=" nav navbar-nav ml-auto align-items-center-md flex-nowrap">
-            <li className="nav-item px-1">
-              <Link to="/JKL-Guide/Add-service" className="nav-link shadow">
-                <span className="icon">{plusIcon}</span>
-                <span className="text">Add Service</span>
-              </Link>
-            </li>
-            <li className="nav-item px-1">
+            {!isAuthenticated ? 
+              <>
+              <li className="nav-item px-1">
               <Link to="/JKL-Guide/Faq" className="nav-link shadow">
                 <span className="icon">{faqIcon}</span>
                 <span className="text">Help</span>
               </Link>
-            </li>
-            <li className="nav-item px-1">
-              <Link to="/JKL-Guide/Forum" className="nav-link shadow">
-                <span className="icon">{forumIcon}</span>
-                <span className="text">Forum</span>
+              </li>
+              <li className="nav-item px-1">
+                <Link to="/JKL-Guide/Forum" className="nav-link shadow">
+                  <span className="icon">{forumIcon}</span>
+                  <span className="text">Forum</span>
+                </Link>
+              </li>
+              <li className="nav-item dropdown pl-1">
+                <button
+                  id="dropdownbtn"
+                  className="nav-link dropdown-toggle px-4 shadow"
+                  id="navbarDropdownMenuLink"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  {!isAuthenticated ? <div>Sign In</div> : user.username}
+                </button>
+                <div
+                  className="dropdown-menu shadow"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  { !isAuthenticated ? unauthenticatedNavbar() : authenticatedNavbar()}
+                </div>
+              </li> </> : <> <li className="nav-item px-1">
+              <Link to="/JKL-Guide/Add-service" className="nav-link shadow">
+                <span className="icon">{plusIcon}</span>
+                <span className="text">Add Service</span>
               </Link>
-            </li>
-            <li className="nav-item px-1">
-              <Link to="/JKL-Guide/Favorites" className="nav-link shadow">
-                <span className="icon">{heartIcon}</span>
-                <span className="text">Favorites</span>
-              </Link>
-            </li>
-            <li className="nav-item dropdown pl-1">
-              <button
-                id="dropdownbtn"
-                className="nav-link dropdown-toggle px-4 shadow"
-                id="navbarDropdownMenuLink"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                {!user ? <div>Username</div> : user.username}
+              </li>
+              <li className="nav-item px-1">
+                <Link to="/JKL-Guide/Faq" className="nav-link shadow">
+                  <span className="icon">{faqIcon}</span>
+                  <span className="text">Help</span>
+                </Link>
+              </li>
+              <li className="nav-item px-1">
+                <Link to="/JKL-Guide/Forum" className="nav-link shadow">
+                  <span className="icon">{forumIcon}</span>
+                  <span className="text">Forum</span>
+                </Link>
+              </li>
+              <li className="nav-item px-1">
+                <Link to="/JKL-Guide/Favorites" className="nav-link shadow">
+                  <span className="icon">{heartIcon}</span>
+                  <span className="text">Favorites</span>
+                </Link>
+              </li>
+              <li className="nav-item dropdown pl-1">
+                <button
+                  id="dropdownbtn"
+                  className="nav-link dropdown-toggle px-4 shadow"
+                  id="navbarDropdownMenuLink"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                {!isAuthenticated ? <div>Sign In</div> : user.username}
               </button>
               <div
                 className="dropdown-menu shadow"
@@ -194,7 +225,7 @@ const Nav = props => {
               >
                 { !isAuthenticated ? unauthenticatedNavbar() : authenticatedNavbar()}
               </div>
-            </li>
+            </li> </> }  
           </ul>
         </div>
       </nav>

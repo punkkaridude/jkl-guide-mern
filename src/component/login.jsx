@@ -91,7 +91,7 @@ const Login = props => {
 
   const onChange = e => {
     setUser( {...user,[e.target.name] : e.target.value});
-    //console.log(user)
+    console.log(user);
   }
   
   const onLogin = e => {
@@ -111,7 +111,7 @@ const Login = props => {
   return (
     <div id="loginContainer" className="container-fluid p-0 m-0">
       <div className="colorLayer container-fluid d-flex flex-column align-items-center">
-        <h1 className="text-center pt-4">Welcome to {JklGuideLogo}</h1>
+        <h1 className="text-center pt-4">Welcome to <Link to="/JKL-Guide">{JklGuideLogo}</Link></h1>
         <form className="text-center" onSubmit={onLogin}>
           <div className="pt-5 pb-0 d-flex flex-column align-items-center">
             <h2 className="m-sm-0">Login</h2>

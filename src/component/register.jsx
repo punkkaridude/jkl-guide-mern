@@ -1,45 +1,40 @@
 import React, {useState, useEffect, useRef} from "react";
 import AuthService from '../Services/AuthService';
-import {AuthContext} from '../Context/AuthContext';
-import { Link } from "react-router-dom";
 import Message from './message';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap";
 import "../styles/site.scss";
-import { set } from "mongoose";
 
 const Register = props => {
   const [user, setUser] = useState({fullname: "", username : "", password : "", email: "", role: "user"});
   const [message, setMessage] = useState(null);
-  let timeID = useRef(null);
+  let timerID = useRef(null);
 
   useEffect(() =>{
     return () => {
-      clearTimeout(timeID)
+      clearTimeout(timerID);
     }
   }, []);
 
   const resetForm = () =>{
-    setUser({username : "", fullname : "", password : "", email : "", role: ""});
+    setUser({username : "", fullname : "", password : "", email : "", role : ""});
   }
 
   const onChange = (e) => {
-    setUser({
-      ...user,[e.target.name] : e.target.value
-    });
+    setUser({...user,[e.target.name] : e.target.value});
     console.log(user);
   }
   const onSubmit = (e) => {
     e.preventDefault();
     //console.log("perkele");
     AuthService.register(user).then(data=>{
-      const {message} = data;
+      const { message } = data;
       setMessage(message);
       resetForm();
       if(!message.msgError){
-        timeID = setTimeout(()=>{
-          props.history.push('/')
+        timerID = setTimeout(()=>{
+          props.history.push('/');
         }, 2000)
       }  
     });
@@ -102,8 +97,8 @@ const Register = props => {
                 type="password"
                 placeholder="********"
               ></input>
-              <input name="role" type="hidden" value="user"></input>
             </div>
+            <input name="role" type="hidden" value="user"></input>
             <div className="pt-sm-2 mt-sm-4 col-12 text-center">
                 <button
                   type="submit"
