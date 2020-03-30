@@ -115,8 +115,13 @@ Kokoustimme torstaina klo 9:30 - 14:30 *
 Kokoustimme maanantaina klo 9:30 - X *
 
 #### Suojaukset
-* Lorem
+* Veeti sai sivuston suojaukset toimimaan muutaman mutkan kautta, tällä hetkellä on suojattu, ettei kirjautunut käyttäjä pääse palaamaan esim. Rekisteröitymis- tai kirjautumis-sivulle. Suojaukset tullaan asettamaan myös adminpaneeliin, jotta vain admin pääsee niitä tarkastelemaan.
+* Suojauksessa käytetään PrivateRoute- ja PublicRoute-komponentteja. PublicRoute-komponentti ohjaa kirjautumattoman käyttäjän sisäänkirjautumissivulle jos tämä yrittää siirtyä esimerkiksi URL:in kautta sivulle, joka on tarkoitettu kirjautuneille käyttäjille. PrivateRoute taas ohjaa kirjautuneen käyttäjän etusivulle, jos tämä yrittää päästä URL:in kautta uudestaan kirjautumissivulle.
+* KOHDATTU ONGELMA!!
+   Kohtasimme ongelman suojauksen kanssa, jossa sivustolle ohjaus jäi looppaamaan. Tajusimme komponenttien purkamisen yhteydessä, että kirjautumissivu ei voi olla meillä '/' (root). Lisäsimme erillisen roottisivun, josta käyttäjä saa valita kirjautumisen tai rekisteröitymisen välillä. Aiomme lisätä sivulle myös painikkeen, jolla kirjautumaton käyttäjä pääsee tarkastelemaan itse sovellussivua.
 
+#### Log In
+ * Kristian viimeisteli rekisteröitymis- sekä kirjautumiskomponentit ja molemmat toimivat nyt halutulla tavalla.
 
 #### Ulkoasu
 * Iina otti asiakseen lähteä nätittämään guiden ulkoasua, paikallinen kopio projektista tehty kikkailuja varten
