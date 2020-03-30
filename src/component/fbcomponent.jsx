@@ -1,8 +1,4 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap";
-import "../styles/site.scss";
 import ForumSmall from "./forumsmall";
 import MapApp from "./mapapp";
 import { Spring, config } from "react-spring/renderprops";

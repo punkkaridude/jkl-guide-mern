@@ -1,9 +1,5 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap";
-import "./styles/site.scss";
 import Footer from "./component/footer";
 import Nav from "./component/nav";
 import Fbcomponent from "./component/fbcomponent";

@@ -2,13 +2,9 @@ import React, {useState, useEffect, useRef} from "react";
 import { Link } from 'react-router-dom';
 import AuthService from '../Services/AuthService';
 import Message from './message';
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap";
-import "../styles/site.scss";
 
 const Register = props => {
-  const [user, setUser] = useState({fullname: "", username : "", password : "", email: "", role: "user"});
+  const [user, setUser] = useState({fullname: "", username : "", password : "", passwordconf: "", email: "", role: "user"});
   const [message, setMessage] = useState(null);
   let timerID = useRef(null);
 
@@ -19,7 +15,7 @@ const Register = props => {
   }, []);
 
   const resetForm = () =>{
-    setUser({username : "", fullname : "", password : "", email : "", role : ""});
+    setUser({username : "", fullname : "", password : "", passwordconf : "", email : "", role : ""});
   }
 
   const onChange = (e) => {
@@ -29,16 +25,24 @@ const Register = props => {
   const onSubmit = (e) => {
     e.preventDefault();
     //console.log("perkele");
-    AuthService.register(user).then(data=>{
-      const { message } = data;
+    if(user.password !== user.passwordconf){
+      let err = {message : {msgBody: "Passwords do not match!"}}
+      const { message } = err;
       setMessage(message);
-      resetForm();
-      if(!message.msgError){
-        timerID = setTimeout(()=>{
-          props.history.push('/Login');
-        }, 2000)
-      }  
-    });
+      setUser({password : "", passwordconf : ""})
+    } else {
+      AuthService.register(user).then(data=>{
+        const { message } = data;
+        setMessage(message);
+        resetForm();
+        if(!message.msgError){
+          timerID = setTimeout(()=>{
+            props.history.push('/Login');
+          }, 2000)
+        }  
+      });
+    }
+    
   }
   
   return (
@@ -88,15 +92,19 @@ const Register = props => {
                 className="form-control form-control-lg shadow"
                 type="password"
                 placeholder="*******"
+                value={user.password}
+                onChange={onChange}
               ></input>
             </div>
             <div className="form-group col-sm-6  mb-0 mb-sm-3">
               <label className="col-form-label-lg mb-0 mb-sm-2">Repeat Password</label>
               <input
-                name="password"
+                name="passwordconf"
                 className="form-control form-control-lg shadow"
                 type="password"
                 placeholder="********"
+                value={user.passwordconf}
+                onChange={onChange}
               ></input>
             </div>
             <input name="role" type="hidden" value="user"></input>

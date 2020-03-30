@@ -1,7 +1,3 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap/dist/js/bootstrap.js";
-import "../styles/site.scss";
 import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import AuthService from '../Services/AuthService';
@@ -169,7 +165,6 @@ const Nav = props => {
               </li>
               <li className="nav-item dropdown pl-1">
                 <button
-                  id="dropdownbtn"
                   className="nav-link dropdown-toggle px-4 shadow"
                   id="navbarDropdownMenuLink"
                   data-toggle="dropdown"
@@ -210,7 +205,6 @@ const Nav = props => {
               </li>
               <li className="nav-item dropdown pl-1">
                 <button
-                  id="dropdownbtn"
                   className="nav-link dropdown-toggle px-4 shadow"
                   id="navbarDropdownMenuLink"
                   data-toggle="dropdown"

@@ -1,9 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap";
-import "../styles/site.scss";
 
 const JklGuideLogo = (
   <svg

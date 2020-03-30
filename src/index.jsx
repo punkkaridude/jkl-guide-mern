@@ -8,15 +8,14 @@ import 'core-js/features/number/is-nan';
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap";
-import "./styles/site.scss";
 import Home from "./component/home";
-import  Register from "./component/register";
+import Register from "./component/register";
 import Login from "./component/login";
 import Frontpage from "./frontpage";
 import AuthProvider from './Context/AuthContext';
+import "./styles/site.scss";
+import "bootstrap";
+
 class App extends React.Component {
   constructor(props) {
     super(props);

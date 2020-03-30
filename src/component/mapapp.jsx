@@ -1,11 +1,6 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap";
 import * as $ from "jquery";
 import React from "react";
-import "../styles/site.scss";
 import mapboxgl from "mapbox-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
 
 const searchIcon = (
   <svg
@@ -71,7 +66,7 @@ export default class mapApp extends React.Component {
     });
   }
 
-  handleonChange = e => {
+  handleonChange(e) {
     const value = e.target.value;
     const expression = new RegExp(`${value}`, "i");
     const url = "/JKL-Guide/Service";
