@@ -119,7 +119,7 @@ Kokoustimme maanantaina klo 9:30 - X *
 
 
 #### Ulkoasu
-* Iina otti asiakseen lähteä nätittämään guiden ulkoasua
+* Iina otti asiakseen lähteä nätittämään guiden ulkoasua, paikallinen kopio projektista tehty kikkailuja varten
 * Liikkuvaa karttataustaa ja headerin asettelua päivitetty
 * Tutustuttu SCSSän kiemuroihin ja siihen miten ulkoasua on rakennettu
 * Mapboxin tyyleihin tutustumista
