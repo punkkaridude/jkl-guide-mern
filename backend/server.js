@@ -27,8 +27,6 @@ connection.once('open', (err) => {
 
 const userRouter = require('./routes/users');
 const serviceRouter = require('./routes/service');
-//VOISKO OLLA JOKU TÄMMÖNEN?
-//const loginRouter = require('./routes/login');
 
 app.use('/', userRouter);
 
