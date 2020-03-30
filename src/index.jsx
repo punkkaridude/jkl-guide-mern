@@ -16,6 +16,7 @@ import  Register from "./component/register";
 import Login from "./component/login";
 import Frontpage from "./frontpage";
 import AuthProvider from './Context/AuthContext';
+import PrivateRoute from './hocs/PrivateRoute';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +29,7 @@ class App extends React.Component {
       <div id="componentWrapper">
         <Route exact path="/" component={Login} />
         <Route exact path="/Register" component={Register} />
-        <Route path="/JKL-Guide" component={Frontpage}/>
+        <PrivateRoute path="/JKL-Guide" roles={["user", "admin"]} component={Frontpage}/>
       </div>
     );
   }
