@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {Route, Redirect} from 'react-router-dom';
-import { AuthContext} from '../Context/AuthContext';
+import { AuthContext } from '../Context/AuthContext';
 
 const PrivateRoute = ({component : Component, roles, ...rest})=>{
     const { isAuthenticated, user} = useContext(AuthContext);
@@ -10,7 +10,7 @@ const PrivateRoute = ({component : Component, roles, ...rest})=>{
                 return <Redirect to={{ pathname: '/', 
                                      state : {from : props.location}}}/>
         
-            if(!roles.included(user.role)) //seuloo onko käyttäjä admini vai ei
+            if(!roles.include(user.role)) //seuloo onko käyttäjä admini vai ei
                 return <Redirect to={{ pathname: '/JKL-Guide',  //jos ei, palaa etusivulle
                     state : {from : props.location}}}/>
             return <Component {...props}/>
