@@ -1,6 +1,8 @@
-import React from "react";
+import React, {useState, useContext} from "react";
+import AuthService from '../Services/AuthService';
+import {AuthContext} from '../Context/AuthContext';
 import { Link } from "react-router-dom";
-import axios from "axios";
+import Message from './message';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap";
@@ -82,113 +84,82 @@ const JklGuideLogo = (
   </svg>
 );
 
-export default class Login extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-      loggedIn: false,
-      role: ''
-    }
-    this.onChangeUsername = this.onChangeUsername.bind(this);
-    this.onChangePwd = this.onChangePwd.bind(this);
-    this.onLogin = this.onLogin.bind(this);
-  }
+const Login = props => {
+  const [user, setUser] = useState({username : "", password : ""});
+  const [message, setMessage] = useState(null);
+  const authContext = useContext(AuthContext);
 
-  onChangeUsername(e){
-    this.setState( {
-      username: e.target.value
-    });
-  }
-
-  onChangePwd(e){
-    this.setState( {
-      password: e.target.value
-    });
+  const onChange = e => {
+    setUser( {...user,[e.target.name] : e.target.value});
+    //console.log(user)
   }
   
-  onLogin(e){
+  const onLogin = e => {
     e.preventDefault();
-    const user = {
-      username: this.state.username,
-      password: this.state.password
-    };
-    console.log(user);
-    axios.post('/Login', user)
-      .then(res => {
-        console.log(res.data);
-        if(res.data.isAuthenticated === true){
-          this.setState({
-            loggedIn: true,
-            username: res.data.user.username,
-            role: res.data.user.role
-          });
-        }
-        else {
-          this.setState({
-            username: '',
-            password: '',
-            loggedIn: false,
-            role: ''
-          })
-        }
-        console.log(this.state)
-      });
+    AuthService.login(user).then(data=>{
+      const {isAuthenticated,user,message} = data;
+      if(isAuthenticated){
+        authContext.setUser(user);
+        authContext.setIsAuthenticated(isAuthenticated);
+        props.history.push('/JKL-Guide');
+      }
+      else  
+        setMessage(message);
+    })
   }
 
-  render() {
-    return (
-      <div id="loginContainer" className="container-fluid p-0 m-0">
-        <div className="colorLayer container-fluid d-flex flex-column align-items-center">
-          <h1 className="text-center pt-4">Welcome to {JklGuideLogo}</h1>
-          <form className="text-center" onSubmit={this.onLogin}>
-            <div className="pt-5 pb-0 d-flex flex-column align-items-center">
-              <h2 className="m-sm-0">Login</h2>
-              <div className="form-group">
-                <label className="col-form-label-lg m-0 py-0 py-sm-2">Username</label>
-                <input
-                  className="form-control form-control-lg shadow"
-                  type="text"
-                  placeholder="username"
-                  id="username"
-                  onChange={this.onChangeUsername}
-                  value={this.state.username}
-                ></input>
-              </div>
-              <div className="form-group">
-                <label className="col-form-label-lg m-0 py-0 py-sm-2">Password</label>
-                <input
-                  className="form-control form-control-lg shadow"
-                  type="password"
-                  placeholder="********"
-                  id="pwd"
-                  onChange={this.onChangePwd}
-                  value={this.state.password}
-                ></input>
-              </div>
-              <div className="col-12 px-0 pt-2">
-                  <button
-                    type="submit"
-                    id="login"
-                    className="login col-12 btn-lg shadow"
-                    // onClick={console.log("log in")}
-                  >
-                    Log in
-                  </button>
-              </div>
-              <h2 className=" col-12 py-0 py-sm-3">or</h2>
-              <div className="col-12 p-0">
-                <Link to="/Register">
-                  <button id="reg" className="register col-12 btn-lg shadow">
-                    Register
-                  </button>
-                </Link>
-              </div>
+  return (
+    <div id="loginContainer" className="container-fluid p-0 m-0">
+      <div className="colorLayer container-fluid d-flex flex-column align-items-center">
+        <h1 className="text-center pt-4">Welcome to {JklGuideLogo}</h1>
+        <form className="text-center" onSubmit={onLogin}>
+          <div className="pt-5 pb-0 d-flex flex-column align-items-center">
+            <h2 className="m-sm-0">Login</h2>
+            <div className="form-group">
+              <label className="col-form-label-lg m-0 py-0 py-sm-2">Username</label>
+              <input
+                className="form-control form-control-lg shadow"
+                type="text"
+                placeholder="username"
+                name="username"
+                onChange={onChange}
+                value={user.username}
+              ></input>
             </div>
-          </form>
-        </div>
+            <div className="form-group">
+              <label className="col-form-label-lg m-0 py-0 py-sm-2">Password</label>
+              <input
+                className="form-control form-control-lg shadow"
+                type="password"
+                placeholder="********"
+                name="password"
+                onChange={onChange}
+                value={user.password}
+              ></input>
+            </div>
+            <div className="col-12 px-0 pt-2">
+                <button
+                  type="submit"
+                  id="login"
+                  className="login col-12 btn-lg shadow"
+                >
+                  Log in
+                </button>
+            </div>
+            <h2 className=" col-12 py-0 py-sm-3">or</h2>
+            <div className="col-12 p-0">
+              <Link to="/Register">
+                <button id="reg" className="register col-12 btn-lg shadow">
+                  Register
+                </button>
+              </Link>
+            </div>
+          </div>
+        </form>
+        {message ? <Message message={message}/> : null}
       </div>
-    );
-  }
+    </div>
+  );
 }
+
+export default Login;

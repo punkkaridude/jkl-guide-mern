@@ -1,5 +1,8 @@
-import React from "react";
-import axios from "axios";
+import React, {useState, useContext} from "react";
+import AuthService from '../Services/AuthService';
+import {AuthContext} from '../Context/AuthContext';
+import { Link } from "react-router-dom";
+import Message from './message';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap";
@@ -78,7 +81,7 @@ export default class Register extends React.Component {
                 <div className="form-group col-sm-6 mb-0 mb-sm-3">
                   <label className="col-form-label-lg mb-0 mb-sm-2">Fullname</label>
                   <input 
-                    id="fullname"
+                    name="fullname"
                     className="form-control form-control-lg shadow"
                     type="text"
                     placeholder="firstname lastname"
@@ -89,7 +92,7 @@ export default class Register extends React.Component {
                 <div className="form-group col-sm-6 mb-0 mb-sm-3">
                   <label className="col-form-label-lg mb-0 mb-sm-2">Username</label>
                   <input
-                    id="username"
+                    name="username"
                     className="form-control form-control-lg shadow"
                     type="text"
                     minLength="5"
@@ -101,7 +104,7 @@ export default class Register extends React.Component {
                 <div className="form-group col-12 mb-0 mb-sm-3">
                   <label className="col-form-label-lg mb-0 mb-sm-2">Email</label>
                   <input
-                    id="email"
+                    name="email"
                     className="form-control form-control-lg shadow"
                     type="email"
                     placeholder="user@email.com"
@@ -112,7 +115,7 @@ export default class Register extends React.Component {
                 <div className="form-group col-sm-6 mb-0 mb-sm-3">
                   <label className="col-form-label-lg mb-0 mb-sm-2">Password</label>
                   <input
-                    id="pwd1"
+                    name="password1"
                     className="form-control form-control-lg shadow"
                     type="password"
                     placeholder="*******"
@@ -121,7 +124,7 @@ export default class Register extends React.Component {
                 <div className="form-group col-sm-6  mb-0 mb-sm-3">
                   <label className="col-form-label-lg mb-0 mb-sm-2">Repeat Password</label>
                   <input
-                    id="pwd2"
+                    name="password2"
                     className="form-control form-control-lg shadow"
                     type="password"
                     placeholder="********"
