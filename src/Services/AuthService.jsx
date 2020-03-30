@@ -1,6 +1,6 @@
 export default {
     login : user =>{
-        return fetch('/login',{
+        return fetch('/Login',{
             method : "post",
             body : JSON.stringify(user),
             headers : {
@@ -11,7 +11,7 @@ export default {
     },
 
     register : user =>{
-        return fetch('/register',{
+        return fetch('/Register',{
             method : "post",
             body : JSON.stringify(user),
             headers : {
@@ -22,13 +22,13 @@ export default {
     },
     
     logout : ()=>{
-        return fetch('/logout')
+        return fetch('/Logout')
             .then(res => res.json())
             .then(data => data);
     },
 
     isAuthenticated : () =>{
-        return fetch('/authenticated')
+        return fetch('/Authenticated')
             .then(res=>{
                 if(res.status !== 401) //Passportti lähettää 401 statusta, jos ei ole autentikoitunut käyttäjä
                     return res.json().then(data => data);

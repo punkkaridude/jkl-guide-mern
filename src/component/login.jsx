@@ -89,7 +89,7 @@ export default class Login extends React.Component {
       username: '',
       password: '',
       loggedIn: false,
-      token: ''
+      role: ''
     }
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangePwd = this.onChangePwd.bind(this);
@@ -118,10 +118,11 @@ export default class Login extends React.Component {
     axios.post('/Login', user)
       .then(res => {
         console.log(res.data);
-        if(res.data.success === true){
+        if(res.data.isAuthenticated === true){
           this.setState({
             loggedIn: true,
-            token: res.data.token
+            username: res.data.user.username,
+            role: res.data.user.role
           });
         }
         else {
@@ -129,7 +130,7 @@ export default class Login extends React.Component {
             username: '',
             password: '',
             loggedIn: false,
-            token: ''
+            role: ''
           })
         }
         console.log(this.state)
