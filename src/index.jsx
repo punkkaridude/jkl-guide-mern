@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap";
 import "./styles/site.scss";
+import Home from "./component/home";
 import  Register from "./component/register";
 import Login from "./component/login";
 import Frontpage from "./frontpage";
@@ -26,8 +27,9 @@ class App extends React.Component {
   render() {
     return (
       <div id="componentWrapper">
-        <Route exact path="/" component={Login} />
-        <Route exact path="/Register" component={Register} />
+        <Route exact path="/" component={Home} />
+        <Route path="/Login" component={Login} />
+        <Route path="/Register" component={Register} />
         <Route path="/JKL-Guide" component={Frontpage}/>
       </div>
     );

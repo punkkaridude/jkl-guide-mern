@@ -1,8 +1,5 @@
-import React, {useState, useContext} from "react";
-import AuthService from '../Services/AuthService';
-import {AuthContext} from '../Context/AuthContext';
+import React from "react";
 import { Link } from "react-router-dom";
-import Message from './message';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap";
@@ -84,74 +81,39 @@ const JklGuideLogo = (
   </svg>
 );
 
-const Login = props => {
-  const [user, setUser] = useState({username : "", password : ""});
-  const [message, setMessage] = useState(null);
-  const authContext = useContext(AuthContext);
-
-  const onChange = e => {
-    setUser( {...user,[e.target.name] : e.target.value});
-    console.log(user);
-  }
-  
-  const onLogin = e => {
-    e.preventDefault();
-    AuthService.login(user).then(data=>{
-      const {isAuthenticated,user,message} = data;
-      if(isAuthenticated){
-        authContext.setUser(user);
-        authContext.setIsAuthenticated(isAuthenticated);
-        props.history.push('/JKL-Guide');
-      }
-      else  
-        setMessage(message);
-    })
-  }
-
-  return (
-    <div id="loginContainer" className="container-fluid p-0 m-0">
-      <div className="colorLayer container-fluid d-flex flex-column align-items-center">
-        <h1 className="text-center pt-4">Welcome to <Link to="/JKL-Guide">{JklGuideLogo}</Link></h1>
-        <form className="text-center" onSubmit={onLogin}>
-          <div className="pt-5 pb-0 d-flex flex-column align-items-center">
-            <h2 className="m-sm-0">Login</h2>
-            <div className="form-group">
-              <label className="col-form-label-lg m-0 py-0 py-sm-2">Username</label>
-              <input
-                className="form-control form-control-lg shadow"
-                type="text"
-                placeholder="username"
-                name="username"
-                onChange={onChange}
-                value={user.username}
-              ></input>
+const Home = () => {
+    return (
+        <div id="loginContainer" className="container-fluid p-0 m-0">
+            <div className="colorLayer container-fluid d-flex flex-column align-items-center">
+                <h1 className="text-center pt-4">Welcome to <Link to="/JKL-Guide">{JklGuideLogo}</Link></h1>
+                <form className="text-center">
+                    <div className="pt-5 pb-0 d-flex flex-column align-items-center">
+                        <div className="col-12 px-0 pt-2">
+                            <Link to="/Login">
+                                <button
+                                type="button"
+                                id="login"
+                                className="login col-12 btn-lg shadow"
+                                >
+                                Log in
+                                </button>
+                            </Link>
+                            <h2>Or</h2>
+                            <Link to="/Register">
+                                <button
+                                type="button"
+                                id="reg"
+                                className="login col-12 btn-lg shadow"
+                                >
+                                Register
+                                </button>
+                            </Link>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div className="form-group">
-              <label className="col-form-label-lg m-0 py-0 py-sm-2">Password</label>
-              <input
-                className="form-control form-control-lg shadow"
-                type="password"
-                placeholder="********"
-                name="password"
-                onChange={onChange}
-                value={user.password}
-              ></input>
-            </div>
-            <div className="col-12 px-0 pt-2">
-                <button
-                  type="submit"
-                  id="login"
-                  className="login col-12 btn-lg shadow"
-                >
-                  Log in
-                </button>
-            </div>
-          </div>
-        </form>
-        {message ? <Message message={message}/> : null}
-      </div>
-    </div>
-  );
+        </div>
+    );
 }
 
-export default Login;
+export default Home;

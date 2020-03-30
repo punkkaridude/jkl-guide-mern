@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from "react";
+import { Link } from 'react-router-dom';
 import AuthService from '../Services/AuthService';
 import Message from './message';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -34,7 +35,7 @@ const Register = props => {
       resetForm();
       if(!message.msgError){
         timerID = setTimeout(()=>{
-          props.history.push('/');
+          props.history.push('/Login');
         }, 2000)
       }  
     });
@@ -43,7 +44,7 @@ const Register = props => {
   return (
     <div id="regContainer" className="container-fluid p-0 m-0">
       <div className="colorLayer px-0 container-fluid d-flex flex-column align-items-center">
-        <h1 className="text-center pt-sm-4 pt-2 px-5 mb-0 mb-sm-2">Register to JKL-Guide</h1>
+        <h1 className="text-center pt-sm-4 pt-2 px-5 mb-0 mb-sm-2">Register to <Link to="/">JKL-Guide</Link></h1>
         <form className="col-md-8" onSubmit={onSubmit}>
           <div className="pt-0 pt-sm-5 pb-0 d-flex flex-wrap align-items-center">
             <div className="form-group col-sm-6 mb-0 mb-sm-3">
