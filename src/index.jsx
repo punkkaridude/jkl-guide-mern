@@ -15,6 +15,7 @@ import "./styles/site.scss";
 import  Register from "./component/register";
 import Login from "./component/login";
 import Frontpage from "./frontpage";
+import AuthProvider from './Context/AuthContext';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -34,9 +35,10 @@ class App extends React.Component {
 }
 
 ReactDOM.render(
+  <AuthProvider>
   <Router>
     <App />
   </Router>,
-
+  </AuthProvider>, //kuuluuko tähän, vai routerin sisään?
   document.getElementById("app")
 );
