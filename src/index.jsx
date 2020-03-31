@@ -17,6 +17,10 @@ import  Register from "./component/register";
 import Login from "./component/login";
 import Frontpage from "./frontpage";
 import AuthProvider from './Context/AuthContext';
+import PrivateRoute from './hocs/PrivateRoute';
+import PublicRoute from './hocs/PublicRoute';
+import Favorites from "./favorites";
+import Addservice from './add-service';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -28,9 +32,11 @@ class App extends React.Component {
     return (
       <div id="componentWrapper">
         <Route exact path="/" component={Home} />
-        <Route path="/Login" component={Login} />
-        <Route path="/Register" component={Register} />
-        <Route path="/JKL-Guide" component={Frontpage}/>
+        <PublicRoute path="/Login" component={Login} />
+        <PublicRoute path="/Register" component={Register} />
+        <Route path="/JKL-Guide"  component={Frontpage}/> {/* Pysyy vielä aukinaisena, jotta kirjautumattomat käyttäjät voivat käyttää.*/}
+        <PrivateRoute path="/JKL-Guide/Add-service" roles={["user","admin"]} component={Addservice}/>
+        <PrivateRoute path="/JKL-Guide/Favorites" roles={["user","admin"]} component={Favorites}/>
       </div>
     );
   }
