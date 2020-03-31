@@ -13,16 +13,12 @@ import Register from "./component/register";
 import Login from "./component/login";
 import Frontpage from "./frontpage";
 import AuthProvider from './Context/AuthContext';
-<<<<<<< HEAD
 import PrivateRoute from './hocs/PrivateRoute';
 import PublicRoute from './hocs/PublicRoute';
 import Favorites from "./favorites";
 import Addservice from './add-service';
-=======
 import "./styles/site.scss";
 import "bootstrap";
-
->>>>>>> 4c38391820c1bdb45588573ddbb561c18d0738fa
 class App extends React.Component {
   constructor(props) {
     super(props);
