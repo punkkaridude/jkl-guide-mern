@@ -1,11 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap';
 import React from 'react';
-import './styles/site.scss';
 import mapboxgl from 'mapbox-gl';
 import axios from "axios";
-import 'mapbox-gl/dist/mapbox-gl.css';
 import { Spring, config } from 'react-spring/renderprops';
 
 export default class Addservice extends React.Component {

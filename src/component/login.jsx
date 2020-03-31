@@ -3,10 +3,6 @@ import AuthService from '../Services/AuthService';
 import {AuthContext} from '../Context/AuthContext';
 import { Link } from "react-router-dom";
 import Message from './message';
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap";
-import "../styles/site.scss";
 
 const JklGuideLogo = (
   <svg

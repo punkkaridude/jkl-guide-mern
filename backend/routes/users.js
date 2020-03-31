@@ -19,7 +19,7 @@ userRouter.post('/Register',(req,res)=>{
             res.status(500).json({message : {msgBody : "Erros has occured", msgError: true}});
         if(user)
             res.status(400).json({message : {msgBody : "Username is already taken", msgError: true}});
-        else{
+        else { 
             const newUser = new User({ fullname,username,password,email,role });
             newUser.save(err=>{
                 if(err)
