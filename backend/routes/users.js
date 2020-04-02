@@ -4,6 +4,8 @@ const passport = require('passport');
 const passportConfig = require('../passport');
 const JWT = require('jsonwebtoken');
 let User = require('../models/user.model');
+let Favorite = require('../models/favorites.model');
+let Service = require('../models/service.model');
 
 const signToken = userID =>{
     return JWT.sign({
@@ -57,6 +59,14 @@ userRouter.get('/JKL-Guide/Admin', passport.authenticate('jwt',{session : false}
 userRouter.get('/Authenticated', passport.authenticate('jwt',{session : false}),(req, res)=>{
     const {username,role} = req.user;
     res.status(200).json({isAuthenticated : true, user : {username,role}});
+});
+
+userRouter.get('/Service/id?', passport.authenticate('jwt',{session : false}),(req, res)=>{
+    
+});
+
+userRouter.post('/Favorites', passport.authenticate('jwt',{session : false}),(req, res)=>{
+    
 });
 
 module.exports = userRouter;
