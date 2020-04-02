@@ -196,9 +196,9 @@ export default class mapApp extends React.Component {
                 results.name[index] +
                 "</h1><p>" +
                 results.address[index] +
-                "</p><p>" +
+                "</p><input type='hidden' value='" +
                 results.id[index] +
-                "</p>"
+                "' name='objectid' /><input type='button' value='add to fav' name='favButton'/>"
             )
         )
         .addTo(this.map1);

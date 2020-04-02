@@ -61,8 +61,8 @@ userRouter.get('/Authenticated', passport.authenticate('jwt',{session : false}),
     res.status(200).json({isAuthenticated : true, user : {username,role}});
 });
 
-userRouter.get('/Service/id?', passport.authenticate('jwt',{session : false}),(req, res)=>{
-    
+userRouter.get('/Add-to', passport.authenticate('jwt',{session : false}),(req, res)=>{
+    const { _id } = req.objectid
 });
 
 userRouter.post('/Favorites', passport.authenticate('jwt',{session : false}),(req, res)=>{
