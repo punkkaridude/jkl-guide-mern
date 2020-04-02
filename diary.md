@@ -129,4 +129,12 @@ Kokoustimme maanantaina klo 9:30 - X *
 * Tutustuttu SCSSän kiemuroihin ja siihen miten ulkoasua on rakennettu
 * Mapboxin tyyleihin tutustumista
 * Rekisteröintisivulle backspace- tai raksipainikkeen kehittely. Yleisesti myös takaisinpäin menoa varten.
+-------------------------
+-------------------------
 
+### Torstai 2.4.2020 - Favorites- ja FAQ-Sivun tekoa 
+*Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
+Kokoustimme maanantaina klo 9:30 - X *
+
+#### FAQ-Sivu
+* Veeti aloitti FAQ-sivun backendin työstämistä, tarkoituksena on saada FAQ-sivulle tiedot näkymiin tietokannastamme. Päivän anti oli backendin toimiminen, saimme lisättyä tietoa tietokannan FAQ-osioon. Enää täytyy saada FAQ-sivuston frontend puoli toimimaan.
