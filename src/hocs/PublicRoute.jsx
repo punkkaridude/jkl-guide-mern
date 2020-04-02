@@ -7,11 +7,9 @@ const PublicRoute = ({component : Component, ...rest})=>{
     return(
         <Route {...rest} render={props =>{
             if(isAuthenticated)
-                return <Redirect to={{ pathname: '/JKL-Guide', 
-                                     state : {from : props.location}}}/>
-
-            return <Component {...props}/>
-          }}/>
+                return <Redirect to={{ pathname: '/JKL-Guide', state : {from : props.location}}}/>
+            else return <Component {...props}/>
+        }}/>
     )
 }
 

@@ -58,66 +58,79 @@ export default class Addservice extends React.Component {
         this.map2.getCanvas();
     })
   }
+
   onChangeName(e){
     this.setState({
       name: e.target.value
     });
   }
+
   onChangeAddress(e){
     this.setState({
       address: e.target.value
     });
   }
+
   onChangePostal(e){
     this.setState({
       postalcode: e.target.value
     });
   }
+
   onChangeCity(e){
     this.setState({
       city: e.target.value
     });
   }
+
   onChangeCountry(e){
     this.setState({
       country: e.target.value
     });
   }
+
   onChangeEmail(e){
     this.setState({
       email: e.target.value
     });
-  } 
+  }
+
   onChangePhone(e){
     this.setState({
       phone: e.target.value
     });
   }
+
   onChangeWebsite(e){
     this.setState({
       website: e.target.value
     });
   }
+
   onChangeDetails(e){
     this.setState({
       details: e.target.value
     });
   }
+
   onChangeImage(e){
     this.setState({
       image: e.target.value
     });
   }
+
   onChangeLongitude(e){
     this.setState({
       longitude: e.target.value
     });
   }
+
   onChangeLatitude(e){
     this.setState({
       latitude: e.target.value
     });
   }
+
   onSubmit(e) {
     e.preventDefault();
     const service = {
@@ -155,8 +168,9 @@ export default class Addservice extends React.Component {
             latitude: ''
         });
         window.location = "/JKL-Guide/Add-service";
-      })
+      });
   }
+  
   render() {
     return (
       <Spring
