@@ -7,6 +7,8 @@ import "../styles/site.scss";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
+
+
 const searchIcon = (
   <svg
     version="1.1"
@@ -34,6 +36,9 @@ export default class mapApp extends React.Component {
       results: {
         name: [],
         address: [],
+        postalcode: [],
+        city: [],
+        website: [],
         lng: [],
         lat: [],
         id: []
@@ -81,6 +86,9 @@ export default class mapApp extends React.Component {
     if (value.length > 0 && e.keyCode !== 40 && e.keyCode !== 38) {
       let names = [];
       let address = [];
+      let postalcode = [];
+      let city = [];
+      let website = [];
       let lng = [];
       let lat = [];
       let id = [];
@@ -93,12 +101,18 @@ export default class mapApp extends React.Component {
           services.forEach(element => {
             let name = element.name;
             let addr = element.address;
+            let postal = element.postalcode;
+            let cit = element.city;
+            let webs = element.website;
             let long = element.longitude;
             let latt = element.latitude;
             let objectid = element._id;
             if (expression.test(name)) {
               names.push(name);
               address.push(addr);
+              postalcode.push(postal);
+              city.push(cit);
+              website.push(webs);
               lng.push(long);
               lat.push(latt);
               id.push(objectid)
@@ -108,6 +122,9 @@ export default class mapApp extends React.Component {
             results: {
               name: names,
               address: address,
+              postalcode: postalcode,
+              city: city,
+              website : website,
               lng: lng,
               lat: lat,
               id: id
@@ -120,7 +137,7 @@ export default class mapApp extends React.Component {
       });
     }
     this.setState(() => ({
-      results: { name: [], address: [], lng: [], lat: [], id: [] },
+      results: { name: [], address: [], postalcode: [], city: [], website: [], lng: [], lat: [], id: [] },
       searchvalue: value
     }));
   };
@@ -153,6 +170,9 @@ export default class mapApp extends React.Component {
         results: {
           name: [],
           address: [],
+          postalcode: [],
+          city: [],
+          website: [],
           lng: [],
           lat: [],
           id:[]
@@ -176,6 +196,9 @@ export default class mapApp extends React.Component {
       results: {
         name: [value],
         address: [this.state.results.address[index]],
+        postalcode: [this.state.results.postalcode[index]],
+        city: [this.state.results.city[index]],
+        website: [this.state.results.website[index]],
         lng: [this.state.results.lng[index]],
         lat: [this.state.results.lat[index]],
         id: [this.state.results.id[index]]
@@ -198,12 +221,18 @@ export default class mapApp extends React.Component {
           new mapboxgl.Popup({ offset: 25 }) // add popups
             .setHTML(
               "<h1>" +
-                results.name[index] +
-                "</h1><p>" +
-                results.address[index] +
-                "</p><input type='hidden' value='" +
-                results.id[index] +
-                "' name='objectid' /><input type='button' value='add to fav' name='favButton'/>"
+              results.name[index] +
+              "</h1><p>" + 
+              results.address[index] +
+              "<p>" + 
+              results.postalcode[index] +
+              ", " +
+              results.city[index] +
+              "</h1><p>" +
+              results.website[index] +
+              "</p><input type='hidden' value='" +
+              results.id[index] +
+              "'name='objectid'/><input type='button' value='add to fav' name='favButton'/>"
             )
         )
         .addTo(this.map1);

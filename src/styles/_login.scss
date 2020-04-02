@@ -40,14 +40,7 @@
             font-size: 0.9rem;
         }
     }
-    button.register{
-        background-color: rgb(53, 184, 112);
-        border: 2px rgb(43, 151, 92) solid;
-        &:hover{
-            background-color: rgb(58, 201, 122);
-            border: 2px rgb(48, 168, 102) solid;  
-        }
-    }
+  
     h1{
         @include bigHFont();
         font-size: 5rem;
@@ -67,7 +60,7 @@
         background-color: $inputbackColor;
         border: $border;
         &::placeholder{
-            color: #929292;
+            color: $placeholderFontCol;
             font-style: italic; 
         }
         &:hover{
@@ -78,25 +71,27 @@
         color: $blackColor;
     }
     button{
+        font-family: $FontFamHeading;
+        letter-spacing: 1px; 
         color: $blackColor;
         &#login{
             transition: all .2s;
-            background-color: rgb(28, 126, 88);
-            border: 2px rgb(25, 107, 76) solid;
+            background-color:  $buttonColor;
+            border: $border;
             &:hover{
                 transform: scale(1.02);
-                background-color: rgb(33, 141, 100);
-                border: 2px rgb(29, 122, 87) solid;
+                background-color: $buttonHover;
+                border: $border;
             }
         }
         &#reg{
             transition: all .2s;
-            background-color: rgb(53, 184, 112);
-            border: 2px rgb(43, 151, 92) solid;
+            background-color: $button2Color;
+            border: $border;
             &:hover{
                 transform: scale(1.02);
-                background-color: rgb(57, 199, 121);
-                border: 2px rgb(48, 168, 102) solid;
+                background-color: $button2Hover;
+                border: $border;
             }
         }
     }

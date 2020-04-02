@@ -42,7 +42,7 @@ export default class Addservice extends React.Component {
     mapboxgl.accessToken = 'pk.eyJ1IjoicHVua2thcmlkdWRlIiwiYSI6ImNrMjM2aGl2NTB0OHIzY25yb29oOXNlbmYifQ.-jVIXdpV1emEldkSzf-Q5g';
     this.map2 = new mapboxgl.Map({
         container: this.mapContainer,
-        style: 'mapbox://styles/mapbox/streets-v11',
+        style: 'mapbox://styles/mapbox/light-v9',
         center: [this.state.lng, this.state.lat],
         zoom: this.state.zoom
     })

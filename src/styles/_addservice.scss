@@ -96,12 +96,14 @@
   button {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
     transition: all 0.2s;
-    background-color: rgb(53, 184, 112);
-    border: 2px rgb(43, 151, 92) solid;
+    font-family: $FontFamHeading;
+    letter-spacing: 1px;
+    background-color: $buttonColor;
+    border: $border;
     &:hover {
       transform: scale(0.98);
-      background-color: rgb(37, 175, 99);
-      border: 2px rgb(33, 139, 99) solid;
+      background-color: $buttonHover;
+      border: $border;
     }
   }
 }
