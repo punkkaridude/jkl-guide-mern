@@ -4,22 +4,22 @@
   background-size: 70%;
   z-index: 999;
 
-  animation: bgMove 5s linear infinite; //tässä laitetaan taustakuvan kartta liikkumaan
+  animation: bgMove 5s linear alternate infinite; //tässä laitetaan taustakuvan kartta liikkumaan
   @include media-breakpoint-only(xs){
       background-size: 85%;
-      animation: bgMove 100s linear infinite;
+      animation: bgMove 100s linear alternate infinite;
   }
   @include media-breakpoint-only(sm){
       background-size: 85%;
-      animation: bgMove 100s linear infinite;
+      animation: bgMove 100s linear alternate infinite;
   }
   @include media-breakpoint-only(md){
       background-size: 85%;
-      animation: bgMove 100s linear infinite;
+      animation: bgMove 100s linear alternate infinite;
   }
   @include media-breakpoint-between(lg, xl){
       background-size: 85%;
-      animation: bgMove 100s linear infinite;
+      animation: bgMove 100s linear alternate infinite;
   }
 
   > .colorLayer{
