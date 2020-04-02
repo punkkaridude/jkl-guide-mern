@@ -7,14 +7,11 @@ const PrivateRoute = ({component : Component, roles, ...rest})=>{
     return(
         <Route {...rest} render={props =>{
             if(!isAuthenticated)
-                return <Redirect to={{ pathname: '/', 
-                                     state : {from : props.location}}}/>
+                return <Redirect to={{ pathname: '/', state : {from : props.location}}}/>
         
             if(!roles.includes(user.role)) //seuloo onko käyttäjä admini vai ei
-                 return <Redirect to={{ pathname: '/JKL-Guide',  //jos ei, palaa etusivulle
-                     state : {from : props.location}}}/>
-            return <Component {...props}/>
-          }}/>
+                return <Redirect to={{ pathname: '/JKL-Guide', state : {from : props.location}}}/>
+        }}/>
     )
 }
 

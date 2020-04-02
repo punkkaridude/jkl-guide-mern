@@ -1,10 +1,7 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap";
 import * as $ from "jquery";
 import React from "react";
-import "../styles/site.scss";
 import mapboxgl from "mapbox-gl";
+import Favorite from "../component/add-favorite";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 const searchIcon = (
@@ -203,7 +200,7 @@ export default class mapApp extends React.Component {
                 results.address[index] +
                 "</p><input type='hidden' value='" +
                 results.id[index] +
-                "' name='objectid' /><input type='button' value='add to fav' name='favButton'/>"
+                "' name='objectid' />" + <Favorite />
             )
         )
         .addTo(this.map1);

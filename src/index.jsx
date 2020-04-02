@@ -32,7 +32,7 @@ class App extends React.Component {
         <Route exact path="/" component={Home} />
         <PublicRoute path="/Login" component={Login} />
         <PublicRoute path="/Register" component={Register} />
-        <Route path="/JKL-Guide"  component={Frontpage}/> {/* Pysyy vielä aukinaisena, jotta kirjautumattomat käyttäjät voivat käyttää.*/}
+        <Route path="/JKL-Guide"  component={Frontpage}/>  {/* Pysyy vielä aukinaisena, jotta kirjautumattomat käyttäjät voivat käyttää. */}
         <PrivateRoute path="/JKL-Guide/Add-service" roles={["user","admin"]} component={Addservice}/>
         <PrivateRoute path="/JKL-Guide/Favorites" roles={["user","admin"]} component={Favorites}/>
       </div>
@@ -44,7 +44,7 @@ ReactDOM.render(
   <AuthProvider>
     <Router>
       <App />
-    </Router>,
+    </Router>
   </AuthProvider>, //kuuluuko tähän, vai routerin sisään?
   document.getElementById("app")
 );
