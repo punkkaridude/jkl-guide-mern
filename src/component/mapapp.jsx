@@ -218,7 +218,6 @@ export default class mapApp extends React.Component {
           new mapboxgl.Popup({ offset: 25 }) // add popups
             .setHTML(
               "<h1>" +
-<<<<<<< HEAD
               results.name[index] +
               "</h1><p>" + 
               results.address[index] +
@@ -231,14 +230,6 @@ export default class mapApp extends React.Component {
               "</p><input type='hidden' value='" +
               results.id[index] +
               "'name='objectid'/><input type='button' value='add to fav' name='favButton'/>"
-=======
-                results.name[index] +
-                "</h1><p>" +
-                results.address[index] +
-                "</p><input type='hidden' value='" +
-                results.id[index] +
-                "' name='objectid' />" + <Favorite />
->>>>>>> aaf48ad69c377af7aa22dc8da05d799f839da76d
             )
         )
         .addTo(this.map1);
