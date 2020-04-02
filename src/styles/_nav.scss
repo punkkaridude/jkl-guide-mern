@@ -1,41 +1,86 @@
 #navbarWrapper {
   background-color: $SecondBgroundCol;
+  background-image: url("../img/bg1.png");
+  background-size: 70%;
   z-index: 999;
+
+  animation: bgMove 5s linear infinite; //tässä laitetaan taustakuvan kartta liikkumaan
+  @include media-breakpoint-only(xs){
+      background-size: 85%;
+      animation: bgMove 100s linear infinite;
+  }
+  @include media-breakpoint-only(sm){
+      background-size: 85%;
+      animation: bgMove 100s linear infinite;
+  }
+  @include media-breakpoint-only(md){
+      background-size: 85%;
+      animation: bgMove 100s linear infinite;
+  }
+  @include media-breakpoint-between(lg, xl){
+      background-size: 85%;
+      animation: bgMove 100s linear infinite;
+  }
+
+  > .colorLayer{
+    height: 100%;
+    background-color: rgba(196, 242, 241, 0.829);
+}
+
+    @keyframes bgMove {
+        from {
+            background-position: 0 2%;
+        }
+        to{
+            background-position: 100% 2%;
+        }
+    }
+
   nav {
-    flex-wrap: wrap;
+   
+
+    //flex-wrap: wrap;
+    //background-image: url("../img/kompassi.png");
+    //background-repeat: no-repeat;
+    //background-position: 70%;
+    //background-size: 20%;
+  
+
+    @include media-breakpoint-between(xs, lg) {
+    background-size: 50%;
+    }
+    @include media-breakpoint-between(xs, sm) {
+      background-size: 60%;
+    }
+    @include media-breakpoint-between(md, lg){
+      background-size: 40%;
+    }
+   
 
     .flex-columns {
       @include media-breakpoint-between(xs, lg) {
-        flex-direction: column;
-      }
+       
+}
     }
 
     .navbar-toggler:focus {
       outline: none;
     }
     .navheader {
+       
       font-family: $FontFamHeading;
-      color: $BackGroundCol;
+      color: $accentColor;
       text-shadow: 2px 2px 4px #8b8b8b;
-      @include media-breakpoint-between(xs, lg) {
-        margin-top: -15px;
-      }
-      @include media-breakpoint-between(xs, sm) {
-        font-size: 1.3rem;
-      }
-      @include media-breakpoint-between(md, lg) {
-        font-size: 2rem;
-      }
     }
     .navbar-brand {
+      position: left;
       justify-self: center;
       transition: all 0.2s ease 0s;
       &:hover {
-        transform: scale(1.01);
+        transform: scale(1.02);
       }
       @include media-breakpoint-between(xs, sm) {
-        @include smallHFont();
-        margin-top: -15px;
+        @include bigHFont();
       }
       @include media-breakpoint-between(md, xl) {
         @include bigHFont();
@@ -43,12 +88,14 @@
     }
     #navbarDropdownMenuLink {
       transition: all 0.1s ease 0s;
-      height: 74px;
-      background-color: $PrimaryFontCol;
-      color: $blackColor;
+      height: 50px;
+      background-color: $accentColor;
+      color: $PrimaryFontCol;
+      font-family: $FontFamHeading;
       font-size: 20px;
-      border: $border;
-      border-radius: 10px;
+      letter-spacing: 1px;
+      border: none;
+      border-radius: 4px;
 
       @include media-breakpoint-between(xs, md) {
         height: auto;
@@ -78,8 +125,8 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
-          height: 74px;
-          width: 74px;
+          height: 50px;
+          width: 50px;
           background-color: $PrimaryFontCol;
           border-radius: 50%;
           border: $border;
@@ -99,11 +146,11 @@
             background-color: $PrimaryFontCol;
             margin-top: 8px;
             border: $border;
-            color: $blackColor;
+            color: $accentColor;
           }
           .icon {
-            height: 36px;
-            width: 36px;
+            height: 20px;
+            width: 20px;
             @include media-breakpoint-between(sm, xl) {
               display: flex;
               fill: $blackColor;
@@ -141,6 +188,8 @@
       border-radius: 10px;
       background-color: $PrimaryFontCol;
       .dropdown-item {
+        font-family: $FontFamHeading;
+
         &:hover {
           transform: scale(1.02);
           background: none;

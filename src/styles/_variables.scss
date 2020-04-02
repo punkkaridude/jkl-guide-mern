@@ -1,14 +1,15 @@
-@import url("https://fonts.googleapis.com/css?family=Righteous|Roboto:300,300i,400,700&display=swap&subset=latin-ext");
+@import url("https://fonts.googleapis.com/css?family=Bebas+Neue|Roboto:300,300i,400,700&display=swap&subset=latin-ext");
 
 $BackGroundCol: #4b3f3f;
-$SecondBgroundCol: #99eee5;
+$SecondBgroundCol: rgba(196, 242, 241, 0.829);
 $PrimaryFontCol: #fefefa;
 $blackColor: #242424;
 $borderColor: #b1b1b1;
 $inputbackColor: #f2f2f2;
+$accentColor: #4b3f3f;
 $border: 1px $borderColor solid;
 $FontFam: "Roboto", sans-serif;
-$FontFamHeading: "Righteous", cursive;
+$FontFamHeading: "Bebas neue", cursive;
 
 @mixin bigHFont {
   font-family: $FontFamHeading;
