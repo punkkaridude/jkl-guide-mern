@@ -1,10 +1,10 @@
 #loginContainer,  #regContainer{
     height: 100vh;
-    background-image: url("../img/bg.png");
+    background-image: url("../img/bg1.png");
     background-color: $SecondBgroundCol;
     background-position: 0 0;
     background-repeat: repeat;
-    background-size: 200%;
+    background-size: 130%;
     position: relative;
     animation: bgMove 5s linear infinite;
     @include media-breakpoint-only(xs){
@@ -24,7 +24,7 @@
     > .colorLayer{
         position: absolute;
         height: 100%;
-        background-color:rgba(144, 238, 218, 0.842);
+        background-color:rgba(196, 242, 241, 0.829);
     }
     @keyframes bgMove {
         from {
