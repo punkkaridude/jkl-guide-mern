@@ -137,4 +137,4 @@ Kokoustimme maanantaina klo 9:30 - X *
 Kokoustimme maanantaina klo 9:30 - X *
 
 #### FAQ-Sivu
-* Veeti aloitti FAQ-sivun backendin työstämistä, tarkoituksena on saada FAQ-sivulle tiedot näkymiin tietokannastamme. Päivän anti oli backendin toimiminen, saimme lisättyä tietoa tietokannan FAQ-osioon. Enää täytyy saada FAQ-sivuston frontend puoli toimimaan.
+* Veeti aloitti FAQ-sivun backendin työstämistä, tarkoituksena on saada FAQ-sivulle tiedot näkymiin tietokannastamme. Päivän anti oli muutaman virheen ja yhteisen koodintuijotteluhetken jälkeen backendin toimiminen, saimme lisättyä tietoa tietokannan FAQ-osioon. Enää täytyy saada FAQ-sivuston frontend puoli toimimaan! Progress.
