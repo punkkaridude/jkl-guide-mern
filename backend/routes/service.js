@@ -40,4 +40,8 @@ router.route('/Add-service').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/Add-favorite').post((req, res) => {
+    
+});
+
 module.exports = router;

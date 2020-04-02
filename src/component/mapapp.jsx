@@ -30,7 +30,8 @@ export default class mapApp extends React.Component {
         name: [],
         address: [],
         lng: [],
-        lat: []
+        lat: [],
+        id: []
       },
       tag: true
     };
@@ -77,6 +78,7 @@ export default class mapApp extends React.Component {
       let address = [];
       let lng = [];
       let lat = [];
+      let id = [];
       $.ajax({
         url: url, method: 'GET',
         success: searchResults => {
@@ -88,11 +90,13 @@ export default class mapApp extends React.Component {
             let addr = element.address;
             let long = element.longitude;
             let latt = element.latitude;
+            let objectid = element._id;
             if (expression.test(name)) {
               names.push(name);
               address.push(addr);
               lng.push(long);
               lat.push(latt);
+              id.push(objectid)
             }
           });
           this.setState({
@@ -100,7 +104,8 @@ export default class mapApp extends React.Component {
               name: names,
               address: address,
               lng: lng,
-              lat: lat
+              lat: lat,
+              id: id
             }
           });
         },
@@ -110,7 +115,7 @@ export default class mapApp extends React.Component {
       });
     }
     this.setState(() => ({
-      results: { name: [], address: [], lng: [], lat: [] },
+      results: { name: [], address: [], lng: [], lat: [], id: [] },
       searchvalue: value
     }));
   };
@@ -144,7 +149,8 @@ export default class mapApp extends React.Component {
           name: [],
           address: [],
           lng: [],
-          lat: []
+          lat: [],
+          id:[]
         },
         searchvalue: "",
         tag: false
@@ -166,7 +172,8 @@ export default class mapApp extends React.Component {
         name: [value],
         address: [this.state.results.address[index]],
         lng: [this.state.results.lng[index]],
-        lat: [this.state.results.lat[index]]
+        lat: [this.state.results.lat[index]],
+        id: [this.state.results.id[index]]
       },
       tag: true
     }));
@@ -189,6 +196,8 @@ export default class mapApp extends React.Component {
                 results.name[index] +
                 "</h1><p>" +
                 results.address[index] +
+                "</p><p>" +
+                results.id[index] +
                 "</p>"
             )
         )
