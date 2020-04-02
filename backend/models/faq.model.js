@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const FAQSchema = new mongoose.Schema({
+const faqSchema = new mongoose.Schema({
     header: {
         type: String,
         required: true,
@@ -11,15 +11,13 @@ const FAQSchema = new mongoose.Schema({
         required: true
     },
     editor: {
-        username: String,
+        type: String,
         required: true
     },
-    /*dateCreated: {
+    dateCreated: {
         type: Date,
-        required: true
-    },*/
-    
-
+        required: true       
+    }
 });
 
-module.exports = mongoose.model('Faq', FAQSchema);
+module.exports = mongoose.model('Faq', faqSchema);

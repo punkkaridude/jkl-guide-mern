@@ -1,20 +1,22 @@
 const router = require('express').Router();
-let Faq = require('../models/faq.model');
+const Faq = require('../models/faq.model');
 
-router.route('/Faq').get((req, res) => {
+router.route('/').get((req, res) => {
     Faq.find()
     .then(faq => res.json(faq))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/Add-faq').post((req, res) => {
+router.route('/add').post((req, res) => {
     const header = req.body.header;
     const body = req.body.body;
     const editor = req.body.editor;
+    const dateCreated = Date.now();
     const newFaq = new Faq({
         header,
         body,
-        editor
+        editor,
+        dateCreated
     });
 
     newFaq.save()
