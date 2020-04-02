@@ -1,9 +1,7 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap/dist/js/bootstrap.js";
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
-import "../styles/site.scss";
+import AuthService from '../Services/AuthService';
+import { AuthContext } from '../Context/AuthContext';
 
 const forumIcon = (
   <svg
@@ -81,47 +79,109 @@ const faqIcon = (
   </svg>
 );
 
-export default class Nav extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
+const Nav = props => {
+  const {isAuthenticated,user,setIsAuthenticated,setUser} = useContext(AuthContext);
+
+  const onClickLogout = () =>{
+    AuthService.logout().then(data=>{
+      if(data.success){
+        setUser(data.user);
+        setIsAuthenticated(false);
+      }
+    });
   }
-
-  render() {
+  const unauthenticatedNavbar = () =>{
     return (
-      <div id="navbarWrapper" className="container-fluid p-0">
-        <nav className="colorLayer navbar navbar-expand-lg navbar-light shadow py-2 ">
-          <div className="d-flex flex-wrap flex-columns flex-xl-row">
-            <Link to="/JKL-Guide/" className="navbar-brand py-0 pl-md-4 mr-0">
-              JKL-Guide
-            </Link>
-
-            <h1 className="navheader py-0 pl-md-4 mr-0 mb-0 align-self-center">
-              {this.props.siteName}
-            </h1>
-          </div>
-
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div
-            className="collapse navbar-collapse flex-nowrap pt-2 pt-sm-0"
-            id="navbarNavDropdown"
-          >
-            <ul className=" nav navbar-nav ml-auto align-items-center-md flex-nowrap">
+      <>
+        <Link to="/Register">
+          <div className="dropdown-item">Register</div>
+        </Link>
+        <Link to="/">
+          <div className="dropdown-item">Login</div>
+        </Link>
+      </>
+    );
+  }
+  const authenticatedNavbar = () =>{
+    return (
+      <>
+        <Link to="/JKL-Guide/">
+          <div className="dropdown-item">Settings</div>
+        </Link>
+        {
+          user.role === "admin" ?
+          <Link to="/JKL-Guide/">
+            <div className="dropdown-item">Admintool</div>
+          </Link> : null
+        }
+        <Link to="/">
+          <div className="dropdown-item" onClick={onClickLogout}>Log out</div>
+        </Link>
+      </>
+    );
+  }
+  return (
+    <div id="navbarWrapper" className="container-fluid p-0">
+      <nav className="colorLayer navbar navbar-expand-lg navbar-light shadow py-2">
+        <div className="d-flex flex-wrap flex-columns flex-xl-row">
+          <Link to="/JKL-Guide/">
+            <div className="navbar-brand py-0 pl-md-4 mr-0">JKL-Guide</div>
+          </Link>
+          <h1 className="navheader py-0 pl-md-4 mr-0 mb-0 align-self-center">
+            {props.siteName}
+          </h1>
+        </div>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div
+          className="collapse navbar-collapse flex-nowrap pt-2 pt-sm-0"
+          id="navbarNavDropdown"
+        >
+          <ul className=" nav navbar-nav ml-auto align-items-center-md flex-nowrap">
+            {!isAuthenticated ? 
+              <>
               <li className="nav-item px-1">
-                <Link to="/JKL-Guide/Add-service" className="nav-link shadow">
-                  <span className="icon">{plusIcon}</span>
-                  <span className="text">Add Service</span>
+              <Link to="/JKL-Guide/Faq" className="nav-link shadow">
+                <span className="icon">{faqIcon}</span>
+                <span className="text">Help</span>
+              </Link>
+              </li>
+              <li className="nav-item px-1">
+                <Link to="/JKL-Guide/Forum" className="nav-link shadow">
+                  <span className="icon">{forumIcon}</span>
+                  <span className="text">Forum</span>
                 </Link>
+              </li>
+              <li className="nav-item dropdown pl-1">
+                <button
+                  className="nav-link dropdown-toggle px-4 shadow"
+                  id="navbarDropdownMenuLink"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  {!isAuthenticated ? <div>Sign In</div> : user.username}
+                </button>
+                <div
+                  className="dropdown-menu shadow"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  { !isAuthenticated ? unauthenticatedNavbar() : authenticatedNavbar()}
+                </div>
+              </li> </> : <> <li className="nav-item px-1">
+              <Link to="/JKL-Guide/Add-service" className="nav-link shadow">
+                <span className="icon">{plusIcon}</span>
+                <span className="text">Add Service</span>
+              </Link>
               </li>
               <li className="nav-item px-1">
                 <Link to="/JKL-Guide/Faq" className="nav-link shadow">
@@ -143,34 +203,26 @@ export default class Nav extends React.Component {
               </li>
               <li className="nav-item dropdown pl-1">
                 <button
-                  id="dropdownbtn"
                   className="nav-link dropdown-toggle px-4 shadow"
                   id="navbarDropdownMenuLink"
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  Username
-                </button>
-                <div
-                  className="dropdown-menu shadow"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
-                  <a className="dropdown-item" href="/JKL-Guide/">
-                    Settings
-                  </a>
-                  <a className="dropdown-item" href="/JKL-Guide/">
-                    Admintool
-                  </a>
-                  <Link to="/" className="dropdown-item">
-                    Log out
-                  </Link>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    );
-  }
+                {!isAuthenticated ? <div>Sign In</div> : user.username}
+              </button>
+              <div
+                className="dropdown-menu shadow"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                { !isAuthenticated ? unauthenticatedNavbar() : authenticatedNavbar()}
+              </div>
+            </li> </> }  
+          </ul>
+        </div>
+      </nav>
+    </div>
+  );
 }
+
+export default Nav;
