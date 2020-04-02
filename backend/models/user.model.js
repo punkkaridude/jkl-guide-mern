@@ -29,7 +29,7 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    favorites: [{type : mongoose.Schema.Types.ObjectId, ref: "service"}]
+    favorites: [{type : mongoose.Schema.Types.ObjectId, ref: "favorites"}]
 });
 
 UserSchema.pre('save', function(next){

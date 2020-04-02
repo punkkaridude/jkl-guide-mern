@@ -137,7 +137,7 @@ export default class Addservice extends React.Component {
     
     console.log(service);
 
-    axios.post('/JKL-Guide/Add-service/add', service)
+    axios.post('/JKL-Guide/Add-service', service)
       .then(res => {
         console.log(res.data);
         this.setState({

@@ -62,6 +62,10 @@ const favorite = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    added:{
+        type: Date,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('Favorite', favorite);

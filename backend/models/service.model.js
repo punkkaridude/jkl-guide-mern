@@ -62,7 +62,14 @@ const ServiceSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-
+    added:{
+        type: Date,
+        required: true
+    },
+    favorited:{
+        type: Number,
+        default: 0
+    }
     
 });
 

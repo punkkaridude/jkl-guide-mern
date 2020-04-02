@@ -20,6 +20,7 @@ router.route('/Add-service').post((req, res) => {
     const image = req.body.image;
     const longitude = req.body.longitude;
     const latitude = req.body.latitude;
+    const added = Date.now();
     const newService = new Service({
         name, 
         address, 
@@ -32,16 +33,13 @@ router.route('/Add-service').post((req, res) => {
         details, 
         image, 
         longitude, 
-        latitude
+        latitude,
+        added
     });
 
     newService.save()
         .then(() => res.json('Service added!'))
         .catch(err => res.status(400).json('Error: ' + err));
-});
-
-router.route('/Add-favorite').post((req, res) => {
-    
 });
 
 module.exports = router;
