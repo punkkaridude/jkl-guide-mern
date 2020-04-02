@@ -1,5 +1,6 @@
 import React from "react";
 import ForumSmall from "./component/forumsmall";
+import axios from "axios";
 import { Spring, config } from "react-spring/renderprops";
 
 export default class Faq extends React.Component {
