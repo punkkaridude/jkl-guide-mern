@@ -112,7 +112,7 @@ Kokoustimme torstaina klo 9:30 - 14:30 *
 ### Maanantai 30.3.2020 - Suojauksia ja ulkoasun kanssa kikkailua
 
 *Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
-Kokoustimme maanantaina klo 9:30 - X *
+Kokoustimme maanantaina klo 9:30 - 16 *
 
 #### Suojaukset
 * Veeti sai sivuston suojaukset toimimaan muutaman mutkan kautta, tällä hetkellä on suojattu, ettei kirjautunut käyttäjä pääse palaamaan esim. Rekisteröitymis- tai kirjautumis-sivulle. Suojaukset tullaan asettamaan myös adminpaneeliin, jotta vain admin pääsee niitä tarkastelemaan.
@@ -132,9 +132,18 @@ Kokoustimme maanantaina klo 9:30 - X *
 -------------------------
 -------------------------
 
-### Torstai 2.4.2020 - Favorites- ja FAQ-Sivun tekoa 
+### Torstai 2.4.2020 - Favorites- ja FAQ-Sivun tekoa sekä ulkoasujuttuja
 *Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
-Kokoustimme maanantaina klo 9:30 - X *
+Kokoustimme torstaina klo 9:30 - 16:30 *
 
 #### FAQ-Sivu
 * Veeti aloitti FAQ-sivun backendin työstämistä, tarkoituksena on saada FAQ-sivulle tiedot näkymiin tietokannastamme. Päivän anti oli muutaman virheen ja yhteisen koodintuijotteluhetken jälkeen backendin toimiminen, saimme lisättyä tietoa tietokannan FAQ-osioon. Enää täytyy saada FAQ-sivuston frontend puoli toimimaan! Progress.
+
+### Karttamoduulin popuppien säätöä ja SCSS-määrityksiä
+* Paikallisen kopion siirto takaisin olemassaolevaan projektiin ei sujunut kommelluksitta, tuli pari päällekkäisyyttä
+* Krisu teki taikojaan ja homma kunnossa, GIT pull opeteltu kantapään kautta
+* Iina sääti kartalla näkyviä popuppeja vähän nätimmiksi ja lisäsi näkyviin osoitteen lisäksi myös postinumeron, kaupungin ja kotisivun osoitteen mapapp.jsx:n kautta. 
+* Colorlayer saatu toimimaan navbariin, kompassi ditchattu hetkellisesti pois jaloista 
+* Kartan animaatiota muutettu edestakaiseksi niin on smoothimpi
+* Variableja yhdenmukaistettu SCSS:ään ja pieniä väri- ja fonttimuutoksia tehty
+* Ensikerralle paluupainike, heiluvan divin säätö

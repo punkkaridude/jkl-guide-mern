@@ -6,20 +6,20 @@
     background-repeat: repeat;
     background-size: 130%;
     position: relative;
-    animation: bgMove 5s linear infinite;
+    animation: bgMove 50s linear alternate infinite;
     @include media-breakpoint-only(xs){
         background-size: 300%;
-        animation: bgMove 50s linear infinite;
+        animation: bgMove 50s linear alternate infinite;
     }
     @include media-breakpoint-only(sm){
-        animation: bgMove 50s linear infinite;
+        animation: bgMove 50s linear alternate infinite;
     }
     @include media-breakpoint-only(md){
-        animation: bgMove 50s linear infinite;
+        animation: bgMove 50s linear alternate infinite;
     }
     @include media-breakpoint-between(lg,xl){
 
-        animation: bgMove 50s linear infinite;
+        animation: bgMove 50s linear alternate infinite;
     }
     > .colorLayer{
         position: absolute;
@@ -28,11 +28,12 @@
     }
     @keyframes bgMove {
         from {
-            background-position: 0 0;
+            background-position: 0 0; ;
         }
         to{
-            background-position: 100% 0;
+            background-position: -100% 0;;
         }
+    
     }
     font-family: $FontFam;
     label{
