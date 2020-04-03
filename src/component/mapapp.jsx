@@ -1,6 +1,6 @@
 import * as $ from "jquery";
-import React from "react";
-import ReactMapGL, { Marker } from 'react-map-gl';
+import React, {PureComponent} from "react";
+import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import Favorite from "../component/add-favorite";
 import "mapbox-gl/dist/mapbox-gl.css";
 import axios from 'axios';
@@ -20,7 +20,28 @@ const searchIcon = (
       </g>
     </svg>
   );
-  export default class mapApp extends React.Component {
+
+
+
+
+class Markers extends PureComponent {
+    render(){
+        const {res} = this.props;
+        return(res ?  
+            res.map(result=>
+                <Marker
+                    key={result.id}
+                    latitude={result.latitude}
+                    longitude={result.longitude}
+                >
+                    <img src={"/src/img/placeholder.svg"} alt="" />
+                </Marker>        
+            ) : null
+        )       
+    }
+}
+
+export default class mapApp extends React.Component {
     constructor(props) {
         super(props);
 
@@ -38,14 +59,22 @@ const searchIcon = (
 
         this.handleChange = this.handleChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this);
-        this.addMarkers = this.addMarkers.bind(this);
+        //this.addMarkers = this.addMarkers.bind(this);
+        this.resetStates = this.resetStates.bind(this);
     }
-   
+    
+    resetStates(){
+        this.setState({
+            searchvalue: '',
+            results: []
+        })
+    }
+
     handleChange(e) {
         const value = e.target.value;
         const expression = new RegExp(`${value}`, "i");
         const url = "/JKL-Guide/Service";     
-          
+        
         if (value.length > 0 && e.keyCode !== 40 && e.keyCode !== 38) {
             let res = [];
             axios.get(url).then(result=>{
@@ -65,16 +94,14 @@ const searchIcon = (
                             latitude: value.latitude,
                             id: value._id
                         }
-                        if(!res.includes(service.id)){
-                            res.push(service);
-                        }
-                        console.log(res);
+                        res.push(service);
+                        //console.log(res);
                     }
                     
                 });
-                this.setState(prevState => ({
-                    results: [...prevState.results, ...res]
-                }));
+                this.setState({
+                    results: res
+                });
                 console.log("result:")
                 console.log(this.state.results)
             });
@@ -86,31 +113,19 @@ const searchIcon = (
         });
     };
 
-    addMarkers(){
-        return this.state.results.map(result => {
-            return (
-                <Marker
-                    key={result.id}
-                    latitude={parseFloat(result.latitude)}
-                    longitude={parseFloat(result.longitude)}
-                >
-                    <img src="/src/img/placeholder.svg" alt="" />
-                </Marker>
-            );
-        });
-    }
+
 
     onSubmit(e) {
         e.preventDefault();
         console.log(this.state.results);
         console.log("submit");
-        this.addMarkers();
+        this.resetStates();
     }
 
-    
+
 
     render(){
-        const { viewport } = this.state;
+        const { viewport, results } = this.state;
         return(
             <div
             id="mapappWrapper"
@@ -149,7 +164,7 @@ const searchIcon = (
                     mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
                     onViewportChange={(viewport) => this.setState({viewport})}
                 >
-                    {this.state.results.length > 0 ? this.addMarkers : null}
+                    <Markers res={results} />
                 </ReactMapGL>
             </div>
         </div>
