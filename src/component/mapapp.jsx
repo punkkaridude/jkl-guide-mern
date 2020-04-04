@@ -21,9 +21,6 @@ const searchIcon = (
     </svg>
   );
 
-
-
-
 class Markers extends PureComponent {
     render(){
         const {res} = this.props;
@@ -33,8 +30,14 @@ class Markers extends PureComponent {
                     key={result.id}
                     latitude={result.latitude}
                     longitude={result.longitude}
+                    onClick={() => {
+                        console.log("Popup click");
+                    }}
                 >
-                    <img src={"/src/img/placeholder.svg"} alt="" />
+                    <img 
+                        src={"/src/img/placeholder.svg"} 
+                        alt=""
+                    />
                 </Marker>        
             ) : null
         )       
@@ -44,7 +47,6 @@ class Markers extends PureComponent {
 export default class mapApp extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             viewport: {
                 latitude: 62.243789,
@@ -54,13 +56,14 @@ export default class mapApp extends React.Component {
                 zoom: 12
             },
             searchvalue: '',
-            results: []
+            results: [],
+            addMarkers: false
         };
 
         this.handleChange = this.handleChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this);
-        //this.addMarkers = this.addMarkers.bind(this);
         this.resetStates = this.resetStates.bind(this);
+        this.renderResults = this.renderResults.bind(this);
     }
     
     resetStates(){
@@ -74,7 +77,7 @@ export default class mapApp extends React.Component {
         const value = e.target.value;
         const expression = new RegExp(`${value}`, "i");
         const url = "/JKL-Guide/Service";     
-        
+        this.setState({addMarkers: false})
         if (value.length > 0 && e.keyCode !== 40 && e.keyCode !== 38) {
             let res = [];
             axios.get(url).then(result=>{
@@ -97,7 +100,6 @@ export default class mapApp extends React.Component {
                         res.push(service);
                         //console.log(res);
                     }
-                    
                 });
                 this.setState({
                     results: res
@@ -108,24 +110,51 @@ export default class mapApp extends React.Component {
         }
         console.log("poistan kaikki")
         this.setState({
-            results: [],
-            searchvalue: value
+            searchvalue: value,
+            addMarkers: false
         });
     };
-
-
 
     onSubmit(e) {
         e.preventDefault();
         console.log(this.state.results);
         console.log("submit");
-        this.resetStates();
+        if(this.state.searchvalue == ''){
+            this.setState({
+                addMarkers: false
+            });
+        } 
+        else {
+            this.setState({
+                searchvalue: '',
+                addMarkers: true
+            });
+        }
     }
 
-
+    renderResults() {
+        const { results } = this.state;
+        return (
+            <ul
+                tabIndex="0"
+                id="asyncUl"
+                className="shadow position-absolute"
+            >
+                {results.map((item, key) => (
+                    <li
+                        tabIndex="0"
+                        key={"ln" + key}
+                        onClick={() => this.resultSelected(item)}
+                    >
+                        {item.name}
+                    </li>
+                ))}
+            </ul>
+        );
+    }
 
     render(){
-        const { viewport, results } = this.state;
+        const { viewport, results, addMarkers } = this.state;
         return(
             <div
             id="mapappWrapper"
@@ -151,7 +180,7 @@ export default class mapApp extends React.Component {
                 </button>
                 </div>
                 <div id="asyncresult" className="col-sm-10 px-0">
-                
+                    { results ? this.renderResults() : null}
                 </div>
             </div>
             </form>
@@ -164,7 +193,7 @@ export default class mapApp extends React.Component {
                     mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
                     onViewportChange={(viewport) => this.setState({viewport})}
                 >
-                    <Markers res={results} />
+                    {addMarkers ? <Markers res={results} /> : null}
                 </ReactMapGL>
             </div>
         </div>
