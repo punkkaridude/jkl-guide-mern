@@ -57,19 +57,23 @@ export default class mapApp extends React.Component {
             },
             searchvalue: '',
             results: [],
-            addMarkers: false
+            addMarkers: false,
+            cursor: -1
         };
 
         this.handleChange = this.handleChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this);
         this.resetStates = this.resetStates.bind(this);
         this.renderResults = this.renderResults.bind(this);
+        this.resultSelected = this.resultSelected.bind(this);
+        this.handleonKeyDown = this.handleonKeyDown.bind(this);
     }
     
     resetStates(){
         this.setState({
             searchvalue: '',
-            results: []
+            results: [],
+            cursor: -1
         })
     }
 
@@ -111,7 +115,8 @@ export default class mapApp extends React.Component {
         console.log("poistan kaikki")
         this.setState({
             searchvalue: value,
-            addMarkers: false
+            addMarkers: false,
+            cursor: -1
         });
     };
 
@@ -119,7 +124,7 @@ export default class mapApp extends React.Component {
         e.preventDefault();
         console.log(this.state.results);
         console.log("submit");
-        if(this.state.searchvalue == ''){
+        if(this.state.searchvalue === ''){
             this.setState({
                 addMarkers: false
             });
@@ -132,29 +137,67 @@ export default class mapApp extends React.Component {
         }
     }
 
+    handleonKeyDown(e) {
+        console.log("keydown")
+        const { results, cursor } = this.state;
+        if (e.keyCode === 38 && cursor >= 0) {
+            this.setState( prevState => ({
+                cursor: prevState.cursor - 1,
+            }));
+            console.log("ylös: ", cursor);
+        } else if(e.keyCode === 40 && cursor === -1){
+            this.setState({
+                cursor: 0
+            });
+        } else if (e.keyCode === 40 && cursor < results.length - 1) {
+            this.setState( prevState => ({
+                cursor: prevState.cursor + 1,
+            }));
+            console.log("alas:", cursor);
+        } else if (e.keyCode === 13) {
+            e.preventDefault();
+            console.log("enter");
+        }
+    }
+
     renderResults() {
-        const { results } = this.state;
+        const { results, cursor } = this.state;
         return (
             <ul
                 tabIndex="0"
                 id="asyncUl"
                 className="shadow position-absolute"
+                onKeyDown={this.handleonKeyDown}
             >
-                {results.map((item, key) => (
+                {results ? results.map((item, key) => (
                     <li
                         tabIndex="0"
-                        key={"ln" + key}
-                        onClick={() => this.resultSelected(item)}
+                        key={key}
+                        className={cursor === key ? 'active' : null}
+                        onClick={(e) => {
+                            e.target.focus();
+                            this.resultSelected(item.name);
+                        }}
                     >
                         {item.name}
                     </li>
-                ))}
+                )) : null}
             </ul>
         );
     }
 
+    resultSelected(active) {
+        const { results } = this.state;
+        console.log("resultSelected");
+        console.log(active);
+        this.setState({
+            searchvalue: active,
+            cursor: -1        
+        });
+    }
+
     render(){
-        const { viewport, results, addMarkers } = this.state;
+        const { viewport, results, addMarkers, searchvalue } = this.state;
         return(
             <div
             id="mapappWrapper"
@@ -169,6 +212,7 @@ export default class mapApp extends React.Component {
                     placeholder="Service name, category or related word"
                     onChange={this.handleChange}
                     value={this.state.searchvalue}
+                    onKeyDown={this.handleonKeyDown}
                 />
                 </div>
                 <div id="searchBtn" className="col-sm-2 px-0">
@@ -180,7 +224,7 @@ export default class mapApp extends React.Component {
                 </button>
                 </div>
                 <div id="asyncresult" className="col-sm-10 px-0">
-                    { results ? this.renderResults() : null}
+                    {results && searchvalue ? this.renderResults() : null}
                 </div>
             </div>
             </form>
