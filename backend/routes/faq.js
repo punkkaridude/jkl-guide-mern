@@ -11,7 +11,7 @@ router.route('/add').post((req, res) => {
     const header = req.body.header;
     const body = req.body.body;
     const editor = req.body.editor;
-    const dateCreated = Date.now();
+    const dateCreated = Date.now("<YYYY-mm-dd>");
     const newFaq = new Faq({
         header,
         body,

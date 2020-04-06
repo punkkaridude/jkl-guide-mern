@@ -34,10 +34,6 @@ class Markers extends PureComponent {
                         console.log("Popup click");
                     }}
                 >
-                    <img 
-                        src={"/src/img/placeholder.svg"} 
-                        alt=""
-                    />
                 </Marker>        
             ) : null
         )       
@@ -47,6 +43,7 @@ class Markers extends PureComponent {
 export default class mapApp extends React.Component {
     constructor(props) {
         super(props);
+        this.searchInput = React.createRef();
         this.state = {
             viewport: {
                 latitude: 62.243789,
@@ -58,7 +55,8 @@ export default class mapApp extends React.Component {
             searchvalue: '',
             results: [],
             addMarkers: false,
-            cursor: -1
+            cursor: -1,
+            temp: ""
         };
 
         this.handleChange = this.handleChange.bind(this)
@@ -67,63 +65,73 @@ export default class mapApp extends React.Component {
         this.renderResults = this.renderResults.bind(this);
         this.resultSelected = this.resultSelected.bind(this);
         this.handleonKeyDown = this.handleonKeyDown.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.getResults = this.getResults.bind(this);
+        this.addMarkers = this.addMarkers.bind(this);
     }
     
+    componentDidMount(){
+        this.searchInput.current.focus();
+    }
+
     resetStates(){
         this.setState({
             searchvalue: '',
             results: [],
-            cursor: -1
+            cursor: -1,
+            temp: ''
         })
+    }
+
+    getResults(value){
+        const expression = new RegExp(`${value}`, "i");
+        const url = "/JKL-Guide/Service";   
+        let res = [];
+        axios.get(url).then(result=>{
+            //console.log("kaikki res:");
+            //console.log(result.data);
+            result.data.map((value,index)=>{
+                //console.log(value);
+                //console.log(index);
+                if(expression.test(value.name)){
+                    const service = {
+                        name: value.name,
+                        address: value.address,
+                        postalcode: value.postalcode,
+                        city: value.city,
+                        website: value.website,
+                        longitude: value.longitude,
+                        latitude: value.latitude,
+                        id: value._id
+                    }
+                    res.push(service);
+                    //console.log(res);
+                }
+            });
+            this.setState({
+                results: res
+            });
+            console.log("result:")
+            console.log(this.state.searchvalue)
+            console.log(this.state.results)
+        });
     }
 
     handleChange(e) {
         const value = e.target.value;
-        const expression = new RegExp(`${value}`, "i");
-        const url = "/JKL-Guide/Service";     
         this.setState({addMarkers: false})
-        if (value.length > 0 && e.keyCode !== 40 && e.keyCode !== 38) {
-            let res = [];
-            axios.get(url).then(result=>{
-                //console.log("kaikki res:");
-                //console.log(result.data);
-                result.data.map((value,index)=>{
-                    //console.log(value);
-                    //console.log(index);
-                    if(expression.test(value.name)){
-                        const service = {
-                            name: value.name,
-                            address: value.address,
-                            postalcode: value.postalcode,
-                            city: value.city,
-                            website: value.website,
-                            longitude: value.longitude,
-                            latitude: value.latitude,
-                            id: value._id
-                        }
-                        res.push(service);
-                        //console.log(res);
-                    }
-                });
-                this.setState({
-                    results: res
-                });
-                console.log("result:")
-                console.log(this.state.results)
-            });
+        if (e.target.value.length > 0 && e.keyCode !== 40 && e.keyCode !== 38) {
+            this.getResults(value);
         }
         console.log("poistan kaikki")
         this.setState({
-            searchvalue: value,
+            searchvalue: e.target.value,
             addMarkers: false,
             cursor: -1
         });
     };
 
-    onSubmit(e) {
-        e.preventDefault();
-        console.log(this.state.results);
-        console.log("submit");
+    addMarkers() {
         if(this.state.searchvalue === ''){
             this.setState({
                 addMarkers: false
@@ -137,52 +145,93 @@ export default class mapApp extends React.Component {
         }
     }
 
+    onSubmit(e) {
+        e.preventDefault();
+        console.log(this.state.results);
+        console.log("submit");
+        this.addMarkers();
+    }
+
     handleonKeyDown(e) {
         console.log("keydown")
-        const { results, cursor } = this.state;
-        if (e.keyCode === 38 && cursor >= 0) {
-            this.setState( prevState => ({
-                cursor: prevState.cursor - 1,
-            }));
-            console.log("ylös: ", cursor);
-        } else if(e.keyCode === 40 && cursor === -1){
+        
+        const { results, cursor, temp } = this.state;
+        let active = document.getElementById("asyncresult");
+        let ul = active.firstChild;
+        if(results.length > 0){
+            if (e.keyCode === 38 && cursor >= 0) {
+                if(cursor > 0) document.activeElement.previousSibling.focus();
+                else if(cursor === 0){
+                    this.setState({
+                        searchvalue: temp
+                    });
+                    this.searchInput.current.focus();
+                }
+                this.setState( prevState => ({
+                    cursor: prevState.cursor - 1,
+                    temp: document.activeElement.textContent
+                }));
+                console.log("ylös: ", cursor);
+            } else if(e.keyCode === 40 && cursor === -1){
+                ul.firstChild.focus();
+                this.setState({
+                    cursor: 0, 
+                    temp: document.activeElement.textContent
+                });
+            } else if (e.keyCode === 40 && cursor < results.length - 1) {
+                document.activeElement.nextSibling.focus();
+                this.setState( prevState => ({
+                    cursor: prevState.cursor + 1
+                }));
+                console.log("alas:", cursor);
+                
+            }
             this.setState({
-                cursor: 0
+                searchvalue: document.activeElement.textContent
             });
-        } else if (e.keyCode === 40 && cursor < results.length - 1) {
-            this.setState( prevState => ({
-                cursor: prevState.cursor + 1,
-            }));
-            console.log("alas:", cursor);
-        } else if (e.keyCode === 13) {
+        }
+        if (e.keyCode === 13) {
             e.preventDefault();
             console.log("enter");
         }
+
     }
 
     renderResults() {
-        const { results, cursor } = this.state;
+        const { searchvalue, results, cursor } = this.state;
         return (
-            <ul
+            results.length > 0 && searchvalue ? <ul
                 tabIndex="0"
                 id="asyncUl"
                 className="shadow position-absolute"
                 onKeyDown={this.handleonKeyDown}
             >
-                {results ? results.map((item, key) => (
+                {results.map((item, key) => (
                     <li
                         tabIndex="0"
                         key={key}
                         className={cursor === key ? 'active' : null}
+                        id={cursor === key ? 'active' : null}
                         onClick={(e) => {
-                            e.target.focus();
+                            this.setState({
+                                searchvalue: item.name
+                            });
                             this.resultSelected(item.name);
+                            this.getResults(item.name);
+                            this.addMarkers();
                         }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.focus();
+                            this.setState({
+                                searchvalue: item.name
+                            });
+                        }}
+                        onMouseLeave={(e) => e.currentTarget.blur()}
                     >
                         {item.name}
                     </li>
-                )) : null}
-            </ul>
+                ))}
+            </ul> : null
         );
     }
 
@@ -191,9 +240,10 @@ export default class mapApp extends React.Component {
         console.log("resultSelected");
         console.log(active);
         this.setState({
-            searchvalue: active,
+            results: [],
             cursor: -1        
         });
+        
     }
 
     render(){
@@ -206,14 +256,15 @@ export default class mapApp extends React.Component {
             <form onSubmit={this.onSubmit}> 
             <div id="searchForm" className="d-flex flex-wrap px-0">
                 <div id="searchInput" className="col-sm-10 px-0">
-                <input
-                    className="form-control form-control-lg shadow"
-                    type="text"
-                    placeholder="Service name, category or related word"
-                    onChange={this.handleChange}
-                    value={this.state.searchvalue}
-                    onKeyDown={this.handleonKeyDown}
-                />
+                    <input
+                        className="form-control form-control-lg shadow"
+                        type="text"
+                        placeholder="Service name, category or related word"
+                        ref={this.searchInput}
+                        onChange={this.handleChange}
+                        value={searchvalue}
+                        onKeyDown={this.handleonKeyDown}
+                    />
                 </div>
                 <div id="searchBtn" className="col-sm-2 px-0">
                 <button
@@ -224,7 +275,7 @@ export default class mapApp extends React.Component {
                 </button>
                 </div>
                 <div id="asyncresult" className="col-sm-10 px-0">
-                    {results && searchvalue ? this.renderResults() : null}
+                    {this.renderResults()}
                 </div>
             </div>
             </form>
