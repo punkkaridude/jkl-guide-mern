@@ -139,7 +139,7 @@ Kokoustimme torstaina klo 9:30 - 16:30 *
 #### FAQ-Sivu
 * Veeti aloitti FAQ-sivun backendin työstämistä, tarkoituksena on saada FAQ-sivulle tiedot näkymiin tietokannastamme. Päivän anti oli muutaman virheen ja yhteisen koodintuijotteluhetken jälkeen backendin toimiminen, saimme lisättyä tietoa tietokannan FAQ-osioon. Enää täytyy saada FAQ-sivuston frontend puoli toimimaan! Progress.
 
-### Karttamoduulin popuppien säätöä ja SCSS-määrityksiä
+#### Karttamoduulin popuppien säätöä ja SCSS-määrityksiä
 * Paikallisen kopion siirto takaisin olemassaolevaan projektiin ei sujunut kommelluksitta, tuli pari päällekkäisyyttä
 * Krisu teki taikojaan ja homma kunnossa, GIT pull opeteltu kantapään kautta
 * Iina sääti kartalla näkyviä popuppeja vähän nätimmiksi ja lisäsi näkyviin osoitteen lisäksi myös postinumeron, kaupungin ja kotisivun osoitteen mapapp.jsx:n kautta. 
@@ -153,5 +153,13 @@ Kokoustimme torstaina klo 9:30 - 16:30 *
 
 ### Torstai 6.4.2020
 
-### Faq Sivun viimeistely
+*Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
+Kokoustimme maanantaina klo 9:30 - 16 *
+
+#### Faq-sivun viimeistely
 * Veeti viimeisteli Kristianin avustuksella FAQ-sivu. Nyt Faq-sivulle tuleva tieto on lähtöisin tietokannasta, eikä kovakoodattuna HTML:ään. Veeti vaihtoi myös päivämäärän formaatin, jossa näkyy nyt vain päivä, kuukausi ja vuosi.
+
+#### Logoanimaatio ja backbutton
+* Iina teki uuden animoidun SVG-logon ja lisäili sen etusivun lisäksi myös rekisteröinti- ja login-ikkunaan
+* SVG:n koon ja viewboxin kanssa pientä probleemaa, koko ei toistunut oikein ja useita versioita yritetty
+* Tiedonhaku backbuttoniin jäi omalle ajalle
