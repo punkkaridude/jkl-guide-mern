@@ -99,11 +99,11 @@
     font-family: $FontFamHeading;
     letter-spacing: 1px;
     background-color: $buttonColor;
-    border: $border;
+    border: $buttonBorder;
     &:hover {
       transform: scale(0.98);
       background-color: $buttonHover;
-      border: $border;
+      border: $buttonBorder;
     }
   }
 }
