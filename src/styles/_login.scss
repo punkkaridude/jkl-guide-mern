@@ -121,49 +121,58 @@
     animation: svgFill 0.5s ease forwards 3s; 
     > path{
         &:nth-child(1){
-            stroke-dasharray: 193.5;
-            stroke-dashoffset: 193.5;
+            stroke-dasharray: 2251.20362854003906;
+            stroke-dashoffset: 251.20362854003906;
             animation: lineAnim 2s ease forwards;
+            stroke-linecap: square;
         }
         &:nth-child(2){
-            stroke-dasharray: 355.6;
-            stroke-dashoffset: 355.6;
+            stroke-dasharray: 455.8145751953125;
+            stroke-dashoffset: 455.8145751953125;
             animation: lineAnim 2s ease forwards 0.2s;
+            stroke-linecap: square;
         }
         &:nth-child(3){
-            stroke-dasharray: 238;
-            stroke-dashoffset: 238;
+            stroke-dasharray: 285.407958984375;
+            stroke-dashoffset: 285.407958984375;
             animation: lineAnim 2s ease forwards 0.4s;
+            stroke-linecap: square;
         }
         &:nth-child(4){
-            stroke-dasharray: 108.59;
-            stroke-dashoffset: 108.59;
+            stroke-dasharray: 92.16009521484375;
+            stroke-dashoffset: 92.16009521484375;
             animation: lineAnim 2s ease forwards 0.6s;
+            stroke-linecap: square;
         }
         &:nth-child(5){
-            stroke-dasharray: 337.7;
-            stroke-dashoffset: 337.7;
+            stroke-dasharray: 456.2260437011719;
+            stroke-dashoffset: 456.2260437011719;
             animation: lineAnim 2s ease forwards 0.8s;
+            stroke-linecap: square;
         }
         &:nth-child(6){
-            stroke-dasharray: 265.1;
-            stroke-dashoffset: 265.1;
+            stroke-dasharray: 449.2141418457031;
+            stroke-dashoffset: 449.2141418457031;
             animation: lineAnim 2s ease forwards 1s;
+            stroke-linecap: square;
         }
         &:nth-child(7){
-            stroke-dasharray: 187.5;
-            stroke-dashoffset: 187.5;
+            stroke-dasharray:  233.280029296875;
+            stroke-dashoffset:  233.280029296875;
             animation: lineAnim 2s ease forwards 1.2s;
+            stroke-linecap: square;
         }
         &:nth-child(8){
-            stroke-dasharray: 330.3;
-            stroke-dashoffset: 330.3;
+            stroke-dasharray: 448.39813232421875;
+            stroke-dashoffset: 448.39813232421875;
             animation: lineAnim 2s ease forwards 1.4s;
+            stroke-linecap: square;
         }
         &:nth-child(9){
-            stroke-dasharray: 266.6;
-            stroke-dashoffset: 266.6;
+            stroke-dasharray: 386.2078857421875;
+            stroke-dashoffset: 386.2078857421875;
             animation: lineAnim 2s ease forwards 1.6s;
+            stroke-linecap: square;
         }
     }
 }
