@@ -94,7 +94,7 @@ Kokoustimme maanantaina klo 9:30 - 15:30*
 ### Torstai 26.3.2020 - Autentikaation kanssa kikkailua
 
 *Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
-Kokoustimme torstaina klo 9:30 - 14:30 *
+Kokoustimme torstaina klo 9:30 - 14:30*
 
 * Tämä päivä painottui itsenäiseen työskentelyyn hyvin pitkälti.
 
@@ -112,7 +112,7 @@ Kokoustimme torstaina klo 9:30 - 14:30 *
 ### Maanantai 30.3.2020 - Suojauksia ja ulkoasun kanssa kikkailua
 
 *Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
-Kokoustimme maanantaina klo 9:30 - 16 *
+Kokoustimme maanantaina klo 9:30 - 16*
 
 #### Suojaukset
 * Veeti sai sivuston suojaukset toimimaan muutaman mutkan kautta, tällä hetkellä on suojattu, ettei kirjautunut käyttäjä pääse palaamaan esim. Rekisteröitymis- tai kirjautumis-sivulle. Suojaukset tullaan asettamaan myös adminpaneeliin, jotta vain admin pääsee niitä tarkastelemaan.
@@ -134,7 +134,7 @@ Kokoustimme maanantaina klo 9:30 - 16 *
 
 ### Torstai 2.4.2020 - Favorites- ja FAQ-Sivun tekoa sekä ulkoasujuttuja
 *Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
-Kokoustimme torstaina klo 9:30 - 16:30 *
+Kokoustimme torstaina klo 9:30 - 16:30*
 
 #### FAQ-Sivu
 * Veeti aloitti FAQ-sivun backendin työstämistä, tarkoituksena on saada FAQ-sivulle tiedot näkymiin tietokannastamme. Päivän anti oli muutaman virheen ja yhteisen koodintuijotteluhetken jälkeen backendin toimiminen, saimme lisättyä tietoa tietokannan FAQ-osioon. Enää täytyy saada FAQ-sivuston frontend puoli toimimaan! Progress.
@@ -154,7 +154,7 @@ Kokoustimme torstaina klo 9:30 - 16:30 *
 ### Torstai 6.4.2020
 
 *Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
-Kokoustimme maanantaina klo 9:30 - 16 *
+Kokoustimme maanantaina klo 9:30 - 16*
 
 #### Faq-sivun viimeistely
 * Veeti viimeisteli Kristianin avustuksella FAQ-sivu. Nyt Faq-sivulle tuleva tieto on lähtöisin tietokannasta, eikä kovakoodattuna HTML:ään. Veeti vaihtoi myös päivämäärän formaatin, jossa näkyy nyt vain päivä, kuukausi ja vuosi.
