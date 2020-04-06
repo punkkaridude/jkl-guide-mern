@@ -147,3 +147,11 @@ Kokoustimme torstaina klo 9:30 - 16:30 *
 * Kartan animaatiota muutettu edestakaiseksi niin on smoothimpi
 * Variableja yhdenmukaistettu SCSS:ään ja pieniä väri- ja fonttimuutoksia tehty
 * Ensikerralle paluupainike, heiluvan divin säätö
+
+-------------------------
+-------------------------
+
+### Torstai 6.4.2020
+
+### Faq Sivun viimeistely
+* Veeti viimeisteli Kristianin avustuksella FAQ-sivu. Nyt Faq-sivulle tuleva tieto on lähtöisin tietokannasta, eikä kovakoodattuna HTML:ään. Veeti vaihtoi myös päivämäärän formaatin, jossa näkyy nyt vain päivä, kuukausi ja vuosi.
