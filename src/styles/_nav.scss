@@ -37,14 +37,7 @@
     }
 
   nav {
-   
-
-    //flex-wrap: wrap;
-    //background-image: url("../img/kompassi.png");
-    //background-repeat: no-repeat;
-    //background-position: 70%;
-    //background-size: 20%;
-  
+   flex-wrap: wrap;
 
     @include media-breakpoint-between(xs, lg) {
     background-size: 50%;
@@ -59,8 +52,8 @@
 
     .flex-columns {
       @include media-breakpoint-between(xs, lg) {
-       
-}
+        flex-direction: column;
+      }
     }
 
     .navbar-toggler:focus {
@@ -71,6 +64,15 @@
       font-family: $FontFamHeading;
       color: $accentColor;
       text-shadow: 2px 2px 4px #8b8b8b;
+      @include media-breakpoint-between(xs, lg) {
+        margin-top: -15px;
+      }
+      @include media-breakpoint-between(xs, sm) {
+        font-size: 1.3rem;
+      }
+      @include media-breakpoint-between(md, lg) {
+        font-size: 2rem;
+      }
     }
     .navbar-brand {
       position: left;
@@ -81,6 +83,7 @@
       }
       @include media-breakpoint-between(xs, sm) {
         @include bigHFont();
+        margin-top: -15px;
       }
       @include media-breakpoint-between(md, xl) {
         @include bigHFont();
