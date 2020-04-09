@@ -1,9 +1,16 @@
 import * as $ from "jquery";
-import React, {PureComponent} from "react";
-import ReactMapGL, { Marker, Popup } from 'react-map-gl';
+import React, {PureComponent, Component} from "react";
+import ReactMapGL, { 
+    Marker, 
+    ScaleControl, 
+    NavigationControl, 
+    GeolocateControl,
+    FlyToInterpolator } from 'react-map-gl';
 import Favorite from "../component/add-favorite";
 import "mapbox-gl/dist/mapbox-gl.css";
 import axios from 'axios';
+import d3 from '3d';
+
 
 
 const searchIcon = (
@@ -20,6 +27,62 @@ const searchIcon = (
       </g>
     </svg>
   );
+
+
+class Map extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            viewport: {
+                latitude: 62.243789,
+                longitude: 25.745773,
+                zoom: 12
+            }
+        };
+    }
+
+    onViewportChange = viewport => {
+        const {width, height, ...etc} = viewport
+        this.setState({viewport: etc})
+    }
+
+    flyTo = () => {
+        const viewport = {
+            ...this.state.viewport,
+            longitude: -74.1,
+            latitude: 40.7,
+            zoom: 14,
+            transitionDuration: 5000,
+            transitionInterpolator: new FlyToInterpolator(),
+            transitionEasing: d3.easeCubic
+        };
+        this.setState({viewport});
+    };
+    render(){
+        const {viewport} = this.state;
+        const {results, addMarkers} = this.props;
+        return(
+            <ReactMapGL
+                height="100%"
+                width="100%"
+                {...viewport}
+                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                onViewportChange={viewport => this.onViewportChange(viewport)}
+            >
+                <div style={{position: 'absolute', right: 0}}>
+                    <NavigationControl />
+                </div>
+                <ScaleControl />
+                <GeolocateControl
+                    positionOptions={{enableHighAccuracy: true}}
+                    trackUserLocation={true}
+                    className="mapboxgl-ctrl-bottom-right"
+                />
+                {addMarkers ? <Markers res={results} /> : null}
+            </ReactMapGL>
+        )
+    }
+}
 
 class Markers extends PureComponent {
     render(){
@@ -40,18 +103,11 @@ class Markers extends PureComponent {
     }
 }
 
-export default class mapApp extends React.Component {
+export default class mapApp extends Component {
     constructor(props) {
         super(props);
         this.searchInput = React.createRef();
         this.state = {
-            viewport: {
-                latitude: 62.243789,
-                longitude: 25.745773,
-                height: "100%",
-                width: "auto",
-                zoom: 12
-            },
             searchvalue: '',
             results: [],
             addMarkers: false,
@@ -81,6 +137,17 @@ export default class mapApp extends React.Component {
             cursor: -1,
             temp: ''
         })
+    }
+
+    resultSelected(active) {
+        const { results } = this.state;
+        console.log("resultSelected");
+        console.log(active);
+        this.setState({
+            results: [],
+            cursor: -1        
+        });
+        this.getResults(active);
     }
 
     getResults(value){
@@ -155,23 +222,24 @@ export default class mapApp extends React.Component {
     handleonKeyDown(e) {
         console.log("keydown")
         
-        const { results, cursor, temp } = this.state;
+        const { results, cursor, temp, searchvalue } = this.state;
         let active = document.getElementById("asyncresult");
         let ul = active.firstChild;
-        if(results.length > 0){
+        if(results.length > 0 && searchvalue.length > 0){
             if (e.keyCode === 38 && cursor >= 0) {
                 if(cursor > 0) document.activeElement.previousSibling.focus();
                 else if(cursor === 0){
-                    this.setState({
-                        searchvalue: temp
-                    });
                     this.searchInput.current.focus();
+                    this.setState({
+                        searchvalue: this.state.temp
+                    })
                 }
                 this.setState( prevState => ({
                     cursor: prevState.cursor - 1,
                     temp: document.activeElement.textContent
                 }));
                 console.log("ylös: ", cursor);
+                console.log("temp: ", temp);
             } else if(e.keyCode === 40 && cursor === -1){
                 ul.firstChild.focus();
                 this.setState({
@@ -184,7 +252,7 @@ export default class mapApp extends React.Component {
                     cursor: prevState.cursor + 1
                 }));
                 console.log("alas:", cursor);
-                
+                console.log("temp: ", temp);
             }
             this.setState({
                 searchvalue: document.activeElement.textContent
@@ -193,6 +261,8 @@ export default class mapApp extends React.Component {
         if (e.keyCode === 13) {
             e.preventDefault();
             console.log("enter");
+            this.resultSelected(document.activeElement.textContent);
+            this.addMarkers();
         }
 
     }
@@ -217,7 +287,6 @@ export default class mapApp extends React.Component {
                                 searchvalue: item.name
                             });
                             this.resultSelected(item.name);
-                            this.getResults(item.name);
                             this.addMarkers();
                         }}
                         onMouseEnter={(e) => {
@@ -233,17 +302,6 @@ export default class mapApp extends React.Component {
                 ))}
             </ul> : null
         );
-    }
-
-    resultSelected(active) {
-        const { results } = this.state;
-        console.log("resultSelected");
-        console.log(active);
-        this.setState({
-            results: [],
-            cursor: -1        
-        });
-        
     }
 
     render(){
@@ -283,13 +341,7 @@ export default class mapApp extends React.Component {
             id="mapParent"
             className="container-fluid px-0 rounded shadow mt-md-2 mt-0"
             >
-                <ReactMapGL
-                    {...viewport}
-                    mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-                    onViewportChange={(viewport) => this.setState({viewport})}
-                >
-                    {addMarkers ? <Markers res={results} /> : null}
-                </ReactMapGL>
+                <Map addMarkers={addMarkers} results={results}/>
             </div>
         </div>
     )};
