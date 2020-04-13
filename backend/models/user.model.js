@@ -28,8 +28,7 @@ const UserSchema = new mongoose.Schema({
     isDeleted:{
         type: Boolean,
         default: false
-    },
-    favorites: [{type : mongoose.Schema.Types.ObjectId, ref: "favorites"}]
+    }
 });
 
 UserSchema.pre('save', function(next){

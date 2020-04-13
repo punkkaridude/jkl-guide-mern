@@ -3,68 +3,46 @@ const mongoose = require('mongoose');
 const favorite = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
-        unique: true
     },
     address: {
-        type: String,
-        required: true
+        type: String
     },
     postalcode: {
-        type: Number,
-        required: true,
-        minlength: 5
+        type: Number
     },
     city: {
-        type: String,
-        required: true       
+        type: String  
     },
     country:{
-        type: String,
-        required: true
+        type: String
     },
     email:{
-        type: String,
-        required: false,
-        default: ''
+        type: String
     },
     phone:{
-        type: Number,
-        required: false,
-        default: ''
+        type: String
     },
     website:{
-        type: String,
-        required: false,
-        default: ''
+        type: String
     },
     details:{
-        type: String,
-        required: false,
-        default: ''
+        type: String
     },
     image:{
-        type: String,
-        required: false,
-        default: ''
+        type: String
     },
     longitude:{
-        type: Number,
-        required: true,
-        default: ''
+        type: Number
     },
     latitude:{
-        type: Number,
-        required: true,
-        default: ''
-    },
-    isDeleted:{
-        type: Boolean,
-        default: false
+        type: Number
     },
     added:{
-        type: Date,
-        required: true
+        type: Date
+    },
+    userFrom:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 });
 

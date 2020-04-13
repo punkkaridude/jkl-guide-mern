@@ -1,29 +1,53 @@
 import React from "react";
 import MapApp from "./component/mapapp";
 import { Spring } from "react-spring/renderprops";
+import axios from 'axios';
+
+var moment = require('moment');
 
 export default class Favorites extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
-    this.renderFavorite = this.renderFavorite.bind(this);
+    this.state = {
+      favorites: null
+    };
+    this.renderFavorites = this.renderFavorites.bind(this);
+    this.getFavorites = this.getFavorites.bind(this);
   }
 
-  renderFavorite() {
-    return (
-      <div>
-        <div className="title card-header d-flex">
-          <h2 className="col-8">Service name</h2>
-          <p className="date col-4">10.10.2020</p>
+  componentDidMount(){
+    this.getFavorites();
+  }
+
+  getFavorites(){
+    let url = '/JKL-Guide/Favorites'
+    axios.get(url).then(result => {
+      this.setState({
+        favorites: result.data
+      });
+      console.log(this.state.favorites)
+    })
+  }
+
+  renderFavorites() {
+    const { favorites } = this.state;
+    return(
+      favorites && favorites.map(favorite => (
+        <div key={favorite._id}>
+          <div className="title card-header d-flex">
+            <h2 className="col-8">{favorite.name}</h2>
+            <p className="date col-4">{moment(favorite.added).format("DD.MM.YYYY")}</p>
+          </div>
+          <div className="card-body d-flex flex-wrap border-bottom shadow">
+            <p className="col-12">{favorite.address}</p>
+            <p className="col-12">{favorite.email}</p>
+            <p className="col-12">{favorite.phone}</p>
+            <p className="col-12">{favorite.details}</p>
+          </div>
         </div>
-        <div className="card-body d-flex flex-wrap border-bottom shadow">
-          <p className="col-12">Address: </p>
-          <p className="col-12">Phone: </p>
-          <p className="col-12">Email: </p>
-          <p className="col-12">Details: </p>
-        </div>
-      </div>
+      ))
     );
+    
   }
   render() {
     return (
@@ -41,13 +65,11 @@ export default class Favorites extends React.Component {
             <div className="col-lg-8 pr-lg-0 pl-xl-5 pl-lg-3">
               <MapApp />
             </div>
-            <div className="col-lg-3 pl-lg-0 pr-xl-5 pr-lg-3">
+            <div className="col-lg-3 pl-lg-0 mr-xl-5 mr-lg-3">
               <div id="favoriteContainer" className="container-fluid">
-                <div className="card h-100 shadow d-flex flex-column">
+                <div className="card shadow d-flex flex-column">
                   <div className="card-header shadow">YOUR FAVORITES</div>
-                  {this.renderFavorite()}
-                  {this.renderFavorite()}
-                  {this.renderFavorite()}
+                  {this.renderFavorites()}
                 </div>
               </div>
             </div>

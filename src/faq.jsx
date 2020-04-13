@@ -8,7 +8,7 @@ export default class Faq extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      questions: []
+      questions: null
     };
     this.renderQuestions = this.renderQuestions.bind(this);
     this.getResults = this.getResults.bind(this);
@@ -33,7 +33,7 @@ export default class Faq extends React.Component {
   renderQuestions() {
     const { questions } = this.state;
     return (
-      questions.length > 0 ? questions.map((item, key) => (
+      questions && questions.map(item => (
         <div className="card shadow" key={item._id}>
           <div className="card-header d-flex justify-content-between">
             <h4 className="pt-0 m-0">{item.header}</h4>
@@ -47,7 +47,7 @@ export default class Faq extends React.Component {
           </div>
           
         </div>
-      )) : null
+      ))
     );
   }
 

@@ -113,7 +113,14 @@ const Register = props => {
   }, []);
 
   const resetForm = () =>{
-    setUser({username : "", fullname : "", password : "", passwordconf : "", email : "", role : ""});
+    setUser({
+      username : "", 
+      fullname : "", 
+      password : "", 
+      passwordconf : "", 
+      email : "", 
+      role : ""
+    });
   }
 
   const onChange = (e) => {
@@ -129,6 +136,7 @@ const Register = props => {
       setMessage(message);
       setUser({password : "", passwordconf : ""})
     } else {
+      console.log(user)
       AuthService.register(user).then(data=>{
         const { message } = data;
         setMessage(message);
