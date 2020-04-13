@@ -195,7 +195,7 @@ Kokoustimme torstaina klo 9:30 - 15*
 Kokoustimme maanantaina klo 9:30 - 15*
 
 #### Veetin hommat
-* ---
+*  Luru luu luru luuu
 
 #### Popupin tyylittely uuteen mapappiin ja muuta pientä fiksailua
 * Aamusta Iina lisäsi pienet spring-animaatiofeidit myös sivun peruskomponentteihin.
@@ -205,4 +205,4 @@ Kokoustimme maanantaina klo 9:30 - 15*
 * Aloitettu raportointiin tarvittavaa GitHub Wikiä
 
 #### Krisun hommat
-* ---
+* Luru luu luru luuu
