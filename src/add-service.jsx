@@ -174,9 +174,9 @@ export default class Addservice extends React.Component {
   render() {
     return (
       <Spring
-        config={config.slow}
-        from={{ opacity: 0 }}
-        to={{ opacity: 1 }}
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}
+          config={{ delay: 500, duration: 500 }}  
       >
       { props =>
         <div style={props} id="addserviceWrapper" className="d-flex justify-content-around flex-wrap">

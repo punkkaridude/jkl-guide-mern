@@ -53,7 +53,11 @@ export default class Faq extends React.Component {
 
   render() {
     return (
-      <Spring config={config.slow} from={{ opacity: 0.01 }} to={{ opacity: 1 }}>
+        <Spring
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}
+          config={{ delay: 500, duration: 500 }}  
+        >
         {props => (
           <div
             style={props}
