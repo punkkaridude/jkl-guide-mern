@@ -167,7 +167,7 @@ export default class mapApp extends Component {
         });
     };
 
-    addMarkers() {
+    addMarkers = () => {
         const { searchvalue } = this.state;
         if(searchvalue === ''){
             console.log("addMarkers if")
@@ -187,10 +187,11 @@ export default class mapApp extends Component {
         }
     }
 
-    Marker = (res) => {
+    Marker() {
+        const {results} = this.state;
         return(
-            res && this.state.addMarkers ?  
-            res.map(result=>
+            results && this.state.addMarkers ?  
+            results.map(result=>
                 <Marker
                     key={result.id}
                     latitude={result.latitude}
@@ -292,8 +293,7 @@ export default class mapApp extends Component {
         if (e.keyCode === 13) {
             e.preventDefault();
             console.log("enter");
-            this.resultSelected(document.activeElement.textContent);
-            this.addMarkers(results);
+            this.addMarkers();
         }
 
     }
