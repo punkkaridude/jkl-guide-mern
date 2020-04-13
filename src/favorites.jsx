@@ -1,6 +1,6 @@
 import React from "react";
 import MapApp from "./component/mapapp";
-import { Spring, config } from "react-spring/renderprops";
+import { Spring } from "react-spring/renderprops";
 
 export default class Favorites extends React.Component {
   constructor(props) {
@@ -27,7 +27,11 @@ export default class Favorites extends React.Component {
   }
   render() {
     return (
-      <Spring config={config.slow} from={{ opacity: 0.01 }} to={{ opacity: 1 }}>
+        <Spring
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}
+          config={{ delay: 500, duration: 500 }}  
+        >
         {props => (
           <div
             style={props}

@@ -1,15 +1,15 @@
-import * as $ from "jquery";
-import React, {PureComponent, Component} from "react";
+import React, { Component } from "react";
 import ReactMapGL, { 
     Marker, 
     ScaleControl, 
     NavigationControl, 
     GeolocateControl,
-    FlyToInterpolator } from 'react-map-gl';
+    FlyToInterpolator,
+    Popup } from 'react-map-gl';
+import axios from 'axios';
 import Favorite from "../component/add-favorite";
 import "mapbox-gl/dist/mapbox-gl.css";
-import axios from 'axios';
-import d3 from '3d';
+
 
 
 
@@ -28,89 +28,20 @@ const searchIcon = (
     </svg>
   );
 
-
-class Map extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            viewport: {
-                latitude: 62.243789,
-                longitude: 25.745773,
-                zoom: 12
-            }
-        };
-    }
-
-    onViewportChange = viewport => {
-        const {width, height, ...etc} = viewport
-        this.setState({viewport: etc})
-    }
-
-    flyTo = () => {
-        const viewport = {
-            ...this.state.viewport,
-            longitude: -74.1,
-            latitude: 40.7,
-            zoom: 14,
-            transitionDuration: 5000,
-            transitionInterpolator: new FlyToInterpolator(),
-            transitionEasing: d3.easeCubic
-        };
-        this.setState({viewport});
-    };
-    render(){
-        const {viewport} = this.state;
-        const {results, addMarkers} = this.props;
-        return(
-            <ReactMapGL
-                height="100%"
-                width="100%"
-                {...viewport}
-                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-                onViewportChange={viewport => this.onViewportChange(viewport)}
-            >
-                <div style={{position: 'absolute', right: 0}}>
-                    <NavigationControl />
-                </div>
-                <ScaleControl />
-                <GeolocateControl
-                    positionOptions={{enableHighAccuracy: true}}
-                    trackUserLocation={true}
-                    className="mapboxgl-ctrl-bottom-right"
-                />
-                {addMarkers ? <Markers res={results} /> : null}
-            </ReactMapGL>
-        )
-    }
-}
-
-class Markers extends PureComponent {
-    render(){
-        const {res} = this.props;
-        return(res ?  
-            res.map(result=>
-                <Marker
-                    key={result.id}
-                    latitude={result.latitude}
-                    longitude={result.longitude}
-                    onClick={() => {
-                        console.log("Popup click");
-                    }}
-                >
-                </Marker>        
-            ) : null
-        )       
-    }
-}
-
 export default class mapApp extends Component {
     constructor(props) {
         super(props);
         this.searchInput = React.createRef();
         this.state = {
+            viewport: {
+                latitude: 62.23815925225172,
+                longitude: 25.746282419998817,
+                zoom: 11.179489616683279,
+            },
             searchvalue: '',
             results: [],
             addMarkers: false,
+            showPopup: false,
             cursor: -1,
             temp: ""
         };
@@ -124,10 +55,18 @@ export default class mapApp extends Component {
         this.componentDidMount = this.componentDidMount.bind(this);
         this.getResults = this.getResults.bind(this);
         this.addMarkers = this.addMarkers.bind(this);
+        this.componentDidUpdate = this.componentDidUpdate.bind(this);
+        this.addPopup = this.addPopup.bind(this);
     }
     
     componentDidMount(){
+        console.log("did mount!")
         this.searchInput.current.focus();
+        
+    }
+
+    componentDidUpdate(){
+        //console.log("will update")
     }
 
     resetStates(){
@@ -140,12 +79,13 @@ export default class mapApp extends Component {
     }
 
     resultSelected(active) {
-        const { results } = this.state;
         console.log("resultSelected");
         console.log(active);
         this.setState({
             results: [],
-            cursor: -1        
+            cursor: -1,
+            showPopup: false,
+            addMarkers: false        
         });
         this.getResults(active);
     }
@@ -157,7 +97,7 @@ export default class mapApp extends Component {
         axios.get(url).then(result=>{
             //console.log("kaikki res:");
             //console.log(result.data);
-            result.data.map((value,index)=>{
+            result.data.map((value)=>{
                 //console.log(value);
                 //console.log(index);
                 if(expression.test(value.name)){
@@ -175,13 +115,29 @@ export default class mapApp extends Component {
                     //console.log(res);
                 }
             });
+            if(res.length === 1 && this.state.addMarkers){
+                this.setState({
+                    results: res,
+                    viewport: {
+                        longitude: res[0].longitude,
+                        latitude: res[0].latitude,
+                        zoom: 15
+                    }
+                })
+            }
             this.setState({
-                results: res
+                results: res,
+                viewport: {
+                    latitude: 62.23815925225172,
+                    longitude: 25.746282419998817,
+                    zoom: 11.179489616683279
+                }
             });
             console.log("result:")
             console.log(this.state.searchvalue)
             console.log(this.state.results)
         });
+        this.searchInput.current.focus();
     }
 
     handleChange(e) {
@@ -194,22 +150,76 @@ export default class mapApp extends Component {
         this.setState({
             searchvalue: e.target.value,
             addMarkers: false,
+            showPopup: false,
             cursor: -1
         });
     };
 
     addMarkers() {
-        if(this.state.searchvalue === ''){
+        const { searchvalue } = this.state;
+        if(searchvalue === ''){
+            console.log("addMarkers if")
             this.setState({
-                addMarkers: false
+                addMarkers: false,
+                showPopup: false
             });
         } 
         else {
+            console.log("addMarkers else")
             this.setState({
                 searchvalue: '',
-                addMarkers: true
+                addMarkers: true,
+                showPopup: false
+            });
+            console.log("addMarkers: ", this.state.viewport, this.state.addMarkers, this.state.searchvalue)
+        }
+    }
+
+    Marker = (res) => {
+        return(
+            res ?  
+            res.map(result=>
+                <Marker
+                    key={result.id}
+                    latitude={result.latitude}
+                    longitude={result.longitude}
+                    offsetLeft={-20}
+                    offsetTop={-40}
+                >
+                    <div className="marker" onClick={()=>this.addPopup()}></div>
+                </Marker>        
+            ) : null
+        )
+    }
+
+    addPopup(){
+        const {showPopup} = this.state;
+        if(!showPopup){
+            this.setState({
+                showPopup: true
             });
         }
+        console.log("addPopup: ", this.state.showPopup)
+    }
+
+    Popup = (res) => {
+        return(
+            res.map(result=>
+                <Popup
+                    latitude={result.latitude}
+                    longitude={result.longitude}
+                    closeButton={true}
+                    closeOnClick={true}
+                    onClose={() => this.setState({showPopup: null})}
+                    anchor="top" 
+                >
+                    <div>
+                        <h1>{result.name}</h1>
+                        <input onClick='" + Favorite + "' type='button' value='Add favorite' name='favButton'/>
+                    </div>
+                </Popup>        
+            )
+        )
     }
 
     onSubmit(e) {
@@ -221,33 +231,36 @@ export default class mapApp extends Component {
 
     handleonKeyDown(e) {
         console.log("keydown")
-        
         const { results, cursor, temp, searchvalue } = this.state;
         let active = document.getElementById("asyncresult");
         let ul = active.firstChild;
-        if(results.length > 0 && searchvalue.length > 0){
-            if (e.keyCode === 38 && cursor >= 0) {
-                if(cursor > 0) document.activeElement.previousSibling.focus();
-                else if(cursor === 0){
-                    this.searchInput.current.focus();
-                    this.setState({
-                        searchvalue: this.state.temp
-                    })
-                }
+        if(results.length > 0 && searchvalue.length > 0 && (e.key === 'ArrowDown' || e.key === 'ArrowUp')){
+            e.preventDefault();
+            let focusedResult = document.activeElement.textContent;
+            if (e.key === 'ArrowUp' && cursor > 0) {
+                document.activeElement.previousSibling.focus({preventScroll: true});
+                focusedResult = document.activeElement.textContent;
                 this.setState( prevState => ({
                     cursor: prevState.cursor - 1,
-                    temp: document.activeElement.textContent
                 }));
                 console.log("ylös: ", cursor);
                 console.log("temp: ", temp);
-            } else if(e.keyCode === 40 && cursor === -1){
-                ul.firstChild.focus();
+            } else if(e.key === 'ArrowUp' && cursor === 0){ 
+                this.searchInput.current.focus({preventScroll: true});
+                focusedResult = temp;
+                this.setState({
+                    cursor: - 1,
+                });
+            } else if(e.key === 'ArrowDown' && cursor === -1){
+                ul.firstChild.focus({preventScroll: true});
+                focusedResult = document.activeElement.textContent;
                 this.setState({
                     cursor: 0, 
-                    temp: document.activeElement.textContent
+                    temp: this.searchInput.current.value
                 });
-            } else if (e.keyCode === 40 && cursor < results.length - 1) {
-                document.activeElement.nextSibling.focus();
+            } else if (e.key === 'ArrowDown' && cursor < results.length - 1) {
+                document.activeElement.nextSibling.focus({preventScroll: true});
+                focusedResult = document.activeElement.textContent;
                 this.setState( prevState => ({
                     cursor: prevState.cursor + 1
                 }));
@@ -255,14 +268,14 @@ export default class mapApp extends Component {
                 console.log("temp: ", temp);
             }
             this.setState({
-                searchvalue: document.activeElement.textContent
+                searchvalue: focusedResult
             });
         }
         if (e.keyCode === 13) {
             e.preventDefault();
             console.log("enter");
             this.resultSelected(document.activeElement.textContent);
-            this.addMarkers();
+            this.addMarkers(results);
         }
 
     }
@@ -292,7 +305,8 @@ export default class mapApp extends Component {
                         onMouseEnter={(e) => {
                             e.currentTarget.focus();
                             this.setState({
-                                searchvalue: item.name
+                                searchvalue: item.name,
+                                cursor: -1
                             });
                         }}
                         onMouseLeave={(e) => e.currentTarget.blur()}
@@ -304,8 +318,14 @@ export default class mapApp extends Component {
         );
     }
 
+    onViewportChange = viewport => {
+        const {width, height, ...etc} = viewport
+        this.setState({viewport: etc})
+        //console.log(this.state.viewport)
+    }
+
     render(){
-        const { viewport, results, addMarkers, searchvalue } = this.state;
+        const { viewport, results, addMarkers, searchvalue, showPopup } = this.state;
         return(
             <div
             id="mapappWrapper"
@@ -315,11 +335,19 @@ export default class mapApp extends Component {
             <div id="searchForm" className="d-flex flex-wrap px-0">
                 <div id="searchInput" className="col-sm-10 px-0">
                     <input
+                        id="searchInputElem"
                         className="form-control form-control-lg shadow"
                         type="text"
                         placeholder="Service name, category or related word"
                         ref={this.searchInput}
-                        onChange={this.handleChange}
+                        onChange={e => {
+                            this.cursor = e.target.selectionStart;
+                            this.handleChange(e);
+                        }}
+                        autoFocus
+                        onFocus={e => {
+                            e.target.selectionStart = this.cursor;
+                        }}
                         value={searchvalue}
                         onKeyDown={this.handleonKeyDown}
                     />
@@ -341,7 +369,28 @@ export default class mapApp extends Component {
             id="mapParent"
             className="container-fluid px-0 rounded shadow mt-md-2 mt-0"
             >
-                <Map addMarkers={addMarkers} results={results}/>
+                <ReactMapGL
+                height="100%"
+                width="100%"
+                interactive
+                {...viewport}
+                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                onViewportChange={viewport => this.onViewportChange(viewport)}
+                transitionDuration={1000}
+                transitionInterpolator= {new FlyToInterpolator()}
+                >
+                    <div style={{position: 'absolute', right: 0}}>
+                        <NavigationControl />
+                    </div>
+                    <ScaleControl />
+                    <GeolocateControl
+                        positionOptions={{enableHighAccuracy: true}}
+                        trackUserLocation={true}
+                        className="mapboxgl-ctrl-bottom-right"
+                    />
+                    {addMarkers ? this.Marker(results) : null}
+                    {showPopup ? this.Popup(results) : null}
+                </ReactMapGL>
             </div>
         </div>
     )};
