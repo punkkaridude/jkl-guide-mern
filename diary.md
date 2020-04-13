@@ -202,7 +202,7 @@ Kokoustimme maanantaina klo 9:30 - 15*
 * Mapboxin popuppia tyylitelty ja testailtu. Pikkuikonien näyttämiseksi isätty myös reactin sisäinen font awesome-kirjasto
 * Backendistä muutettu puhelinnumero intistä stringiksi jotta toistuu oikein
 * Navbariin lisätty kompassilogo ja testattu myös sen breakpointteja
-* Aloitettu raportointiin tarvittavaa GitHub Wikiä
+* Aloitettu raportointiin tarvittavaa GitHub Wikiä ja lisätty sinne jo vähän juttuja
 
 #### Krisun hommat
 * Luru luu luru luuu
