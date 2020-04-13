@@ -293,7 +293,11 @@ export default class mapApp extends Component {
         if (e.keyCode === 13) {
             e.preventDefault();
             console.log("enter");
-            this.addMarkers();
+            if (cursor > -1){
+                this.resultSelected(document.activeElement.textContent);
+                this.addMarkers();
+            }
+            else this.addMarkers();
         }
 
     }
