@@ -1,7 +1,7 @@
 import React from "react";
 import ForumSmall from "./component/forumsmall";
 import axios from "axios";
-import { Spring, config } from "react-spring/renderprops";
+import { Spring } from "react-spring/renderprops";
 
 var moment = require('moment');
 export default class Faq extends React.Component {

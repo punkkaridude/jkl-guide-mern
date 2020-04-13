@@ -1,6 +1,6 @@
 import React from "react";
 import ForumSmall from "./component/forumsmall";
-import { Spring, config } from "react-spring/renderprops";
+import { Spring } from "react-spring/renderprops";
 
 export default class Forum extends React.Component {
   constructor(props) {

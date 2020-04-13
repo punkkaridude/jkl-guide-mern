@@ -1,6 +1,6 @@
 import React from "react";
 import MapApp from "./component/mapapp";
-import { Spring, config } from "react-spring/renderprops";
+import { Spring } from "react-spring/renderprops";
 
 export default class Favorites extends React.Component {
   constructor(props) {
