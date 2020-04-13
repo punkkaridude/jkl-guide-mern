@@ -48,9 +48,22 @@ userRouter.get('/Logout', passport.authenticate('jwt',{session : false}),(req, r
 userRouter.get('/JKL-Guide/Admin', passport.authenticate('jwt',{session : false}),(req, res)=>{
     if(req.user.role === "admin"){
         res.status(200).json({message : {msgBody : "Hello master!", msgError : false}});
+            Users.find()
+            .then(users => res.json(users))
+            .catch(err => res.status(400).json('Error: ' + err));
     }
     else res.status(403).json({message : {msgBody : "Not an admin!", msgError : true}});
 });
+
+userRouter.get('/JKL-Guide/Admin/Allusers', passport.authenticate('jwt',{session : false}),(req, res)=>{
+    if(req.user.role === "admin"){
+            User.find()
+            .then(user => res.json(user))
+            .catch(err => res.status(400).json('Error: ' + err));
+    }
+    else res.status(403).json({message : {msgBody : "Authorization failed!", msgError : true}});
+});
+
 
 userRouter.get('/Authenticated', passport.authenticate('jwt',{session : false}),(req, res)=>{
     const {username,role} = req.user;

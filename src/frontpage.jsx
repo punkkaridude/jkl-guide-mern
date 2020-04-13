@@ -7,6 +7,7 @@ import Addservice from "./add-service";
 import Faq from "./faq";
 import Forum from "./forum";
 import Favorites from "./favorites";
+import Admin from "./admin";
 
 export default class Frontpage extends React.Component {
   constructor(props) {
@@ -45,6 +46,12 @@ export default class Frontpage extends React.Component {
                 </Route>
                 <Route path="/JKL-Guide/Favorites">
                   <Favorites />
+                </Route>
+                <Route path="/JKL-Guide/Admin">
+                  <Admin />
+                </Route>
+                <Route path="/JKL-Guide/Settings">
+                  <Settings />
                 </Route>
               </Switch>
             </div>

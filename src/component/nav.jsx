@@ -110,7 +110,7 @@ const Nav = props => {
         </Link>
         {
           user.role === "admin" ?
-          <Link to="/JKL-Guide/">
+          <Link to="/JKL-Guide/Admin">
             <div className="dropdown-item">Admintool</div>
           </Link> : null
         }

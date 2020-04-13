@@ -17,7 +17,6 @@ export default class Faq extends React.Component {
 
   componentDidMount(){
     this.getResults();
-
   }
 
   getResults(){
@@ -26,7 +25,6 @@ export default class Faq extends React.Component {
       this.setState({
         questions: result.data
       })
-      console.log(this.state.questions)
     })
   }
    
