@@ -9,8 +9,17 @@ import ReactMapGL, {
 import axios from 'axios';
 import Favorite from "../component/add-favorite";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMapPin } from '@fortawesome/free-solid-svg-icons'
+import { faPhone } from '@fortawesome/free-solid-svg-icons'
+import { faHome} from '@fortawesome/free-solid-svg-icons'
+import { faQuoteLeft} from '@fortawesome/free-solid-svg-icons'
 
 
+const iconAddress = <FontAwesomeIcon icon={faMapPin} />
+const iconPhone = <FontAwesomeIcon icon={faPhone} />
+const iconHome = <FontAwesomeIcon icon={faHome} />
+const iconQuote = <FontAwesomeIcon icon={faQuoteLeft} />
 
 
 const searchIcon = (
@@ -104,6 +113,9 @@ export default class mapApp extends Component {
                     const service = {
                         name: value.name,
                         address: value.address,
+                        phone: value.phone,
+                        details: value.details,
+                        image: value.image,
                         postalcode: value.postalcode,
                         city: value.city,
                         website: value.website,
@@ -209,13 +221,18 @@ export default class mapApp extends Component {
                     latitude={result.latitude}
                     longitude={result.longitude}
                     closeButton={true}
-                    closeOnClick={true}
+                    closeOnClick={false}
                     onClose={() => this.setState({showPopup: null})}
                     anchor="top" 
                 >
                     <div>
                         <h1>{result.name}</h1>
-                        <input onClick='" + Favorite + "' type='button' value='Add favorite' name='favButton'/>
+                        <p>{iconAddress} {result.address}</p>
+                        <p>{iconPhone} {result.phone}</p>
+                        <p>{iconHome} <a href={result.website} target="_blank">{result.website}</a></p>
+                        <p>{iconQuote} <i>{result.details}</i></p>
+                        <img className="popimage" src={result.image}></img>
+                        <input onClick='" + Favorite + "' type='button' value='Add favorite' className='favButton'/>
                     </div>
                 </Popup>        
             )
