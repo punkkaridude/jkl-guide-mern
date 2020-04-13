@@ -41,7 +41,7 @@ export default class mapApp extends Component {
             searchvalue: '',
             results: [],
             addMarkers: false,
-            showPopup: false,
+            PopupInfo: null,
             cursor: -1,
             temp: ""
         };
@@ -84,7 +84,7 @@ export default class mapApp extends Component {
         this.setState({
             results: [],
             cursor: -1,
-            showPopup: false,
+            popupInfo: null,
             addMarkers: false        
         });
         this.getResults(active);
@@ -150,7 +150,7 @@ export default class mapApp extends Component {
         this.setState({
             searchvalue: e.target.value,
             addMarkers: false,
-            showPopup: false,
+            popupInfo: null,
             cursor: -1
         });
     };
@@ -161,7 +161,7 @@ export default class mapApp extends Component {
             console.log("addMarkers if")
             this.setState({
                 addMarkers: false,
-                showPopup: false
+                popupInfo: null
             });
         } 
         else {
@@ -169,7 +169,7 @@ export default class mapApp extends Component {
             this.setState({
                 searchvalue: '',
                 addMarkers: true,
-                showPopup: false
+                popupInfo: null
             });
             console.log("addMarkers: ", this.state.viewport, this.state.addMarkers, this.state.searchvalue)
         }
@@ -186,39 +186,40 @@ export default class mapApp extends Component {
                     offsetLeft={-20}
                     offsetTop={-40}
                 >
-                    <div className="marker" onClick={()=>this.addPopup()}></div>
+                    <div className="marker" onClick={()=>this.addPopup(result)}></div>
                 </Marker>        
             ) : null
         )
     }
 
-    addPopup(){
-        const {showPopup} = this.state;
-        if(!showPopup){
-            this.setState({
-                showPopup: true
-            });
-        }
-        console.log("addPopup: ", this.state.showPopup)
+    addPopup = res => {
+        console.log("addPopup")
+        this.setState({
+            popupInfo: res
+        });
     }
 
-    Popup = (res) => {
+    Popup() {
+        const {popupInfo} = this.state;
+        
         return(
-            res.map(result=>
+            popupInfo && (
                 <Popup
-                    latitude={result.latitude}
-                    longitude={result.longitude}
-                    closeButton={true}
-                    closeOnClick={true}
-                    onClose={() => this.setState({showPopup: null})}
-                    anchor="top" 
+                key={"popup" + popupInfo.id}
+                latitude={popupInfo.latitude}
+                longitude={popupInfo.longitude}
+                closeButton={true}
+                closeOnClick={false}
+                onClose={() => this.setState({popupInfo: null})}
+                anchor="top" 
                 >
                     <div>
-                        <h1>{result.name}</h1>
-                        <input onClick='" + Favorite + "' type='button' value='Add favorite' name='favButton'/>
+                        <h1>{popupInfo.name}</h1>
+                        <Favorite res={popupInfo}/>
                     </div>
-                </Popup>        
+                </Popup>
             )
+            
         )
     }
 
@@ -389,7 +390,7 @@ export default class mapApp extends Component {
                         className="mapboxgl-ctrl-bottom-right"
                     />
                     {addMarkers ? this.Marker(results) : null}
-                    {showPopup ? this.Popup(results) : null}
+                    {this.Popup()}
                 </ReactMapGL>
             </div>
         </div>
