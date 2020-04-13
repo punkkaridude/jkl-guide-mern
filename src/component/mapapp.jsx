@@ -215,6 +215,7 @@ export default class mapApp extends Component {
                 >
                     <div>
                         <h1>{result.name}</h1>
+                        <input onClick='" + Favorite + "' type='button' value='Add favorite' name='favButton'/>
                     </div>
                 </Popup>        
             )
