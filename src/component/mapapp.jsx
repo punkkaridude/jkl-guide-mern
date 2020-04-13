@@ -9,8 +9,17 @@ import ReactMapGL, {
 import axios from 'axios';
 import Favorite from "../component/add-favorite";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMapPin } from '@fortawesome/free-solid-svg-icons'
+import { faPhone } from '@fortawesome/free-solid-svg-icons'
+import { faHome} from '@fortawesome/free-solid-svg-icons'
+import { faQuoteLeft} from '@fortawesome/free-solid-svg-icons'
 
 
+const iconAddress = <FontAwesomeIcon icon={faMapPin} />
+const iconPhone = <FontAwesomeIcon icon={faPhone} />
+const iconHome = <FontAwesomeIcon icon={faHome} />
+const iconQuote = <FontAwesomeIcon icon={faQuoteLeft} />
 
 
 const searchIcon = (
@@ -104,6 +113,9 @@ export default class mapApp extends Component {
                     const service = {
                         name: value.name,
                         address: value.address,
+                        phone: value.phone,
+                        details: value.details,
+                        image: value.image,
                         postalcode: value.postalcode,
                         city: value.city,
                         website: value.website,
@@ -177,7 +189,7 @@ export default class mapApp extends Component {
 
     Marker = (res) => {
         return(
-            res ?  
+            res && this.state.addMarkers ?  
             res.map(result=>
                 <Marker
                     key={result.id}
@@ -205,16 +217,21 @@ export default class mapApp extends Component {
         return(
             popupInfo && (
                 <Popup
-                key={"popup" + popupInfo.id}
-                latitude={popupInfo.latitude}
-                longitude={popupInfo.longitude}
-                closeButton={true}
-                closeOnClick={false}
-                onClose={() => this.setState({popupInfo: null})}
-                anchor="top" 
+                    key={"popup" + popupInfo.id}
+                    latitude={popupInfo.latitude}
+                    longitude={popupInfo.longitude}
+                    closeButton={true}
+                    closeOnClick={false}
+                    onClose={() => this.setState({popupInfo: null})}
+                    anchor="top" 
                 >
                     <div>
                         <h1>{popupInfo.name}</h1>
+                        <p>{iconAddress} {popupInfo.address}</p>
+                        <p>{iconPhone} {popupInfo.phone}</p>
+                        <p>{iconHome} <a href={popupInfo.website} target="_blank">{popupInfo.website}</a></p>
+                        <p>{iconQuote} <i>{popupInfo.details}</i></p>
+                        <img className="popimage" src={popupInfo.image}></img>
                         <Favorite res={popupInfo}/>
                     </div>
                 </Popup>
@@ -389,7 +406,7 @@ export default class mapApp extends Component {
                         trackUserLocation={true}
                         className="mapboxgl-ctrl-bottom-right"
                     />
-                    {addMarkers ? this.Marker(results) : null}
+                    {this.Marker(results)}
                     {this.Popup()}
                 </ReactMapGL>
             </div>
