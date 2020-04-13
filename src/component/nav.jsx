@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import AuthService from '../Services/AuthService';
 import { AuthContext } from '../Context/AuthContext';
+import kompassi from '../img/kompassi.png';
 
 const forumIcon = (
   <svg
@@ -96,7 +97,7 @@ const Nav = props => {
         <Link to="/Register">
           <div className="dropdown-item">Register</div>
         </Link>
-        <Link to="/">
+        <Link to="/Login">
           <div className="dropdown-item">Login</div>
         </Link>
       </>
@@ -123,6 +124,7 @@ const Nav = props => {
   return (
     <div id="navbarWrapper" className="container-fluid p-0">
       <nav className="colorLayer navbar navbar-expand-lg navbar-light shadow py-2">
+        <img className="navbar-brand-img" src={kompassi}></img>
         <div className="d-flex flex-wrap flex-columns flex-xl-row">
           <Link to="/JKL-Guide/">
             <div className="navbar-brand py-0 pl-md-4 mr-0">JKL-Guide</div>

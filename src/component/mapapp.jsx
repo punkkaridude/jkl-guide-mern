@@ -50,7 +50,7 @@ export default class mapApp extends Component {
             searchvalue: '',
             results: [],
             addMarkers: false,
-            showPopup: false,
+            PopupInfo: null,
             cursor: -1,
             temp: ""
         };
@@ -93,7 +93,7 @@ export default class mapApp extends Component {
         this.setState({
             results: [],
             cursor: -1,
-            showPopup: false,
+            popupInfo: null,
             addMarkers: false        
         });
         this.getResults(active);
@@ -162,18 +162,18 @@ export default class mapApp extends Component {
         this.setState({
             searchvalue: e.target.value,
             addMarkers: false,
-            showPopup: false,
+            popupInfo: null,
             cursor: -1
         });
     };
 
-    addMarkers() {
+    addMarkers = () => {
         const { searchvalue } = this.state;
         if(searchvalue === ''){
             console.log("addMarkers if")
             this.setState({
                 addMarkers: false,
-                showPopup: false
+                popupInfo: null
             });
         } 
         else {
@@ -181,16 +181,17 @@ export default class mapApp extends Component {
             this.setState({
                 searchvalue: '',
                 addMarkers: true,
-                showPopup: false
+                popupInfo: null
             });
             console.log("addMarkers: ", this.state.viewport, this.state.addMarkers, this.state.searchvalue)
         }
     }
 
-    Marker = (res) => {
+    Marker() {
+        const {results} = this.state;
         return(
-            res ?  
-            res.map(result=>
+            results && this.state.addMarkers ?  
+            results.map(result=>
                 <Marker
                     key={result.id}
                     latitude={result.latitude}
@@ -198,44 +199,45 @@ export default class mapApp extends Component {
                     offsetLeft={-20}
                     offsetTop={-40}
                 >
-                    <div className="marker" onClick={()=>this.addPopup()}></div>
+                    <div className="marker" onClick={()=>this.addPopup(result)}></div>
                 </Marker>        
             ) : null
         )
     }
 
-    addPopup(){
-        const {showPopup} = this.state;
-        if(!showPopup){
-            this.setState({
-                showPopup: true
-            });
-        }
-        console.log("addPopup: ", this.state.showPopup)
+    addPopup = res => {
+        console.log("addPopup")
+        this.setState({
+            popupInfo: res
+        });
     }
 
-    Popup = (res) => {
+    Popup() {
+        const {popupInfo} = this.state;
+        
         return(
-            res.map(result=>
+            popupInfo && (
                 <Popup
-                    latitude={result.latitude}
-                    longitude={result.longitude}
+                    key={"popup" + popupInfo.id}
+                    latitude={popupInfo.latitude}
+                    longitude={popupInfo.longitude}
                     closeButton={true}
                     closeOnClick={false}
-                    onClose={() => this.setState({showPopup: null})}
+                    onClose={() => this.setState({popupInfo: null})}
                     anchor="top" 
                 >
                     <div>
-                        <h1>{result.name}</h1>
-                        <p>{iconAddress} {result.address}</p>
-                        <p>{iconPhone} {result.phone}</p>
-                        <p>{iconHome} <a href={result.website} target="_blank">{result.website}</a></p>
-                        <p>{iconQuote} <i>{result.details}</i></p>
-                        <img className="popimage" src={result.image}></img>
-                        <input onClick='" + Favorite + "' type='button' value='Add favorite' className='favButton'/>
+                        <h1>{popupInfo.name}</h1>
+                        <p>{iconAddress} {popupInfo.address}</p>
+                        <p>{iconPhone} {popupInfo.phone}</p>
+                        <p>{iconHome} <a href={popupInfo.website} target="_blank">{popupInfo.website}</a></p>
+                        <p>{iconQuote} <i>{popupInfo.details}</i></p>
+                        <img className="popimage" src={popupInfo.image}></img>
+                        <Favorite res={popupInfo}/>
                     </div>
-                </Popup>        
+                </Popup>
             )
+            
         )
     }
 
@@ -291,8 +293,11 @@ export default class mapApp extends Component {
         if (e.keyCode === 13) {
             e.preventDefault();
             console.log("enter");
-            this.resultSelected(document.activeElement.textContent);
-            this.addMarkers(results);
+            if (cursor > -1){
+                this.resultSelected(document.activeElement.textContent);
+                this.addMarkers();
+            }
+            else this.addMarkers();
         }
 
     }
@@ -405,8 +410,8 @@ export default class mapApp extends Component {
                         trackUserLocation={true}
                         className="mapboxgl-ctrl-bottom-right"
                     />
-                    {addMarkers ? this.Marker(results) : null}
-                    {showPopup ? this.Popup(results) : null}
+                    {this.Marker(results)}
+                    {this.Popup()}
                 </ReactMapGL>
             </div>
         </div>

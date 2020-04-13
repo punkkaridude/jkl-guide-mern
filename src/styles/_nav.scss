@@ -49,6 +49,7 @@
       background-size: 40%;
     }
    
+    
 
     .flex-columns {
       @include media-breakpoint-between(xs, lg) {
@@ -89,6 +90,13 @@
         @include bigHFont();
       }
     }
+
+    .navbar-brand-img{
+      max-width: 100px;
+      max-height: auto;
+    }
+    
+
     #navbarDropdownMenuLink {
       transition: all 0.1s ease 0s;
       height: 50px;
