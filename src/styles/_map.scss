@@ -90,7 +90,7 @@
   }
 }
 
-.mapboxgl-marker {
+.marker {
   background-image: url("../img/placeholder.svg");
   background-size: cover;
   width: 40px;
@@ -99,42 +99,42 @@
 }
 
      
-      .mapboxgl-popup {
-        padding-bottom: 10px;
-      }
+.mapboxgl-popup {
+  padding-bottom: 10px;
+}
 
-      .mapboxgl-popup-close-button {
-        color: $PrimaryFontCol;
-      }
+.mapboxgl-popup-close-button {
+  color: $PrimaryFontCol;
+}
 
-      div.mapboxgl-popup-content {
-        font-family: $FontFam;
-        background-color:#fff;
-        padding:0;
-        width:200px;
-        h1 {
-          font-family: $FontFamHeading;
-          background: $accentColor;
-          text-align: center;
-          font-size: 22px;
-          letter-spacing: 2px;
-          color: $PrimaryFontCol;
-          margin:0;
-          display:block;
-          padding: 5px 5px 5px 5px;
-          border-radius:3px 3px 0 0;
-          margin-top: 0px;
-        }
-        p{
-          font-family: $FontFam;
-          padding: 3px 0px 0px 0px;
-          margin: 0px;
-          text-align: center;
-        }
-        favButton{
-          text-align: center;
-        }
-      }
+div.mapboxgl-popup-content {
+  font-family: $FontFam;
+  background-color:#fff;
+  padding:0;
+  width:200px;
+  h1 {
+    font-family: $FontFamHeading;
+    background: $accentColor;
+    text-align: center;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: $PrimaryFontCol;
+    margin:0;
+    display:block;
+    padding: 5px 5px 5px 5px;
+    border-radius:3px 3px 0 0;
+    margin-top: 0px;
+  }
+  p{
+    font-family: $FontFam;
+    padding: 3px 0px 0px 0px;
+    margin: 0px;
+    text-align: center;
+  }
+  favButton{
+    text-align: center;
+  }
+}
 
 
 #mapappWrapper {
