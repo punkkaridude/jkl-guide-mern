@@ -97,7 +97,7 @@ const Nav = props => {
         <Link to="/Register">
           <div className="dropdown-item">Register</div>
         </Link>
-        <Link to="/">
+        <Link to="/Login">
           <div className="dropdown-item">Login</div>
         </Link>
       </>
