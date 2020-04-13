@@ -116,7 +116,7 @@ div.mapboxgl-popup-content {
     font-family: $FontFamHeading;
     background: $accentColor;
     text-align: center;
-    font-size: 22px;
+    font-size: 20px;
     letter-spacing: 2px;
     color: $PrimaryFontCol;
     margin:0;
@@ -127,15 +127,45 @@ div.mapboxgl-popup-content {
   }
   p{
     font-family: $FontFam;
-    padding: 3px 0px 0px 0px;
-    margin: 0px;
-    text-align: center;
+    padding: 3px 3px 0px 0px;
+    margin: 2px 2px 2px 20px;
+    font-size: 0.8rem;
   }
-  favButton{
+
+  .favButton{
     text-align: center;
+    margin: 2px 2px 10px 20px;
+
+  }
+
+  .popimage{
+    max-width: 80px;
+    margin: 2px 2px 2px 20px;
+    position: relative;
   }
 }
 
+//mapboxin popupin tippi vaihtaa väriä tässä:
+// -----> 
+
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+    border-bottom-color: $accentColor;
+    }
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+    border-top-color: $accentColor;
+    }
+.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+    border-right-color: $accentColor;
+    }
+.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+    border-left-color: $accentColor;
+    }
+
+// -------> 
 
 #mapappWrapper {
   height: 100%;
