@@ -173,14 +173,36 @@ Kokoustimme maanantaina klo 9:30 - 16*
 ### Torstai 9.4.2020
 
 *Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
-Kokoustimme maanantaina klo 9:30 - 15*
+Kokoustimme torstaina klo 9:30 - 15*
 
 #### Admin-paneeli
 * Veeti koodaili admin-paneelia ja yhdisti myös tietokantaa toimimaan paneeliin.
 
 #### Siirtymäanimaatiot Springillä 
-* Iina teki siirtymäanimaatioita home-, login- ja register-sivuun.
+* Iina teki siirtymäanimaatioita home-, login- ja register-sivuun
 * Aamupäivästä tutustumista react-springiin
 
 #### Mapappin korjailu
 * Kristian jatkoi mapappin korjaamista. Ladattu myös Veetille ja Iinalle uusi mapapp-gl
+
+
+-------------------------
+-------------------------
+
+### Maanantai 13.4.2020
+
+*Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
+Kokoustimme maanantaina klo 9:30 - 15*
+
+#### Veetin hommat
+* ---
+
+#### Popupin tyylittely uuteen mapappiin ja muuta pientä fiksailua
+* Aamusta Iina lisäsi pienet spring-animaatiofeidit myös sivun peruskomponentteihin.
+* Mapboxin popuppia tyylitelty ja testailtu. Pikkuikonien näyttämiseksi isätty myös reactin sisäinen font awesome-kirjasto
+* Backendistä muutettu puhelinnumero intistä stringiksi jotta toistuu oikein
+* Navbariin lisätty kompassilogo ja testattu myös sen breakpointteja
+* Aloitettu raportointiin tarvittavaa GitHub Wikiä
+
+#### Krisun hommat
+* ---
