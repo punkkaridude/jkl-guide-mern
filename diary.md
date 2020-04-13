@@ -151,7 +151,7 @@ Kokoustimme torstaina klo 9:30 - 16:30*
 -------------------------
 -------------------------
 
-### Torstai 6.4.2020
+### Maanantai 6.4.2020
 
 *Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
 Kokoustimme maanantaina klo 9:30 - 16*
@@ -162,4 +162,25 @@ Kokoustimme maanantaina klo 9:30 - 16*
 #### Logoanimaatio ja backbutton
 * Iina teki uuden animoidun SVG-logon ja lisäili sen etusivun lisäksi myös rekisteröinti- ja login-ikkunaan
 * SVG:n koon ja viewboxin kanssa pientä probleemaa, koko ei toistunut oikein ja useita versioita yritetty
-* Tiedonhaku backbuttoniin jäi omalle ajalle
+* Tiedonhaku backbuttoniin jäi omalle ajalle, saatu toimimaan keskiviikkona
+
+#### Mapappin korjailu
+* Kristian korjaili mapappia versiosta toiseen. Tässä jonkin verran ongelmaa, joten työläs ja aikaavievä prosessi johon Kristianin fokus menee nyt miltei täysin.
+
+-------------------------
+-------------------------
+
+### Torstai 9.4.2020
+
+*Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
+Kokoustimme maanantaina klo 9:30 - 15*
+
+#### Admin-paneeli
+* Veeti koodaili admin-paneelia ja yhdisti myös tietokantaa toimimaan paneeliin.
+
+#### Siirtymäanimaatiot Springillä 
+* Iina teki siirtymäanimaatioita home-, login- ja register-sivuun.
+* Aamupäivästä tutustumista react-springiin
+
+#### Mapappin korjailu
+* Kristian jatkoi mapappin korjaamista. Ladattu myös Veetille ja Iinalle uusi mapapp-gl

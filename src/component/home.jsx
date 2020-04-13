@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {Spring} from 'react-spring/renderprops';
 
 const JklGuideLogo = (
   <svg
@@ -79,37 +80,54 @@ const JklGuideLogo = (
 
 const Home = () => {
     return (
-        <div id="loginContainer" className="container-fluid p-0 m-0">
-            <div className="colorLayer container-fluid d-flex flex-column align-items-center">
-                <h1 className="text-center pt-4">Welcome to <Link to="/JKL-Guide">{JklGuideLogo}</Link></h1>
-                <form className="text-center">
-                    <div className="pt-5 pb-0 d-flex flex-column align-items-center">
-                        <div className="col-12 px-0 pt-2">
-                            <Link to="/Login">
-                                <button
-                                type="button"
-                                id="login"
-                                className="login col-12 btn-lg shadow"
-                                >
-                                Log in
-                                </button>
-                            </Link>
-                            <h2>Or</h2>
-                            <Link to="/Register">
-                                <button
-                                type="button"
-                                id="reg"
-                                className="login col-12 btn-lg shadow"
-                                >
-                                Register
-                                </button>
-                            </Link>
+      <div id="loginContainer" className="container-fluid p-0 m-0">
+        <div className="colorLayer container-fluid d-flex flex-column align-items-center">
+          <h1 className="text-center pt-4">Welcome to <Link to="/JKL-Guide">{JklGuideLogo}</Link></h1>
+            <Spring
+              from={{ opacity: 0 }}
+              to={{ opacity: 1 }}
+              config={{ delay: 500, duration: 1000 }}  
+            >
+            { props => (
+                <div style= {props}>
+                  <form className="text-center">
+                        <div className="pt-5 pb-0 d-flex flex-column align-items-center">
+                            <div className="col-12 px-0 pt-2">
+                                <Link to="/Login">
+                                    <button
+                                    type="button"
+                                    id="login"
+                                    className="login col-12 btn-lg shadow"
+                                    >
+                                    Log in
+                                    </button>
+                                </Link>
+                                <h2>Or</h2>
+                                <Link to="/Register">
+                                    <button
+                                    type="button"
+                                    id="reg"
+                                    className="login col-12 btn-lg shadow"
+                                    >
+                                    Register
+                                    </button>
+                                </Link>
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    );
+                    </form>
+                </div>
+            ) }
+          </Spring>
+      </div>
+    </div>
+  );
 }
 
 export default Home;
+
+
+
+
+
+
+    

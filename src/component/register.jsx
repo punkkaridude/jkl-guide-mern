@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from "react";
 import { Link } from 'react-router-dom';
 import AuthService from '../Services/AuthService';
 import Message from './message';
+import {Spring} from 'react-spring/renderprops';
 
 const JklGuideLogo = (
   <svg
@@ -145,77 +146,95 @@ const Register = props => {
   return (
     <div id="regContainer" className="container-fluid p-0 m-0">
       <div className="colorLayer px-0 container-fluid d-flex flex-column align-items-center">
-        <h1 className="text-center pt-sm-4 pt-2 px-5 mb-0 mb-sm-2">Register to <Link to="/JKL-Guide">{JklGuideLogo}</Link></h1>
-        <form className="col-md-8" onSubmit={onSubmit}>
-          <div className="pt-0 pt-sm-5 pb-0 d-flex flex-wrap align-items-center">
-            <div className="form-group col-sm-6 mb-0 mb-sm-3">
-              <label className="col-form-label-lg mb-0 mb-sm-2">Fullname</label>
-              <input 
-                name="fullname"
-                className="form-control form-control-lg shadow"
-                type="text"
-                placeholder="firstname lastname"
-                value={user.fullname}
-                onChange={onChange}
-              ></input>
-            </div>
-            <div className="form-group col-sm-6 mb-0 mb-sm-3">
-              <label className="col-form-label-lg mb-0 mb-sm-2">Username</label>
-              <input
-                name="username"
-                className="form-control form-control-lg shadow"
-                type="text"
-                minLength="5"
-                placeholder="username"
-                value={user.username}
-                onChange={onChange}
-              ></input>
-            </div>
-            <div className="form-group col-12 mb-0 mb-sm-3">
-              <label className="col-form-label-lg mb-0 mb-sm-2">Email</label>
-              <input
-                name="email"
-                className="form-control form-control-lg shadow"
-                type="email"
-                placeholder="user@email.com"
-                value={user.email}
-                onChange={onChange}
-              ></input>
-            </div>
-            <div className="form-group col-sm-6 mb-0 mb-sm-3">
-              <label className="col-form-label-lg mb-0 mb-sm-2">Password</label>
-              <input
-                name="password"
-                className="form-control form-control-lg shadow"
-                type="password"
-                placeholder="*******"
-                value={user.password}
-                onChange={onChange}
-              ></input>
-            </div>
-            <div className="form-group col-sm-6  mb-0 mb-sm-3">
-              <label className="col-form-label-lg mb-0 mb-sm-2">Repeat Password</label>
-              <input
-                name="passwordconf"
-                className="form-control form-control-lg shadow"
-                type="password"
-                placeholder="********"
-                value={user.passwordconf}
-                onChange={onChange}
-              ></input>
-            </div>
-            <input name="role" type="hidden" value="user"></input>
-            <div className="pt-sm-2 mt-sm-4 col-12 text-center">
-                <button id="reg"
-                  type="submit"
-                  className="register col-6 btn-lg shadow mt-4 mt-sm-0"
-                >
-                  Register
-                </button>
-                <div className="backButton"><Link to="/">{BackArrow}</Link></div>
-            </div>
-          </div>
-        </form>
+        <Spring
+              from={{ opacity: 0, marginTop: -500 }}
+              to={{ opacity: 1, marginTop: 0 }}
+              config={{ delay: 100, duration: 1000 }}  
+            >
+            { props => (
+                <div style= {props}>
+                  <h1 className="text-center pt-sm-4 pt-2 px-5 mb-0 mb-sm-2">Register to <Link to="/JKL-Guide">{JklGuideLogo}</Link></h1>
+                </div>
+              ) }
+        </Spring>
+          <form className="col-md-5" onSubmit={onSubmit}>
+            <Spring
+                  from={{ opacity: 0, marginTop: 1000 }}
+                  to={{ opacity: 1, marginTop: 0 }}
+                  config={{ delay: 100, duration: 1000 }}  
+              >
+              { props => (
+              <div style= {props} className="pt-0 pt-sm-5 pb-0 d-flex flex-wrap align-items-center">
+                <div className="form-group col-sm-6 mb-0 mb-sm-3">
+                    <label className="col-form-label-lg mb-0 mb-sm-2">Fullname</label>
+                    <input 
+                      name="fullname"
+                      className="form-control form-control-lg shadow"
+                      type="text"
+                      placeholder="firstname lastname"
+                      value={user.fullname}
+                      onChange={onChange}
+                    ></input>
+                  </div>
+                  <div className="form-group col-sm-6 mb-0 mb-sm-3">
+                    <label className="col-form-label-lg mb-0 mb-sm-2">Username</label>
+                    <input
+                      name="username"
+                      className="form-control form-control-lg shadow"
+                      type="text"
+                      minLength="5"
+                      placeholder="username"
+                      value={user.username}
+                      onChange={onChange}
+                    ></input>
+                  </div>
+                  <div className="form-group col-12 mb-0 mb-sm-3">
+                    <label className="col-form-label-lg mb-0 mb-sm-2">Email</label>
+                    <input
+                      name="email"
+                      className="form-control form-control-lg shadow"
+                      type="email"
+                      placeholder="user@email.com"
+                      value={user.email}
+                      onChange={onChange}
+                    ></input>
+                  </div>
+                  <div className="form-group col-sm-6 mb-0 mb-sm-3">
+                    <label className="col-form-label-lg mb-0 mb-sm-2">Password</label>
+                    <input
+                      name="password"
+                      className="form-control form-control-lg shadow"
+                      type="password"
+                      placeholder="*******"
+                      value={user.password}
+                      onChange={onChange}
+                    ></input>
+                  </div>
+                  <div className="form-group col-sm-6  mb-0 mb-sm-3">
+                    <label className="col-form-label-lg mb-0 mb-sm-2">Repeat Password</label>
+                    <input
+                      name="passwordconf"
+                      className="form-control form-control-lg shadow"
+                      type="password"
+                      placeholder="********"
+                      value={user.passwordconf}
+                      onChange={onChange}
+                    ></input>
+                  </div>
+                  <input name="role" type="hidden" value="user"></input>
+                  <div className="pt-sm-2 mt-sm-4 col-12 text-center">
+                    <button id="reg"
+                      type="submit"
+                      className="register col-6 btn-lg shadow mt-4 mt-sm-0"
+                    >
+                      Register
+                    </button>
+                    <div className="backButton"><Link to="/">{BackArrow}</Link></div>
+                  </div>
+                </div>
+              ) }
+            </Spring>
+          </form>
         {message ? <Message message={message}/> : null}
       </div>
     </div>

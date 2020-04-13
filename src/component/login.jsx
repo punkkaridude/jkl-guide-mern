@@ -3,6 +3,7 @@ import AuthService from '../Services/AuthService';
 import {AuthContext} from '../Context/AuthContext';
 import { Link } from "react-router-dom";
 import Message from './message';
+import {Spring} from 'react-spring/renderprops';
 
 const JklGuideLogo = (
   <svg
@@ -126,46 +127,66 @@ const Login = props => {
   }
 
   return (
-    
     <div id="loginContainer" className="container-fluid p-0 m-0">
       <div className="colorLayer container-fluid d-flex flex-column align-items-center">
-        <h1 className="text-center pt-4">Login to <Link to="/JKL-Guide">{JklGuideLogo}</Link></h1>
-        <form className="text-center" onSubmit={onLogin}>
-          <div className="pt-5 pb-0 d-flex flex-column align-items-center">
-            <div className="form-group">
-              <label className="col-form-label-lg m-0 py-0 py-sm-2">Username</label>
-              <input
-                className="form-control form-control-lg shadow"
-                type="text"
-                placeholder="username"
-                name="username"
-                onChange={onChange}
-                value={user.username}
-              ></input>
-            </div>
-            <div className="form-group">
-              <label className="col-form-label-lg m-0 py-0 py-sm-2">Password</label>
-              <input
-                className="form-control form-control-lg shadow"
-                type="password"
-                placeholder="********"
-                name="password"
-                onChange={onChange}
-                value={user.password}
-              ></input>
-            </div>
-            <div className="col-12 px-0 pt-2">
-                <button
-                  type="submit"
-                  id="login"
-                  className="login col-12 btn-lg shadow"
-                >
-                  Log in
-                </button>
-                <div className="backButton"><Link to="/">{BackArrow}</Link></div>
-            </div>
-          </div>
-        </form>
+        <Spring
+              from={{ opacity: 0, marginTop: -500 }}
+              to={{ opacity: 1, marginTop: 0 }}
+              config={{ delay: 100, duration: 1000 }}  
+            >
+            { props => (
+                <div style= {props}>
+                  <h1 className="text-center pt-4">Login to <Link to="/JKL-Guide">{JklGuideLogo}</Link></h1>
+                </div>
+              ) }
+        </Spring>
+        
+        <Spring
+              from={{ opacity: 0, marginTop: 1000 }}
+              to={{ opacity: 1, marginTop: 0 }}
+              config={{ delay: 100, duration: 1000 }}  
+            >
+            { props => (
+                <div style= {props}>
+                  <form className="text-center" onSubmit={onLogin}>
+                    <div className="pt-5 pb-0 d-flex flex-column align-items-center">
+                      <div className="form-group">
+                        <label className="col-form-label-lg m-0 py-0 py-sm-2">Username</label>
+                        <input
+                          className="form-control form-control-lg shadow"
+                          type="text"
+                          placeholder="username"
+                          name="username"
+                          onChange={onChange}
+                          value={user.username}
+                        ></input>
+                      </div>
+                    <div className="form-group">
+                        <label className="col-form-label-lg m-0 py-0 py-sm-2">Password</label>
+                        <input
+                          className="form-control form-control-lg shadow"
+                          type="password"
+                          placeholder="********"
+                          name="password"
+                          onChange={onChange}
+                          value={user.password}
+                        ></input>
+                      </div>
+                    <div className="col-12 px-0 pt-2">
+                      <button
+                        type="submit"
+                        id="login"
+                        className="login col-12 btn-lg shadow"
+                      >
+                        Log in
+                      </button>
+                      <div className="backButton"><Link to="/">{BackArrow}</Link></div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            ) }
+          </Spring>
         {message ? <Message message={message}/> : null}
       </div>
     </div>
@@ -173,3 +194,5 @@ const Login = props => {
 }
 
 export default Login;
+
+

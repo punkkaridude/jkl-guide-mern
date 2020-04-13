@@ -1,6 +1,6 @@
 import React from "react";
 import ForumSmall from "./component/forumsmall";
-import { Spring, config } from "react-spring/renderprops";
+import { Spring } from "react-spring/renderprops";
 
 export default class Forum extends React.Component {
   constructor(props) {
@@ -30,7 +30,11 @@ export default class Forum extends React.Component {
   }
   render() {
     return (
-      <Spring config={config.slow} from={{ opacity: 0.01 }} to={{ opacity: 1 }}>
+        <Spring
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}
+          config={{ delay: 500, duration: 500 }}  
+        >
         {props => (
           <div
             style={props}
