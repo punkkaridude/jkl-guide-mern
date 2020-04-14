@@ -1,48 +1,19 @@
-// #map {
-//   background-color: $PrimaryFontCol;
-//   border: $border;
-//   position: relative;
-//   @include media-breakpoint-between(md, xl) {
-//     height: 45vh;
-//   }
-//   @include media-breakpoint-down(md) {
-//     height: 40vh;
-//     margin: 8px 0 8px 0;
-//   }
-//   @include media-breakpoint-down(sm) {
-//     height: 40vh;
-//     margin: 8px 0 8px 0;
-//   }
-//   .mapContainer {
-//     margin: 10px;
-//     position: absolute;
-//     top: 0;
-//     right: 0;
-//     left: 0;
-//     bottom: 0;
-//     background-color: $PrimaryFontCol;
-//     border: $border;
-//   }
-//   .sidebarStyle {
-//     display: inline-block;
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     margin: 12px;
-//     background-color: #404040a8;
-//     border-radius: 10px;
-//     color: #ffffff;
-//     z-index: 1 !important;
-//     padding: 6px;
-//     font-weight: lighter;
-//     font-size: 0.8em;
-//     @include media-breakpoint-between(xs,sm){
-//       font-size: 0.6rem;
-//       padding: 3px;
-//       border-radius: 5px;
-//     }
-//   }
-// }
+#map {
+  background-color: $PrimaryFontCol;
+  border: $border;
+  position: relative;
+  @include media-breakpoint-between(md, xl) {
+    height: 45vh;
+  }
+  @include media-breakpoint-down(md) {
+    height: 40vh;
+    margin: 8px 0 8px 0;
+  }
+  @include media-breakpoint-down(sm) {
+    height: 40vh;
+    margin: 8px 0 8px 0;
+  }
+}
 
 #mapParent {
   background-color: $PrimaryFontCol;
