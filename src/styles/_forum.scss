@@ -1,9 +1,14 @@
 #forumContainer,
 #favoriteContainer {
-  height: 100%;
   padding: 0;
   @include media-breakpoint-between(xs, sm) {
     margin: 8px 0 8px 0;
+  }
+  @include media-breakpoint-between(lg, xl) {
+    position: absolute;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   > .card {
     background-color: $PrimaryFontCol;

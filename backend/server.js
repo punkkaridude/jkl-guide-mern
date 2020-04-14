@@ -28,12 +28,12 @@ connection.once('open', (err) => {
 const userRouter = require('./routes/users');
 const serviceRouter = require('./routes/service');
 const faqRouter = require('./routes/faq');
+const favRouter = require('./routes/favorites');
 
 app.use('/', userRouter);
-
 app.use('/JKL-Guide', serviceRouter);
-
 app.use('/JKL-Guide/Faq', faqRouter);
+app.use('/JKL-Guide/Favorites', favRouter);
 
 app.listen(port, (err) => {
     if(err) console.log(err)
