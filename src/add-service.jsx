@@ -1,5 +1,9 @@
 import React from 'react';
-import mapboxgl from 'mapbox-gl';
+import ReactMapGL, 
+  { FlyToInterpolator, 
+    NavigationControl, 
+    ScaleControl, 
+    GeolocateControl } from 'react-map-gl';
 import axios from "axios";
 import { Spring } from 'react-spring/renderprops';
 
@@ -7,9 +11,11 @@ export default class Addservice extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lng: 25.7466,
-      lat: 62.2373,
-      zoom: 10.42,
+      viewport: {
+        latitude: 62.23815925225172,
+        longitude: 25.746282419998817,
+        zoom: 11.179489616683279,
+      },
       name: '',
       address: '',
       postalcode: '',
@@ -37,27 +43,17 @@ export default class Addservice extends React.Component {
     this.onChangeLongitude = this.onChangeLongitude.bind(this);
     this.onChangeLatitude = this.onChangeLatitude.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onViewportChange = this.onViewportChange.bind(this);
   }
   componentDidMount(){
-    mapboxgl.accessToken = 'pk.eyJ1IjoicHVua2thcmlkdWRlIiwiYSI6ImNrMjM2aGl2NTB0OHIzY25yb29oOXNlbmYifQ.-jVIXdpV1emEldkSzf-Q5g';
-    this.map2 = new mapboxgl.Map({
-        container: this.mapContainer,
-        style: 'mapbox://styles/mapbox/light-v9',
-        center: [this.state.lng, this.state.lat],
-        zoom: this.state.zoom
-    })
-    this.map2.on('move', () => {
-        this.setState({
-        lng: this.map2.getCenter().lng.toFixed(4),
-        lat: this.map2.getCenter().lat.toFixed(4),
-        zoom: this.map2.getZoom().toFixed(2)
-        })
-    })
-    this.map2.on('load', () => {
-        this.map2.getCanvasContainer();
-        this.map2.getCanvas();
-    })
+
   }
+
+  onViewportChange = viewport => {
+    const {width, height, ...etc} = viewport
+    this.setState({viewport: etc})
+  }
+
 
   onChangeName(e){
     this.setState({
@@ -172,6 +168,7 @@ export default class Addservice extends React.Component {
   }
   
   render() {
+    const { viewport } = this.state;
     return (
       <Spring
           from={{ opacity: 0 }}
@@ -239,10 +236,26 @@ export default class Addservice extends React.Component {
               <div className="d-flex flex-wrap align-content-start">
                 <label className="col-form-label pb-0">Coordinates</label>
                 <div id="map" className="container-fluid px-0 rounded shadow mt-0">
-                  <div className='sidebarStyle'>
-                      <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
-                  </div>
-                  <div ref={el => this.mapContainer = el} className="mapContainer"/>
+                  <ReactMapGL
+                    height="100%"
+                    width="100%"
+                    interactive
+                    {...viewport}
+                    mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                    onViewportChange={viewport => this.onViewportChange(viewport)}
+                    transitionDuration={1000}
+                    transitionInterpolator= {new FlyToInterpolator()}
+                  >
+                    <div style={{position: 'absolute', right: 0}}>
+                        <NavigationControl />
+                    </div>
+                    <ScaleControl />
+                    <GeolocateControl
+                        positionOptions={{enableHighAccuracy: true}}
+                        trackUserLocation={true}
+                        className="mapboxgl-ctrl-bottom-right"
+                    />
+                  </ReactMapGL>
                 </div>  
                 <div id="coordinates" className="form-inline justify-content-between mt-sm-3 col-12 p-0 mb-3">
                   <input className="form-control mt-3 mt-sm-0 col-sm-6" type='text' placeholder="Longitude" onChange={this.onChangeLongitude}></input>
