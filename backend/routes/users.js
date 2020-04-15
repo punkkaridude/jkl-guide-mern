@@ -42,7 +42,6 @@ userRouter.get('/Logout', passport.authenticate('jwt',{session : false}),(req, r
 });
 
 userRouter.get('/JKL-Guide/Admin', passport.authenticate('jwt',{session : false}),(req, res)=>{
-    URL.username = req.username;
     if(req.user.role === "admin"){
         User.find()
         .then(users => res.json(users))
