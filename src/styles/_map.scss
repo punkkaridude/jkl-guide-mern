@@ -20,7 +20,7 @@
   position: relative;
   border: $border;
   @include media-breakpoint-between(md, xl) {
-    height: 65vh;
+    height: 100%;
   }
   @include media-breakpoint-down(md) {
     height: 50vh;
