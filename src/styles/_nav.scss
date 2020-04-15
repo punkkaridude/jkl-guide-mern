@@ -96,6 +96,14 @@
       max-height: auto;
     }
     
+    #block{
+      background-color: #8b8b8b !important;
+      border-radius: 50%;
+      &:hover {
+        transform: none !important;
+        pointer-events: none !important;
+        }
+      }
 
     #navbarDropdownMenuLink {
       transition: all 0.1s ease 0s;
@@ -129,6 +137,7 @@
         margin-bottom: 8px;
       }
     }
+
     #navbarNavDropdown {
       > ul > li {
         > a {
@@ -159,6 +168,7 @@
             border: $border;
             color: $accentColor;
           }
+
           .icon {
             height: 20px;
             width: 20px;
@@ -176,6 +186,26 @@
               height: 100%;
             }
           }
+
+          .blockedicon {
+            pointer-events: none !important;
+            height: 20px;
+            width: 20px;
+            @include media-breakpoint-between(sm, xl) {
+              display: flex;
+              fill: $blackColor;
+              align-self: center;
+            }
+            @include media-breakpoint-between(xs, md) {
+              display: none;
+            }
+            svg {
+              fill: #706f6f;
+              width: 100%;
+              height: 100%;
+            }
+          }
+
           .text {
             display: flex;
             @include media-breakpoint-between(lg, xl) {
