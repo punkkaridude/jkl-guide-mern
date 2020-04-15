@@ -106,7 +106,7 @@ const Nav = props => {
   const authenticatedNavbar = () =>{
     return (
       <>
-        <Link to="/JKL-Guide/">
+        <Link to="/JKL-Guide/Settings">
           <div className="dropdown-item">Settings</div>
         </Link>
         {
@@ -121,6 +121,7 @@ const Nav = props => {
       </>
     );
   }
+  
   return (
     <div id="navbarWrapper" className="container-fluid p-0">
       <nav className="colorLayer navbar navbar-expand-lg navbar-light shadow py-2">

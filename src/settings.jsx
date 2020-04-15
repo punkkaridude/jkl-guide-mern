@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
-import Message from './component/message';
+import AuthService from './Services/AuthService';
+//import Message from './message';
 
 const BackArrow = (
     <svg
@@ -21,33 +22,28 @@ const BackArrow = (
           c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
           C492,219.198,479.172,207.418,464.344,207.418z"/>
     </svg>
-  );
+);
+
+
 
 export default class Settings extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            password: '',
-            email: '',
+            user: [],
             users: []
         }
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-    }
-    
+    } 
 
     componentDidMount(){
         axios.get('/JKL-Guide/Settings/')
-        .then(response => {
-            console.log(response.data)
-            this.setState({
-                username: response.data.username,
-                password: response.data.password,
-                email: response.data.email
-            })
+        .then(res => {
+            const user = res.data
+            this.setState({user})
         })
         .catch((error) => {
                 console.log(error);
@@ -97,8 +93,8 @@ export default class Settings extends Component {
                                 className="form-control form-control-lg shadow"
                                 type="text"
                                 minLength="5"
-                                placeholder="username"
-                                value={username}
+                                defaultValue={this.state.user.username}
+                                
                             ></input>
                             <button id="reg"
                                 type="button"
@@ -113,7 +109,7 @@ export default class Settings extends Component {
                                 name="email"
                                 className="form-control form-control-lg shadow"
                                 type="email"
-                                placeholder="user@email.com"
+                                defaultValue={this.state.user.email}
                             ></input>
                             <button id="reg"
                                 type="button"
