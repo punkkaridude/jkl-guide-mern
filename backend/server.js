@@ -10,6 +10,11 @@ const port = process.env.PORT || 5000;
 app.use(cookieParser());
 app.use(express.json());
 
+//Set static folder
+app.use(express.static('/build'));
+
+
+//Connect MongoDB usind local variable DB_URI
 const uri = process.env.DB_URI;
 mongoose.connect(uri, {
     useUnifiedTopology: true,
@@ -25,13 +30,15 @@ connection.once('open', (err) => {
     else console.log("MongoDB database connection established successfully");
 });
 
+
+// ROUTES 
 const userRouter = require('./routes/users');
 const serviceRouter = require('./routes/service');
 const faqRouter = require('./routes/faq');
 const favRouter = require('./routes/favorites');
 
 app.use('/', userRouter);
-app.use('/JKL-Guide', serviceRouter);
+app.use('/JKL-Guide/', serviceRouter);
 app.use('/JKL-Guide/Faq', faqRouter);
 app.use('/JKL-Guide/Favorites', favRouter);
 
