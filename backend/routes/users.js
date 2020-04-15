@@ -60,11 +60,11 @@ userRouter.get('/JKL-Guide/Admin/Allusers', passport.authenticate('jwt',{session
     else res.status(403).json({message : {msgBody : "Authorization failed!", msgError : true}});
 });
 
-userRouter.get('/JKL-Guide/:username/Settings/', passport.authenticate('jwt',{session : false}),(req, res)=>{
-    let user = req.params.username;
+userRouter.get('/JKL-Guide/Settings/', passport.authenticate('jwt',{session : false}),(req, res)=>{
+    let user = req.user.username;
     User.find({username: user})
     .then(user => res.json(user))
-    .catch(err => res.status(400).json('Error: ' + err));
+    .catch<(err => res.status(400).json('Error: ' + err));
 });
 
 
