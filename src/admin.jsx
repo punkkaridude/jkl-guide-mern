@@ -44,35 +44,44 @@ export default class Admin extends React.Component {
         
         
         return services.map((service, index) => (
-            <div key={index}>
-                <h3>{service.name}</h3>
-                <p>{service.address}</p>
+            <div className="card">
+                <div className="card-header d-flex justify-content-between"  key={index}>
+                    <h2 className="pt-0 m-0">{service.name}</h2>
+                </div>
+                <div className="card-body">
+                     <p>{service.address}</p>
+                </div>
+                
+                
             </div>
         ));
     };
 
     displayUsers = (users) => {
         if (!users.length) return null;
-
-
         return users.map((user, index) => (
-            <div key={index}>
-                <h3>{user.username}</h3>
-                <p>{user.fullname}</p>
-
-            </div>
+                <div className="card h-100 shadow d-flex flex-column" key={index}>
+                    <div className="card-header shadow">{user.username}</div>
+                    <div className="title card-header d-flex">
+                        <p className="col-8">{user.fullname}</p>
+                    </div>
+                </div>
         ));
     };
 
     render(){
         return(
-            <div className="card">
-                <div className="card-header d-flex justify-content-between">
-                    <h4 className="pt-0 m-0">{this.displayServices(this.state.services)}</h4>
-        <h4 className="pt-0 m-0">{this.displayUsers(this.state.users)}</h4>
+            <div id="forumWrapper" className="d-flex justify-content-around flex-wrap">
+            <div className="col-lg-8 pr-lg-0 pl-xl-5 pl-lg-3 pt-3 pt-md-0">
+                <div id ="fContainer" className="card h-100 justify-content-start">
+                    {this.displayServices(this.state.services)}    
                 </div>
             </div>
 
+                <div>
+                    {this.displayUsers(this.state.users)}
+                </div>
+            </div>
         );
     }
 }

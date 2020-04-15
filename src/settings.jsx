@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
-//import Message from './message';
+import Message from './component/message';
 
 const BackArrow = (
     <svg
@@ -42,6 +42,7 @@ export default class Settings extends Component {
     componentDidMount(){
         axios.get('/JKL-Guide/Settings/')
         .then(response => {
+            console.log(response.data)
             this.setState({
                 username: response.data.username,
                 password: response.data.password,
@@ -52,6 +53,8 @@ export default class Settings extends Component {
                 console.log(error);
         })
     }
+
+    component
 
     onChangeUsername(e){
         this.setState({
@@ -82,6 +85,7 @@ export default class Settings extends Component {
         console.log(account);
     }
     render() {
+        const {username, email} = this.state;
         return(
             <div>
                 <form className="col-md-5" onSubmit={this.onSubmit}>
@@ -94,6 +98,7 @@ export default class Settings extends Component {
                                 type="text"
                                 minLength="5"
                                 placeholder="username"
+                                value={username}
                             ></input>
                             <button id="reg"
                                 type="button"
@@ -143,7 +148,7 @@ export default class Settings extends Component {
                         </div>
                         <input name="role" type="hidden" value="user"></input>
                         <div className="pt-sm-2 mt-sm-4 col-12 text-center">
-                            <div className="backButton"><Link to="/">{BackArrow}</Link></div>
+                            <div className="backButton"><Link to="/JKL-Guide">{BackArrow}</Link></div>
                         </div>
                     </div>
                 </form>
