@@ -61,10 +61,7 @@ userRouter.get('/JKL-Guide/Admin/Allusers', passport.authenticate('jwt',{session
 });
 
 userRouter.get('/JKL-Guide/Settings/', passport.authenticate('jwt',{session : false}),(req, res)=>{
-<<<<<<< HEAD
     let user = req.user.username;
-=======
->>>>>>> fd35059157c4f89536bb6f33e32d6624fad57b7b
     User.find({username: user})
     .then(user => res.json(user))
     .catch<(err => res.status(400).json('Error: ' + err));
