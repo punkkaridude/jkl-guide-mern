@@ -60,16 +60,13 @@ userRouter.get('/JKL-Guide/Admin/Allusers', passport.authenticate('jwt',{session
 });
 
 userRouter.get('/JKL-Guide/Settings/', passport.authenticate('jwt',{session : false}),(req, res)=>{
-    let user = req.user.username;
-    User.find({username: user})
-    .then(user => res.json(user))
-    .catch<(err => res.status(400).json('Error: ' + err));
+    res.json(req.user)
 });
 
 
 userRouter.get('/Authenticated', passport.authenticate('jwt',{session : false}),(req, res)=>{
-    const {username,role} = req.user;
-    res.status(200).json({isAuthenticated : true, user : {username,role}});
+    const {username,email,role} = req.user;
+    res.status(200).json({isAuthenticated : true, user : {username,email,role}});
 });
 
 
