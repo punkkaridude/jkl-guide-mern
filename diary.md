@@ -151,7 +151,7 @@ Kokoustimme torstaina klo 9:30 - 16:30*
 -------------------------
 -------------------------
 
-### Maanantai 6.4.2020
+### Maanantai 6.4.2020 Mapappin muutos ja FAQ-sivu
 
 *Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
 Kokoustimme maanantaina klo 9:30 - 16*
@@ -170,7 +170,7 @@ Kokoustimme maanantaina klo 9:30 - 16*
 -------------------------
 -------------------------
 
-### Torstai 9.4.2020
+### Torstai 9.4.2020 - Uusi mapapp!
 
 *Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
 Kokoustimme torstaina klo 9:30 - 15*
@@ -189,16 +189,15 @@ Kokoustimme torstaina klo 9:30 - 15*
 -------------------------
 -------------------------
 
-### Maanantai 13.4.2020
+### Maanantai 13.4.2020 - Lopun alkua, viimeistelyä 
 
 *Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
 Kokoustimme maanantaina klo 9:30 - 15*
 
-#### Veetin hommat
+#### Admin & settings
 *  Admin-pagen esiasteen viimeistely, hakee tiedot nyt käyttäjistä sekä paikoista.
 *  Ulkoasu vielä keskeneräinen
 *  Veeti aloitti myös settings-pagen rakentamista, jossa voi vaihtaa salasanan, sähköpostin sekä käyttäjätunnuksen.
-* 
 
 #### Popupin tyylittely uuteen mapappiin ja muuta pientä fiksailua
 * Aamusta Iina lisäsi pienet spring-animaatiofeidit myös sivun peruskomponentteihin.
@@ -209,3 +208,24 @@ Kokoustimme maanantaina klo 9:30 - 15*
 
 #### Krisun hommat
 * Luru luu luru luuu
+
+-------------------------
+-------------------------
+
+### Keskiviikko 15.4.2020 - Ylimääräinen meetup ennen loppurytinää
+
+*Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
+Kokoustimme keskiviikkona klo 12 - 17*
+
+#### Settings-sivun toimintakuntoon saattaminen
+*  Veeti ja Kristian käyttivät suurimman osan ajasta settings-sivun toimintahäiriöiden selvittelyyn
+*  Iina nätitti settings-sivun ulkoasua.
+
+#### Navin buttonin fixiä
+* Foorumibuttonin disablointia, jostain syystä pointteri elää vielä omaa elämäänsä
+
+#### Krisun hommat
+* Luru luu luru luuu
+
+
+
