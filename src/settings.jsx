@@ -87,11 +87,11 @@ export default class Settings extends Component {
     render() {
         const {username, email} = this.state;
         return(
-            <div>
-                <form className="col-md-5" onSubmit={this.onSubmit}>
-                    <div className="pt-0 pt-sm-5 pb-0 d-flex flex-wrap align-items-center">
-                        <div className="form-group col-sm-6 mb-0 mb-sm-3">
-                            <label className="col-form-label-lg mb-0 mb-sm-2">Username</label>
+            <div id="settingsContainer">
+                <form className="text-center" onSubmit={this.onSubmit}>
+                    <div className="pt-5 pb-0 d-flex flex-column align-items-center">
+                        <div className="form-group col-sm-4 mb-0 mb-sm-3">
+                            <label className="col-form-label-lg mb-0 mb-sm-1">Username</label>
                             <input
                                 name="username"
                                 className="form-control form-control-lg shadow"
@@ -102,13 +102,13 @@ export default class Settings extends Component {
                             ></input>
                             <button id="reg"
                                 type="button"
-                                className="register col-6 btn-lg shadow mt-4 mt-sm-0"
+                                className="col-6 btn-lg shadow mt-4 mt-sm-2"
                             >
                                 Change username
                             </button>
                         </div>
-                        <div className="form-group col-12 mb-0 mb-sm-3">
-                            <label className="col-form-label-lg mb-0 mb-sm-2">Email</label>
+                        <div className="form-group col-sm-4 mb-0 mb-sm-3">
+                            <label className="col-form-label-lg mb-0 mb-sm-1">Email</label>
                             <input
                                 name="email"
                                 className="form-control form-control-lg shadow"
@@ -117,13 +117,13 @@ export default class Settings extends Component {
                             ></input>
                             <button id="reg"
                                 type="button"
-                                className="register col-6 btn-lg shadow mt-4 mt-sm-0"
+                                className="col-6 btn-lg shadow mt-4 mt-sm-2"
                             >
                                 Change email
                             </button>
                         </div>
-                        <div className="form-group col-sm-6 mb-0 mb-sm-3">
-                            <label className="col-form-label-lg mb-0 mb-sm-2"> Old password</label>
+                        <div className="form-group col-sm-4 mb-0 mb-sm-3">
+                            <label className="col-form-label-lg mb-0 mb-sm-1"> Old password</label>
                             <input
                                 name="oldpassword"
                                 className="form-control form-control-lg shadow"
@@ -131,8 +131,8 @@ export default class Settings extends Component {
                                 placeholder="*******"
                             ></input>
                         </div>
-                        <div className="form-group col-sm-6  mb-0 mb-sm-3">
-                            <label className="col-form-label-lg mb-0 mb-sm-2">New password</label>
+                        <div className="form-group col-sm-4 mb-0 mb-sm-3">
+                            <label className="col-form-label-lg mb-0 mb-sm-1">New password</label>
                             <input
                                 name="newpassword"
                                 className="form-control form-control-lg shadow"
@@ -141,7 +141,7 @@ export default class Settings extends Component {
                             ></input>
                             <button id="reg"
                                 type="button"
-                                className="register col-6 btn-lg shadow mt-4 mt-sm-0"
+                                className="col-6 btn-lg shadow mt-4 mt-sm-2"
                             >
                                 Change password
                             </button>
