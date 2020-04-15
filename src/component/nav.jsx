@@ -158,8 +158,8 @@ const Nav = props => {
               </Link>
               </li>
               <li className="nav-item px-1">
-                <Link to="/JKL-Guide/Forum" className="nav-link shadow">
-                  <span className="icon">{forumIcon}</span>
+                <Link id="block" to="#" className="nav-link shadow">
+                  <span className="blockedicon">{forumIcon}</span>
                   <span className="text">Forum</span>
                 </Link>
               </li>
@@ -192,9 +192,9 @@ const Nav = props => {
                 </Link>
               </li>
               <li className="nav-item px-1">
-                <Link to="/JKL-Guide/Forum" className="nav-link shadow">
-                  <span className="icon">{forumIcon}</span>
-                  <span className="text">Forum</span>
+                <Link id="block" to="#" className="nav-link shadow">
+                  <span id="block" className="blockedicon">{forumIcon}</span>
+                  <span id="block" className="text">Forum</span>
                 </Link>
               </li>
               <li className="nav-item px-1">
