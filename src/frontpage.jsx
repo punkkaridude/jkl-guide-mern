@@ -8,7 +8,7 @@ import Faq from "./faq";
 import Forum from "./forum";
 import Favorites from "./favorites";
 import Admin from "./admin";
-
+import Settings from "./settings";
 export default class Frontpage extends React.Component {
   constructor(props) {
     super(props);
@@ -50,10 +50,11 @@ export default class Frontpage extends React.Component {
                 <Route path="/JKL-Guide/Admin">
                   <Admin />
                 </Route>
-                <Route path="/JKL-Guide/Settings">
-                  <Settings />
-                </Route>
+               <Route path="/JKL-Guide/Settings">
+                 <Settings />
+               </Route>
               </Switch>
+              
             </div>
 
             <Footer />

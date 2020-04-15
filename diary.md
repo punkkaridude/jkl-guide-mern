@@ -195,7 +195,10 @@ Kokoustimme torstaina klo 9:30 - 15*
 Kokoustimme maanantaina klo 9:30 - 15*
 
 #### Veetin hommat
-*  Luru luu luru luuu
+*  Admin-pagen esiasteen viimeistely, hakee tiedot nyt käyttäjistä sekä paikoista.
+*  Ulkoasu vielä keskeneräinen
+*  Veeti aloitti myös settings-pagen rakentamista, jossa voi vaihtaa salasanan, sähköpostin sekä käyttäjätunnuksen.
+* 
 
 #### Popupin tyylittely uuteen mapappiin ja muuta pientä fiksailua
 * Aamusta Iina lisäsi pienet spring-animaatiofeidit myös sivun peruskomponentteihin.

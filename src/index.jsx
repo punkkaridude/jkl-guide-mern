@@ -18,6 +18,7 @@ import PublicRoute from './hocs/PublicRoute';
 import Favorites from "./favorites";
 import Addservice from './add-service';
 import Admin from './admin';
+import Settings from './settings';
 import "./styles/site.scss";
 import "bootstrap";
 class App extends React.Component {
@@ -37,6 +38,7 @@ class App extends React.Component {
         <PrivateRoute path="/JKL-Guide/Add-service" roles={["user","admin"]} component={Addservice}/>
         <PrivateRoute path="/JKL-Guide/Favorites" roles={["user","admin"]} component={Favorites}/>
         <PrivateRoute path="/JKL-Guide/Admin" roles={["admin"]} component={Admin}/>
+        <PrivateRoute path="/JKL-Guide/Settings" roles={["user", "admin"]} component={Settings}/>
       </div>
     );
   }

@@ -129,7 +129,6 @@ const Register = props => {
   }
   const onSubmit = (e) => {
     e.preventDefault();
-    //console.log("perkele");
     if(user.password !== user.passwordconf){
       let err = {message : {msgBody: "Passwords do not match!"}}
       const { message } = err;
