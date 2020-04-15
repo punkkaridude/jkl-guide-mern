@@ -392,14 +392,14 @@ export default class mapApp extends Component {
             className="container-fluid px-0 rounded shadow mt-md-2 mt-0"
             >
                 <ReactMapGL
-                height="100%"
-                width="100%"
-                interactive
-                {...viewport}
-                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-                onViewportChange={viewport => this.onViewportChange(viewport)}
-                transitionDuration={1000}
-                transitionInterpolator= {new FlyToInterpolator()}
+                    height="100%"
+                    width="100%"
+                    interactive
+                    {...viewport}
+                    mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                    onViewportChange={viewport => this.onViewportChange(viewport)}
+                    transitionDuration={1000}
+                    transitionInterpolator= {new FlyToInterpolator()}
                 >
                     <div style={{position: 'absolute', right: 0}}>
                         <NavigationControl />
