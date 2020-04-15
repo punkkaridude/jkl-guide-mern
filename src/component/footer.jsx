@@ -49,12 +49,12 @@ export default class Footer extends React.Component {
           </div>
           <div className="col-md-4 p-md-3 align-self-center">
             <small id="centerCR">
-              2019 Copyright &copy; <strong>JKL-Guide</strong>
+              2020 Copyright &copy; <strong>JKL-Guide</strong>
             </small>
           </div>
           <div className="col-7 col-md-4 p-3 align-self-center text-right">
             <small id="rightCR">
-              2019 Copyright &copy; <strong>JKL-Guide</strong>
+              2020 Copyright &copy; <strong>JKL-Guide</strong>
             </small>
           </div>
         </footer>
