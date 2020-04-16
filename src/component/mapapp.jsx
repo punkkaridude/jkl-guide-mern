@@ -10,17 +10,12 @@ import axios from 'axios';
 import Favorite from "../component/add-favorite";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMapPin } from '@fortawesome/free-solid-svg-icons'
-import { faPhone } from '@fortawesome/free-solid-svg-icons'
-import { faHome} from '@fortawesome/free-solid-svg-icons'
-import { faQuoteLeft} from '@fortawesome/free-solid-svg-icons'
-
+import { faQuoteLeft, faHome, faPhone, faMapPin } from '@fortawesome/free-solid-svg-icons'
 
 const iconAddress = <FontAwesomeIcon icon={faMapPin} />
 const iconPhone = <FontAwesomeIcon icon={faPhone} />
 const iconHome = <FontAwesomeIcon icon={faHome} />
 const iconQuote = <FontAwesomeIcon icon={faQuoteLeft} />
-
 
 const searchIcon = (
     <svg
@@ -35,7 +30,7 @@ const searchIcon = (
         <path d="M495,466.2L377.2,348.4c29.2-35.6,46.8-81.2,46.8-130.9C424,103.5,331.5,11,217.5,11C103.4,11,11,103.5,11,217.5   S103.4,424,217.5,424c49.7,0,95.2-17.5,130.8-46.7L466.1,495c8,8,20.9,8,28.9,0C503,487.1,503,474.1,495,466.2z M217.5,382.9   C126.2,382.9,52,308.7,52,217.5S126.2,52,217.5,52C308.7,52,383,126.3,383,217.5S308.7,382.9,217.5,382.9z" />
       </g>
     </svg>
-  );
+);
 
 export default class mapApp extends Component {
     constructor(props) {
@@ -51,6 +46,7 @@ export default class mapApp extends Component {
             results: [],
             addMarkers: false,
             PopupInfo: null,
+            alreadyFav: null,
             cursor: -1,
             temp: ""
         };
@@ -63,13 +59,11 @@ export default class mapApp extends Component {
         this.handleonKeyDown = this.handleonKeyDown.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
         this.getResults = this.getResults.bind(this);
-        this.addMarkers = this.addMarkers.bind(this);
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
-        this.addPopup = this.addPopup.bind(this);
     }
     
     componentDidMount(){
-        console.log("did mount!")
+        // console.log("did mount!")
         this.searchInput.current.focus();
         
     }
@@ -88,8 +82,8 @@ export default class mapApp extends Component {
     }
 
     resultSelected(active) {
-        console.log("resultSelected");
-        console.log(active);
+        // console.log("resultSelected");
+        // console.log(active);
         this.setState({
             results: [],
             cursor: -1,
@@ -121,7 +115,7 @@ export default class mapApp extends Component {
                         website: value.website,
                         longitude: value.longitude,
                         latitude: value.latitude,
-                        id: value._id
+                        _id: value._id
                     }
                     res.push(service);
                     //console.log(res);
@@ -145,9 +139,9 @@ export default class mapApp extends Component {
                     zoom: 11.179489616683279
                 }
             });
-            console.log("result:")
-            console.log(this.state.searchvalue)
-            console.log(this.state.results)
+            // console.log("result:")
+            // console.log(this.state.searchvalue)
+            // console.log(this.state.results)
         });
         this.searchInput.current.focus();
     }
@@ -158,7 +152,7 @@ export default class mapApp extends Component {
         if (e.target.value.length > 0 && e.keyCode !== 40 && e.keyCode !== 38) {
             this.getResults(value);
         }
-        console.log("poistan kaikki")
+        // console.log("poistan kaikki")
         this.setState({
             searchvalue: e.target.value,
             addMarkers: false,
@@ -170,20 +164,20 @@ export default class mapApp extends Component {
     addMarkers = () => {
         const { searchvalue } = this.state;
         if(searchvalue === ''){
-            console.log("addMarkers if")
+            // console.log("addMarkers if")
             this.setState({
                 addMarkers: false,
                 popupInfo: null
             });
         } 
         else {
-            console.log("addMarkers else")
+            // console.log("addMarkers else")
             this.setState({
                 searchvalue: '',
                 addMarkers: true,
                 popupInfo: null
             });
-            console.log("addMarkers: ", this.state.viewport, this.state.addMarkers, this.state.searchvalue)
+            // console.log("addMarkers: ", this.state.viewport, this.state.addMarkers, this.state.searchvalue)
         }
     }
 
@@ -205,16 +199,22 @@ export default class mapApp extends Component {
         )
     }
 
-    addPopup = res => {
-        console.log("addPopup")
-        this.setState({
-            popupInfo: res
+    addPopup = result => {
+        // console.log("addPopup")
+        const service = { 
+            serviceId : result._id,
+            name: result.name
+        };
+        axios.post('/JKL-Guide/Favorites/alreadyFavorited', service).then(res => {
+            this.setState({
+            popupInfo: result,
+            alreadyFav: res.data
+            });
         });
     }
 
     Popup() {
-        const {popupInfo} = this.state;
-        
+        const {popupInfo, alreadyFav} = this.state;
         return(
             popupInfo && (
                 <Popup
@@ -233,23 +233,22 @@ export default class mapApp extends Component {
                         <p>{iconHome} <a href={popupInfo.website} target="_blank">{popupInfo.website}</a></p>
                         <p>{iconQuote} <i>{popupInfo.details}</i></p>
                         <img className="popimage" src={popupInfo.image}></img>
-                        <Favorite res={popupInfo}/>
+                        <Favorite res={popupInfo} fav={alreadyFav}/>
                     </div>
                 </Popup>
             )
-            
         )
     }
 
     onSubmit(e) {
         e.preventDefault();
-        console.log(this.state.results);
-        console.log("submit");
+        // console.log(this.state.results);
+        // console.log("submit");
         this.addMarkers();
     }
 
     handleonKeyDown(e) {
-        console.log("keydown")
+        // console.log("keydown")
         const { results, cursor, temp, searchvalue } = this.state;
         let active = document.getElementById("asyncresult");
         let ul = active.firstChild;
@@ -262,8 +261,8 @@ export default class mapApp extends Component {
                 this.setState( prevState => ({
                     cursor: prevState.cursor - 1,
                 }));
-                console.log("ylös: ", cursor);
-                console.log("temp: ", temp);
+                // console.log("ylös: ", cursor);
+                // console.log("temp: ", temp);
             } else if(e.key === 'ArrowUp' && cursor === 0){ 
                 this.searchInput.current.focus({preventScroll: true});
                 focusedResult = temp;
@@ -283,8 +282,8 @@ export default class mapApp extends Component {
                 this.setState( prevState => ({
                     cursor: prevState.cursor + 1
                 }));
-                console.log("alas:", cursor);
-                console.log("temp: ", temp);
+                // console.log("alas:", cursor);
+                // console.log("temp: ", temp);
             }
             this.setState({
                 searchvalue: focusedResult
@@ -292,7 +291,7 @@ export default class mapApp extends Component {
         }
         if (e.keyCode === 13) {
             e.preventDefault();
-            console.log("enter");
+            //console.log("enter");
             if (cursor > -1){
                 this.resultSelected(document.activeElement.textContent);
                 this.addMarkers();
@@ -347,7 +346,7 @@ export default class mapApp extends Component {
     }
 
     render(){
-        const { viewport, results, addMarkers, searchvalue, showPopup } = this.state;
+        const { viewport, results, searchvalue } = this.state;
         return(
             <div
             id="mapappWrapper"

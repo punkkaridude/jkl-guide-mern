@@ -15,12 +15,15 @@ favRouter.get('/', passport.authenticate('jwt',{session : false}),(req, res)=>{
 });
 
 favRouter.post('/add', passport.authenticate('jwt',{session : false}),(req, res)=>{
-    const _id = req.body.id;
-    Service.findById(_id, function (err, service){
+    
+    const serviceId = req.body.serviceId;
+    // console.log(serviceId)
+    Service.findOne({_id : serviceId}, function (err, service){
         if(err) res.status(500).json({message : {msgBody : "Erros has occured: " + err, msgError: true}});
-        if(!service) res.status(400).json({message : {msgBody : "No service with id: " + id, msgError: true}});
+        if(!service) res.status(400).json({message : {msgBody : "No service with id: " + serviceId, msgError: true}});
         else{
             const newFav = new Favorite({
+                serviceId: serviceId,
                 userFrom : req.user._id,
                 name : service.name,
                 address : service.address,
@@ -46,15 +49,45 @@ favRouter.post('/add', passport.authenticate('jwt',{session : false}),(req, res)
 });
 
 favRouter.post('/remove', passport.authenticate('jwt',{session : false}),(req, res)=>{
-    Favorite.findByIdAndDelete({ _id: req.body._id, userFrom: req.user._id })
-    .exec((err, doc) => {
-        if(err) return res.status(400).json({message : {msgBody : "Error has occured when removing favorite!", msgError: true}});
-        res.status(200).json({message : {msgBody : "Succesfully removed! " + doc, msgError: false}});
+    Favorite.findOneAndRemove({
+        $and : [
+            { $or: [
+                {serviceId : req.body.serviceId},
+                {name: req.body.name}
+            ]},
+            {userFrom : req.user._id}] }, (err, removed) => {
+        if(err) {
+            res.status(400).json({message : {msgBody : "Error has occured when removing favorite!", msgError: true}});
+        }
+        else if(!removed) {
+            res.status(400).json({message : {msgBody : "No such favorite!", msgError: true}});
+        }
+        else {
+            res.status(204).json({message : {msgBody : "Succesfully removed " + removed + "!", msgError: false}});
+        }
     })
 });
 
+favRouter.post('/alreadyFavorited', passport.authenticate('jwt',{session : false}),(req, res)=>{
+    console.log("favRouter", req.body.serviceId)
+    Favorite.exists({
+        $and : [
+            { $or: [
+                {serviceId : req.body.serviceId},
+                {name: req.body.name}
+            ]},
+            {userFrom : req.user._id}] }, function(err, result){
+        if(err){
+            res.send(err)
+        }
+        else {
+            res.send(result)
+        }
+    });
+});
+
 favRouter.post('/favoriteCount', passport.authenticate('jwt',{session : false}),(req, res)=>{
-    Favorite.find({'_id': req.body._id}).exec((err, favorited) => {
+    Favorite.find({serviceId: req.body.serviceId}).exec((err, favorited) => {
         if(err) return res.status(400).json({message : {msgBody : "Error had occured when fetching count!", msgError: true}});
         res.status(200).json({favCount: favorited.length});
     });

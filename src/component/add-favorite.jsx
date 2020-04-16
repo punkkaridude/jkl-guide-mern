@@ -1,23 +1,53 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+
+
+
+const notFavorited = {
+   color: 'grey'
+};
+
+const isFavorited = {
+    color: 'red'
+};
 
 export default class Favorite extends Component {
     constructor(props) {
         super(props);
-        this.postFavorite = this.postFavorite.bind(this);
+        this.state = {
+            ready: false,
+            favorited: null
+        }
     }
-
     postFavorite = (e) => {
         e.preventDefault();
-        console.log(this.props.res.id)
-        const ObjectId = {id: this.props.res.id} 
-        axios.post('/JKL-Guide/Favorites/add', ObjectId).then(res => {
-            console.log(res.data)
-        });
+        const service = { 
+            serviceId : this.props.res._id,
+            name: this.props.res.name
+        };
+        const { fav } = this.props;
+        console.log(this.props.res)
+        console.log(this.props.fav)
+        if(fav===false){
+            axios.post('/JKL-Guide/Favorites/add', service).then(res => {
+                console.log(res.data)
+                this.setState({favorited: true})
+            });
+        }
+        else if(fav===true){
+            axios.post('/JKL-Guide/Favorites/remove', service).then(res => {
+                console.log(res.data)
+                this.setState({favorited: false})
+                window.location.reload();
+            });
+        }
     }
     render(){
-        return(
-            <input onClick={(e) => this.postFavorite(e)} type='button' value='Add favorite' name='favButton'/>
+        const { fav } = this.props;
+        return( 
+            <FontAwesomeIcon icon={faHeart} style={fav ? isFavorited : notFavorited} onClick={(e) => this.postFavorite(e)} type='button' name='favButton'/>  
         );
     }
 }

@@ -13,7 +13,6 @@ export default {
                 return {isAuthenticated : false, user : {username : '',role : ''}};
         });    
     },
-
     register : user =>{
         return fetch('/Register',{
             method : "post",
@@ -24,13 +23,11 @@ export default {
         }).then(res => res.json())
         .then(data => data)
     },
-    
     logout : ()=>{
         return fetch('/Logout')
             .then(res => res.json())
             .then(data => data);
     },
-
     isAuthenticated : () =>{
         return fetch('/Authenticated')
             .then(res=>{
@@ -40,10 +37,8 @@ export default {
                     return {isAuthenticated : false, user : {username : '',email: '', role : ''}}
             })
     },
-
     loggedUser : () =>{
-        return fetch('/Authenticated')
-            .then(res=>{
+        return fetch('/Authenticated').then(res=>{
                 if(res.status !== 401) //Passportti lähettää 401 statusta, jos ei ole autentikoitunut käyttäjä
                     return res.json().then(data => data.user.username);
                 else

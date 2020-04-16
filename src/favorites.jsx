@@ -28,6 +28,7 @@ export default class Favorites extends React.Component {
     super(props);
     this.state = {
       favorites: null,
+      alreadyFav: null,
       popupInfo: null,
       viewport: {
         latitude: 62.23815925225172,
@@ -50,7 +51,7 @@ export default class Favorites extends React.Component {
       this.setState({
         favorites: result.data
       });
-      console.log(this.state.favorites)
+      // console.log(this.state.favorites)
     })
   }
 
@@ -75,7 +76,7 @@ export default class Favorites extends React.Component {
     
   }
   renderPopup() {
-    const {popupInfo} = this.state;
+    const {popupInfo, alreadyFav} = this.state;
     return(
       popupInfo && 
       <Popup
@@ -94,12 +95,11 @@ export default class Favorites extends React.Component {
           <p>{iconHome} <a href={popupInfo.website} target="_blank">{popupInfo.website}</a></p>
           <p>{iconQuote} <i>{popupInfo.details}</i></p>
           <img className="popimage" src={popupInfo.image}></img>
-          <Favorite res={popupInfo}/>
+          <Favorite res={popupInfo} fav={alreadyFav}/>
         </div>
       </Popup>    
     )
   }
-
   renderMarkers() {
     const {favorites} = this.state;
     return(
@@ -111,7 +111,19 @@ export default class Favorites extends React.Component {
           offsetLeft={-20}
           offsetTop={-40}
         >
-          <div className="marker" onClick={() => this.setState({popupInfo:favorite})}></div>
+          <div className="marker" onClick={() => {
+            const service = { 
+              serviceId : favorite._id,
+              name: favorite.name
+            };
+            axios.post('/JKL-Guide/Favorites/alreadyFavorited', service).then(res => {
+              this.setState({
+                popupInfo: favorite,
+                alreadyFav: res.data
+              });
+            })}}
+          >
+          </div>
         </Marker>    
       )
     )
@@ -123,7 +135,7 @@ export default class Favorites extends React.Component {
     //console.log(this.state.viewport)
   }
   render() {
-    const {viewport, favorites} = this.state;
+    const {viewport} = this.state;
     return (
         <Spring
           from={{ opacity: 0 }}

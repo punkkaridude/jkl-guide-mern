@@ -61,6 +61,8 @@ userRouter.get('/JKL-Guide/Admin/Allusers', passport.authenticate('jwt',{session
 
 userRouter.get('/JKL-Guide/Settings/', passport.authenticate('jwt',{session : false}),(req, res)=>{
     res.json(req.user)
+
+    
 });
 
 
@@ -90,6 +92,22 @@ userRouter.put('/JKL-Guide/Settings/UpdateEmail', passport.authenticate('jwt',{s
         } else {
             res.send(result)
         }
+    })
+});
+
+
+userRouter.post('/JKL-Guide/Settings/ChangePassword', passport.authenticate('jwt',{session : false}),(req, res)=>{
+    const _id = req.user._id;
+    const { password, newPassword } = req.body;
+    // console.log(req.user)
+    User.findById({_id}, function(err, result){
+        if(err) res.send(err)
+        result.validPassword(password, function(err, user){
+            if(err) res.send({message: {msgBody: err, msgError: true}})
+            user.password = newPassword;
+            user.save();
+            return res.send({message: {msgBody: "Passwords changed!", msgError: false}})
+        })
     })
 });
 

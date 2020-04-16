@@ -8,7 +8,7 @@ import 'core-js/features/number/is-nan';
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "./component/home";
+import Home from "./home";
 import Register from "./component/register";
 import Login from "./component/login";
 import Frontpage from "./frontpage";
@@ -25,7 +25,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
   }
-  
   render() {
     return (
       <div id="componentWrapper">
