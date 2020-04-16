@@ -240,7 +240,7 @@ Kokoustimme torstaina klo 10:30 - 15*
 *  Toimiiko salasanan muuttaminen jo?
 
 #### Suosikkien lisäyksen fixaus
-* Foorumibuttonin disablointia, jostain syystä pointteri elää vielä omaa elämäänsä
+* Kristian fiksasi suosikkien lisäystä, toimiiko jo?
 
 #### Raportointi
 * Iina oksensi ansioituneesti migreeniä klo 6:30-19:30 ja jäi pois päivän puuhista. Illalla olo parani sen verran että paikatakseen syyllisyydentuntoaan hän kokosi ja täydensi raporttiosuutta gitin Wikiin.
