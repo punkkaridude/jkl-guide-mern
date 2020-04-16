@@ -75,6 +75,7 @@ export default class Admin extends React.Component {
                     <th scope="col">Username</th>
                     <th scope="col">Full name</th>
                     <th scope="col">Email address</th>
+                    <th scope="col">User role</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -82,6 +83,7 @@ export default class Admin extends React.Component {
                     <td>{user.username}</td>
                     <td>{user.fullname}</td>
                     <td>{user.email}</td>
+                    <td>{user.role}</td>
                     </tr>
                 </tbody>
             </table>
