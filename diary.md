@@ -227,5 +227,23 @@ Kokoustimme keskiviikkona klo 12 - 17*
 #### Krisun hommat
 * Luru luu luru luuu
 
+-------------------------
+-------------------------
+
+### Torstai 16.4.2020 - Käyttäjätietojen muutoksia ja suosikkilisäyksen fix
+
+*Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
+Kokoustimme torstaina klo 10:30 - 15*
+
+#### Käyttäjätietojen muutoksia
+*  Kristian ja Veeti saivat käyttäjätunnuksen ja sähköpostin muutoksen käyttöliittymästä käsin toimimaan
+*  Toimiiko salasanan muuttaminen jo?
+
+#### Suosikkien lisäyksen fixaus
+* Foorumibuttonin disablointia, jostain syystä pointteri elää vielä omaa elämäänsä
+
+#### Raportointi
+* Iina oksensi ansioituneesti migreeniä klo 6:30-19:30 ja jäi pois päivän puuhista. Illalla olo parani sen verran että paikatakseen syyllisyydentuntoaan hän kokosi ja täydensi raporttiosuutta gitin Wikiin.
+
 
 
