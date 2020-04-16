@@ -240,7 +240,7 @@ Kokoustimme torstaina klo 10:30 - 15*
 *  Toimiiko salasanan muuttaminen jo?
 
 #### Suosikkien lisäyksen fixaus
-* Kristian fiksasi suosikkien lisäystä, toimiiko jo?
+* Kristian fiksasi suosikkien lisäystä siten, että sydänikonia painamalla kohde siirtyy suosikkeihin ja myös sieltä pois. 
 
 #### Raportointi
 * Iina oksensi ansioituneesti migreeniä klo 6:30-19:30 ja jäi pois päivän puuhista. Illalla olo parani sen verran että paikatakseen syyllisyydentuntoaan hän kokosi ja täydensi raporttiosuutta gitin Wikiin.
