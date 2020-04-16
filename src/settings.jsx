@@ -28,6 +28,8 @@ export default class Settings extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            username: "",
+            email: "",
             user: [],
             users: []
         }
@@ -68,18 +70,35 @@ export default class Settings extends Component {
     }
     onSubmitUsername(e) {
         e.preventDefault();
-        const username = {
-            username: this.state.username
-        };
-    console.log(username);
+        const { username } = this.state;
+        const user = {username: username}
+        console.log(username)
+        if(username.length > 0) {
+            axios.put('/JKL-Guide/Settings/UpdateUsername', user)
+            .then((res) => {
+                console.log(res.data)
+                console.log('onnistui')
+            }).catch((error) => {
+                console.log(error)
+            })
+        }
   }
     onSubmitEmail(e) {
-    e.preventDefault();
-    const email = {
-        email: this.state.email
-    };
-    console.log(email);
+        e.preventDefault();
+        const { email } = this.state;
+        const user = {email: email}
+        console.log(email)
+        if(email.length > 0) {
+            axios.put('/JKL-Guide/Settings/UpdateEmail', user)
+            .then((res) => {
+                console.log(res.data)
+                console.log('onnistui')
+            }).catch((error) => {
+                console.log(error)
+            })
+        }
     }
+
     render() {
         const {username, email} = this.state;
         return(
@@ -95,6 +114,7 @@ export default class Settings extends Component {
                                 minLength="5"
                                 defaultValue={this.state.user.username}
                                 onChange={this.onChangeUsername}
+                                value={username}
                                 
                             ></input>
                             <button id="reg"
@@ -113,6 +133,7 @@ export default class Settings extends Component {
                                 type="email"
                                 defaultValue={this.state.user.email}
                                 onChange={this.onChangeEmail}
+                                value={email}
                             ></input>
                             <button id="reg"
                                 type="button"

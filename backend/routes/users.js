@@ -69,10 +69,22 @@ userRouter.get('/Authenticated', passport.authenticate('jwt',{session : false}),
     res.status(200).json({isAuthenticated : true, user : {username,email,role}});
 });
 
-userRouter.put('/JKL-Guide/Settings/Update', passport.authenticate('jwt',{session : false}),(req, res)=>{
+userRouter.put('/JKL-Guide/Settings/UpdateUsername', passport.authenticate('jwt',{session : false}),(req, res)=>{
     const _id = req.user._id;
     console.log(req.user)
     User.findByIdAndUpdate({_id}, {'username': req.body.username}, function(err, result){
+        if(err) {
+            res.send(err)
+        } else {
+            res.send(result)
+        }
+    })
+});
+
+userRouter.put('/JKL-Guide/Settings/UpdateEmail', passport.authenticate('jwt',{session : false}),(req, res)=>{
+    const _id = req.user._id;
+    console.log(req.user)
+    User.findByIdAndUpdate({_id}, {'email': req.body.email}, function(err, result){
         if(err) {
             res.send(err)
         } else {
