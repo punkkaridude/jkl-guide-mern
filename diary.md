@@ -242,8 +242,10 @@ Kokoustimme torstaina klo 10:30 - 15*
 #### Suosikkien lisäyksen fixaus
 * Kristian fiksasi suosikkien lisäystä siten, että sydänikonia painamalla kohde siirtyy suosikkeihin ja myös sieltä pois. 
 
-#### Raportointi
+#### Raportointi ja adminsivun nätitys
 * Iina oksensi ansioituneesti migreeniä klo 6:30-19:30 ja jäi pois päivän puuhista. Illalla olo parani sen verran että paikatakseen syyllisyydentuntoaan hän kokosi ja täydensi raporttiosuutta gitin Wikiin.
+* Rumat sanat poistettu käyttäjätiedoista ja faq-osiosta esittelyä varten
+* Myöhäisilta meni nätittäessä admin-sivua, tuli melko purkkaviritys
 
 
 
