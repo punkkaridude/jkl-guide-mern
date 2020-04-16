@@ -24,8 +24,6 @@ const BackArrow = (
     </svg>
 );
 
-
-
 export default class Settings extends Component {
     constructor(props) {
         super(props);
@@ -36,7 +34,8 @@ export default class Settings extends Component {
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.onSubmitUsername = this.onSubmitUsername.bind(this);
+        this.onSubmitEmail = this.onSubmitEmail.bind(this);
     } 
 
     componentDidMount(){
@@ -49,8 +48,6 @@ export default class Settings extends Component {
                 console.log(error);
         })
     }
-
-    component
 
     onChangeUsername(e){
         this.setState({
@@ -69,22 +66,25 @@ export default class Settings extends Component {
             email: e.target.value
         });
     }
-    onSubmit(e) {
+    onSubmitUsername(e) {
         e.preventDefault();
-
-        const account = {
-            username: this.state.username,
-            password: this.state.password,
-            email: this.state.email,
+        const username = {
+            username: this.state.username
         };
-
-        console.log(account);
+    console.log(username);
+  }
+    onSubmitEmail(e) {
+    e.preventDefault();
+    const email = {
+        email: this.state.email
+    };
+    console.log(email);
     }
     render() {
         const {username, email} = this.state;
         return(
             <div id="settingsContainer">
-                <form className="text-center" onSubmit={this.onSubmit}>
+                <form className="text-center">
                     <div className="pt-5 pb-0 d-flex flex-column align-items-center">
                         <div className="form-group col-sm-4 mb-0 mb-sm-3">
                             <label className="col-form-label-lg mb-0 mb-sm-1">Username</label>
@@ -94,11 +94,13 @@ export default class Settings extends Component {
                                 type="text"
                                 minLength="5"
                                 defaultValue={this.state.user.username}
+                                onChange={this.onChangeUsername}
                                 
                             ></input>
                             <button id="reg"
                                 type="button"
                                 className="col-6 btn-lg shadow mt-4 mt-sm-2"
+                                onClick={this.onSubmitUsername}
                             >
                                 Change username
                             </button>
@@ -110,10 +112,12 @@ export default class Settings extends Component {
                                 className="form-control form-control-lg shadow"
                                 type="email"
                                 defaultValue={this.state.user.email}
+                                onChange={this.onChangeEmail}
                             ></input>
                             <button id="reg"
                                 type="button"
                                 className="col-6 btn-lg shadow mt-4 mt-sm-2"
+                                onClick={this.onSubmitEmail}
                             >
                                 Change email
                             </button>
@@ -138,6 +142,7 @@ export default class Settings extends Component {
                             <button id="reg"
                                 type="button"
                                 className="col-6 btn-lg shadow mt-4 mt-sm-2"
+                                onChange={this.onChangePassword}
                             >
                                 Change password
                             </button>
