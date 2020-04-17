@@ -106,7 +106,8 @@ export default class Settings extends Component {
         return(
             <div id="settingsContainer">
                 <form className="text-center">
-                    <div className="pt-5 pb-0 d-flex flex-column align-items-center">
+                    <h2 id="settingsh2" className="mt-4">Edit profile information</h2>
+                    <div className="pt-2 pb-0 d-flex flex-column align-items-center">
                         <div className="form-group col-sm-4 mb-0 mb-sm-3">
                             <label className="col-form-label pb-0">Username</label>
                             <input
@@ -122,7 +123,7 @@ export default class Settings extends Component {
                             ></input>
                             <button id="reg"
                                 type="button"
-                                className="col-4 btn-md shadow pt-1 mt-4 mt-sm-2"
+                                className="col-4 btn-md shadow pt-1 mt-4 mt-sm-2 btn"
                                 onClick={this.onSubmitUsername}
                             >
                                 Change username
@@ -141,7 +142,7 @@ export default class Settings extends Component {
                             ></input>
                             <button id="reg"
                                 type="button"
-                                className="col-4 btn-md shadow pt-1 mt-4 mt-sm-2"
+                                className="col-4 btn-md shadow pt-1 mt-4 mt-sm-2 btn"
                                 onClick={this.onSubmitEmail}
                             >
                                 Change email
@@ -166,7 +167,7 @@ export default class Settings extends Component {
                             ></input>
                             <button id="reg"
                                 type="button"
-                                className="col-4 btn-md shadow pt-1 mt-4 mt-sm-2"
+                                className="col-4 btn-md shadow pt-1 mt-4 mt-sm-2 btn"
                                 onChange={this.onChangePassword}
                             >
                                 Change password

@@ -24,6 +24,8 @@
             padding: 0;
         }
     }
+
+
     input{
         transition: all .2s; 
         background-color: $inputbackColor;
@@ -36,7 +38,7 @@
             background-color: #e2dfdf;
         }
     }
-    
+
     //Tekstikenttien korostusfokus 
     input:focus,
         textarea:focus {
@@ -52,6 +54,7 @@
         font-family: $FontFamHeading;
         letter-spacing: 1px; 
         color: $blackColor;
+        min-width: 9rem;
         &#reg{
             transition: all .2s;
             background-color: $buttonColor;
