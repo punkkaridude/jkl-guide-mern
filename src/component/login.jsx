@@ -97,14 +97,13 @@ const BackArrow = (
         L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
         c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
         c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
-        C492,219.198,479.172,207.418,464.344,207.418z"/
-    >
+        C492,219.198,479.172,207.418,464.344,207.418z"/>
   </svg>
 );
 
 const Login = props => {
   const [user, setUser] = useState({username : "", password : ""});
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState({message: {msgBody: "", msgError: false}});
   const authContext = useContext(AuthContext);
 
   const onChange = e => {
@@ -115,13 +114,15 @@ const Login = props => {
   const onLogin = e => {
     e.preventDefault();
     AuthService.login(user).then(data=>{
+      // console.log(data)
       const {isAuthenticated,user,message} = data;
       if(isAuthenticated){
+        console.log("perkele")
         authContext.setUser(user);
         authContext.setIsAuthenticated(isAuthenticated);
         props.history.push('/JKL-Guide');
       }
-      else  
+      else
         setMessage(message);
     })
   }
@@ -173,6 +174,7 @@ const Login = props => {
                         ></input>
                       </div>
                     <div className="col-12 px-0 pt-2">
+                    {message.msgError && <Message message={message}/>}
                       <button
                         type="submit"
                         id="login"
@@ -187,7 +189,6 @@ const Login = props => {
               </div>
             ) }
           </Spring>
-        {message ? <Message message={message}/> : null}
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios"; 
 import { Link } from 'react-router-dom'; //Linkkien syntaksi tällä
-//import Message from './message';
+import Message from './component/message';
+import AuthService from './Services/AuthService'
 
 //Paluunuolen alustus
 const BackArrow = (
@@ -31,14 +32,18 @@ export default class Settings extends Component {
         this.state = {
             username: "",
             email: "",
-            user: [],
-            users: []
+            password: "",
+            newpassword: "",
+            message: null,
+            user: []
         }
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeNewpassword = this.onChangeNewpassword.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onSubmitUsername = this.onSubmitUsername.bind(this);
         this.onSubmitEmail = this.onSubmitEmail.bind(this);
+        this.onSubmitPassword = this.onSubmitPassword.bind(this);
     } 
 
     componentDidMount(){
@@ -65,6 +70,12 @@ export default class Settings extends Component {
         });
     }
 
+    onChangeNewpassword(e) {
+        this.setState({
+            newpassword: e.target.value
+        });
+    }
+
     onChangeEmail(e) {
         this.setState({
             email: e.target.value
@@ -74,35 +85,60 @@ export default class Settings extends Component {
         e.preventDefault();
         const { username } = this.state;
         const user = {username: username}
-        console.log(username)
+        // console.log(username)
         if(username.length > 0) {
             axios.put('/JKL-Guide/Settings/UpdateUsername', user)
             .then((res) => {
-                console.log(res.data)
-                console.log('onnistui')
+                this.setState({
+                    message: res.data.message
+                });
             }).catch((error) => {
-                console.log(error)
+                this.setState({
+                    message: error
+                })
             })
         }
-  }
+    }
     onSubmitEmail(e) {
         e.preventDefault();
         const { email } = this.state;
         const user = {email: email}
-        console.log(email)
+        // console.log(email)
         if(email.length > 0) {
             axios.put('/JKL-Guide/Settings/UpdateEmail', user)
             .then((res) => {
-                console.log(res.data)
-                console.log('onnistui')
+                this.setState({
+                    message: res.data.message
+                });
             }).catch((error) => {
-                console.log(error)
+                this.setState({
+                    message: error
+                })
+            })
+        }
+    }
+
+    onSubmitPassword(e) {
+        e.preventDefault();
+        const { password, newpassword } = this.state;
+        const pw = {password: password, newPassword: newpassword }
+        if(password.length > 0 && newpassword.length > 0) {
+            console.log(pw)
+            axios.post('/JKL-Guide/Settings/ChangePassword', pw)
+            .then((res) => {
+                this.setState({
+                    message: res.data.message
+                })
+            }).catch((error) => {
+                this.setState({
+                    message: error
+                });
             })
         }
     }
 
     render() {
-        const {username, email} = this.state;
+        const {message} = this.state;
         return(
             <div id="settingsContainer">
                 <form className="text-center">
@@ -118,12 +154,12 @@ export default class Settings extends Component {
                                 minLength="5"
                                 defaultValue={this.state.user.username}
                                 onChange={this.onChangeUsername}
-                                value={username}
+                                
                                 
                             ></input>
-                            <button id="reg"
+                            <button
                                 type="button"
-                                className="col-4 btn-md shadow pt-1 mt-4 mt-sm-2 btn"
+                                className="settingsBtn col-4 btn-md shadow pt-1 mt-4 mt-sm-2 btn"
                                 onClick={this.onSubmitUsername}
                             >
                                 Change username
@@ -138,11 +174,10 @@ export default class Settings extends Component {
                                 placeholder='Enter new email'
                                 defaultValue={this.state.user.email}
                                 onChange={this.onChangeEmail}
-                                value={email}
                             ></input>
-                            <button id="reg"
+                            <button
                                 type="button"
-                                className="col-4 btn-md shadow pt-1 mt-4 mt-sm-2 btn"
+                                className="settingsBtn col-4 btn-md shadow pt-1 mt-4 mt-sm-2 btn"
                                 onClick={this.onSubmitEmail}
                             >
                                 Change email
@@ -155,6 +190,7 @@ export default class Settings extends Component {
                                 className="form-control shadow"
                                 type="password"
                                 placeholder="*******"
+                                onChange={this.onChangePassword}
                             ></input>
                         </div>
                         <div className="form-group col-sm-4 mb-0 mb-sm-3">
@@ -164,22 +200,24 @@ export default class Settings extends Component {
                                 className="form-control shadow"
                                 type="password"
                                 placeholder="********"
+                                onChange={this.onChangeNewpassword}
                             ></input>
-                            <button id="reg"
+                            <button
                                 type="button"
-                                className="col-4 btn-md shadow pt-1 mt-4 mt-sm-2 btn"
-                                onChange={this.onChangePassword}
+                                className="settingsBtn col-4 btn-md shadow pt-1 mt-4 mt-sm-2 btn"
+                                onClick={this.onSubmitPassword}
                             >
-                                Change password
+                                Change password 
                             </button>
                         </div>
                         <input name="role" type="hidden" value="user"></input>
+                        {message && <Message message={message}/>}
                         <div className="pt-sm-2 mt-sm-4 col-12 text-center">
                             <div className="backButton"><Link to="/JKL-Guide">{BackArrow}</Link></div>
                         </div>
                     </div>
                 </form>
-                {/*message ? <Message message={message}/> : null*/}
+                
             </div>  
         );
     }

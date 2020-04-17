@@ -68,29 +68,29 @@ userRouter.get('/JKL-Guide/Settings/', passport.authenticate('jwt',{session : fa
 
 userRouter.get('/Authenticated', passport.authenticate('jwt',{session : false}),(req, res)=>{
     const {username,email,role} = req.user;
-    res.status(200).json({isAuthenticated : true, user : {username,email,role}});
+    res.status(200).json({isAuthenticated : true, user : {username,email,role}, message: "Succesfully logged in!"});
 });
 
 userRouter.put('/JKL-Guide/Settings/UpdateUsername', passport.authenticate('jwt',{session : false}),(req, res)=>{
     const _id = req.user._id;
-    console.log(req.user)
+    // console.log(req.user)
     User.findByIdAndUpdate({_id}, {'username': req.body.username}, function(err, result){
         if(err) {
-            res.send(err)
+            res.send({message: {msgBody: "Error has occured! " + err, msgError: true}})
         } else {
-            res.send(result)
+            res.send({message: {msgBody: "Username succesfully changed!", msgError: false}})
         }
     })
 });
 
 userRouter.put('/JKL-Guide/Settings/UpdateEmail', passport.authenticate('jwt',{session : false}),(req, res)=>{
     const _id = req.user._id;
-    console.log(req.user)
+    // console.log(req.user)
     User.findByIdAndUpdate({_id}, {'email': req.body.email}, function(err, result){
         if(err) {
-            res.send(err)
+            res.send({message: {msgBody: "Error has occured! "+ err , msgError: true}})
         } else {
-            res.send(result)
+            res.send({message: {msgBody: "Email succesfully changed!", msgError: false}})
         }
     })
 });
@@ -101,12 +101,15 @@ userRouter.post('/JKL-Guide/Settings/ChangePassword', passport.authenticate('jwt
     const { password, newPassword } = req.body;
     // console.log(req.user)
     User.findById({_id}, function(err, result){
-        if(err) res.send(err)
+        if(err) res.send({message: {msgBody: "Error has occured! "+ err , msgError: true}})
         result.validPassword(password, function(err, user){
-            if(err) res.send({message: {msgBody: err, msgError: true}})
-            user.password = newPassword;
-            user.save();
-            return res.send({message: {msgBody: "Passwords changed!", msgError: false}})
+            if(err) return res.send({message: {msgBody: err, msgError: true}})
+            if(!user){
+                return res.send({message: {msgBody: "Incorrect password!", msgError: true}});
+            }
+            result.password = password;
+            result.save();
+            return res.send({message: {msgBody: "Passwords changed!", msgError: false}});  
         })
     })
 });

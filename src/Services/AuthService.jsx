@@ -10,7 +10,7 @@ export default {
             if(res.status !== 401) //Passportti lähettää 401 statusta, jos ei ole autentikoitunut käyttäjä
                 return res.json().then(data => data);
             else
-                return {isAuthenticated : false, user : {username : '',role : ''}};
+                return {isAuthenticated : false, user : {username : '',role : ''}, message: {msgBody: "Wrong username or password!", msgError: true}};
         });    
     },
     register : user =>{

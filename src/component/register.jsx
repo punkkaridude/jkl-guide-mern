@@ -134,7 +134,7 @@ const Register = props => {
   const onSubmit = (e) => {
     e.preventDefault();
     if(user.password !== user.passwordconf){
-      let err = {message : {msgBody: "Passwords do not match!"}}
+      let err = {message : {msgBody: "Passwords do not match!", msgError: true}}
       const { message } = err;
       setMessage(message);
       setUser({password : "", passwordconf : ""})
@@ -234,7 +234,9 @@ const Register = props => {
                     ></input>
                   </div>
                   <input name="role" type="hidden" value="user"></input>
-                  <div className="pt-sm-2 mt-sm-4 col-12 text-center">
+                  
+                  <div className="pt-sm-2 mt-sm-2 col-12 text-center">
+                  {message ? <Message message={message}/> : null}
                     <button id="reg"
                       type="submit"
                       className="register col-6 btn-lg shadow mt-4 mt-sm-0"
@@ -247,7 +249,6 @@ const Register = props => {
               ) }
             </Spring>
           </form>
-        {message ? <Message message={message}/> : null}
       </div>
     </div>
   );  
