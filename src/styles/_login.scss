@@ -1,4 +1,5 @@
-#loginContainer,  #regContainer{
+// Nämä määrittelyt toimivat sekä login- että registersivulla
+#loginContainer,  #regContainer{ 
         height: 100vh;
         background-image: url("../img/bg1.png");
         background-color: $SecondBgroundCol;
@@ -6,6 +7,8 @@
         background-repeat: repeat;
         background-size: 130%;
         position: relative;
+
+        // Taustakuva-animaation breakpointit tässä
         animation: bgMove 50s linear alternate infinite;
         @include media-breakpoint-only(xs){
             background-size: 300%;
@@ -21,11 +24,13 @@
 
             animation: bgMove 50s linear alternate infinite;
         }
+        // Turkoosi värilayeri kartan päällä
         > .colorLayer{
             position: absolute;
             height: 100%;
             background-color:rgba(196, 242, 241, 0.829);
         }
+        // Kartta liikkuu edestakaisin oikealta vasemmalle
         @keyframes bgMove {
             from {
                 background-position: 0 0; ;
@@ -58,6 +63,8 @@
                 padding: 0;
             }
         }
+
+        //Input-kenttien tyylittely
         input{
             transition: all .2s; 
             background-color: $inputbackColor;
@@ -73,6 +80,7 @@
         label{
             color: $blackColor;
         }
+        // Erilliset tyylit login- ja regbuttoneille
         button{
             font-family: $FontFamHeading;
             letter-spacing: 1px; 
@@ -99,6 +107,7 @@
             }
         }
         
+        //Paluunapin määritykset tässä
         .backButton{
             transition: all .2s;
             margin-top: 2rem;
@@ -107,6 +116,8 @@
                 transform: scale(1.05);
             }
         }
+
+    // Animoitu SVG-teksti tässä
 
     @keyframes lineAnim{
         to{ stroke-dashoffset: 0;}

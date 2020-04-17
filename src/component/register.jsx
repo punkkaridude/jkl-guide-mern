@@ -1,9 +1,10 @@
 import React, {useState, useEffect, useRef} from "react";
-import { Link } from 'react-router-dom';
-import AuthService from '../Services/AuthService';
-import Message from './message';
-import {Spring} from 'react-spring/renderprops';
+import { Link } from 'react-router-dom'; //Linkkien syntaksi tällä
+import AuthService from '../Services/AuthService'; //Autentikointi tällä
+import Message from './message'; //Virheviestit yms tällä
+import {Spring} from 'react-spring/renderprops'; //Animaatiot tällä
 
+//Logon alustus
 const JklGuideLogo = (
   <svg
       id="jklGuideLogo"
@@ -80,6 +81,7 @@ const JklGuideLogo = (
   </svg>
 );
 
+// Paluunuolen alustus
 const BackArrow = (
   <svg
       id="backArrow"
@@ -100,6 +102,7 @@ const BackArrow = (
   </svg>
 );
 
+// Rekisteröintitietojen settaus, tekee käyttäjäroolista automaattisesti userin eikä adminia
 const Register = props => {
   const [user, setUser] = useState({fullname: "", username : "", password : "", passwordconf: "", email: "", role: "user"});
   const [message, setMessage] = useState(null);
@@ -111,6 +114,7 @@ const Register = props => {
     }
   }, []);
 
+//Tyhjentää formin tietojen lähetysten jälkeen
   const resetForm = () =>{
     setUser({
       username : "", 
@@ -121,11 +125,12 @@ const Register = props => {
       role : ""
     });
   }
-
+//Reaaliaikainen käyttäjätietojen täydennys formista, kirjoitus consolelogiin
   const onChange = (e) => {
     setUser({...user,[e.target.name] : e.target.value});
     console.log(user);
   }
+//Tietojen lähetys, myös virheentarkistus siitä mätsääkö passut
   const onSubmit = (e) => {
     e.preventDefault();
     if(user.password !== user.passwordconf){
@@ -148,7 +153,8 @@ const Register = props => {
     }
     
   }
-  
+  //Palautetaan regGontainer, johon animoitu Springillä logon laskeutuminen ja formien nousu
+  //Setattu myös jokaiseen inputtiin user.fullname -valuet joiden kautta submitattu tieto välitetään tietokantaan
   return (
     <div id="regContainer" className="container-fluid p-0 m-0">
       <div className="colorLayer px-0 container-fluid d-flex flex-column align-items-center">
@@ -246,5 +252,5 @@ const Register = props => {
     </div>
   );  
 }
-
+//Exportataan register-komponentti
 export default Register;

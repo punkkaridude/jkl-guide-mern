@@ -1,10 +1,12 @@
+//Tämä määrittely toimii navbarissa
 #navbarWrapper {
   background-color: $SecondBgroundCol;
   background-image: url("../img/bg1.png");
   background-size: 70%;
   z-index: 999;
 
-  animation: bgMove 5s linear alternate infinite; //tässä laitetaan taustakuvan kartta liikkumaan
+  //Taustakuva-animaation breakpointit tässä
+  animation: bgMove 5s linear alternate infinite; 
   @include media-breakpoint-only(xs){
       background-size: 85%;
       animation: bgMove 100s linear alternate infinite;
@@ -21,12 +23,12 @@
       background-size: 85%;
       animation: bgMove 100s linear alternate infinite;
   }
-
+  //Turkoosi värilayeri kartan päällä
   > .colorLayer{
     height: 100%;
     background-color: rgba(196, 242, 241, 0.829);
 }
-
+// Kartta liikkuu edestakaisin oikealta vasemmalle
     @keyframes bgMove {
         from {
             background-position: 0 2%;
@@ -36,6 +38,7 @@
         }
     }
 
+  // Erillinen classi navbarille johon taustakuvan liike välittyy
   nav {
    flex-wrap: wrap;
 
@@ -49,8 +52,6 @@
       background-size: 40%;
     }
    
-    
-
     .flex-columns {
       @include media-breakpoint-between(xs, lg) {
         flex-direction: column;
@@ -60,6 +61,8 @@
     .navbar-toggler:focus {
       outline: none;
     }
+
+    //Pienen navin otsikkotekstin määrityksiä
     .navheader {
        
       font-family: $FontFamHeading;
@@ -75,6 +78,9 @@
         font-size: 2rem;
       }
     }
+
+
+    //JKL-guide logo
     .navbar-brand {
       position: left;
       justify-self: center;
@@ -91,11 +97,13 @@
       }
     }
 
+    //Kompassi-ikoni
     .navbar-brand-img{
       max-width: 100px;
       max-height: auto;
     }
     
+    //Blokattu harmaa foorumi-ikoni
     #block{
       background-color: #8b8b8b !important;
       border-radius: 50%;
@@ -105,6 +113,7 @@
         }
       }
 
+    //Oikean yläkulman dropdown-buttoni
     #navbarDropdownMenuLink {
       transition: all 0.1s ease 0s;
       height: 50px;
@@ -138,6 +147,7 @@
       }
     }
 
+    //Pyöreät navipallukat
     #navbarNavDropdown {
       > ul > li {
         > a {
@@ -169,6 +179,7 @@
             color: $accentColor;
           }
 
+          // Navipallukoitten svg-ikonit 
           .icon {
             height: 20px;
             width: 20px;
@@ -187,6 +198,7 @@
             }
           }
 
+          //Blokatun navipallukan ikoni
           .blockedicon {
             pointer-events: none !important;
             height: 20px;
@@ -224,6 +236,7 @@
     .dropdown-toggle::after {
       display: none;
     }
+    //Oikean yläkulman painikkeen dropdown
     .dropdown-menu {
       position: absolute;
       border-radius: 10px;

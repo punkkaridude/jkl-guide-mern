@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import {Spring} from 'react-spring/renderprops';
+import { Link } from "react-router-dom"; //Linkkien syntaksi tällä
+import {Spring} from 'react-spring/renderprops'; // Animaatiot tällä
 
+//Logon alustus
 const JklGuideLogo = (
   <svg
       id="jklGuideLogo"
@@ -78,6 +79,7 @@ const JklGuideLogo = (
   </svg>
 );
 
+// Alustetaan ja palautetaan home-komponentti ja sinne logo, animaatio ja buttonit. Buttonien feidi springillä.
 const Home = () => {
     return (
       <div id="loginContainer" className="container-fluid p-0 m-0">
@@ -93,7 +95,7 @@ const Home = () => {
                   <form className="text-center">
                         <div className="pt-5 pb-0 d-flex flex-column align-items-center">
                             <div className="col-12 px-0 pt-2">
-                                <Link to="/Login">
+                                <Link to="/Login"> 
                                     <button
                                     type="button"
                                     id="login"
@@ -123,6 +125,7 @@ const Home = () => {
   );
 }
 
+//Exportataan home-komponentti
 export default Home;
 
 
