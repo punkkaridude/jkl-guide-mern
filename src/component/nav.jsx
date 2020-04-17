@@ -4,6 +4,7 @@ import AuthService from '../Services/AuthService';
 import { AuthContext } from '../Context/AuthContext';
 import kompassi from '../img/kompassi.png';
 
+// Foorumi-ikonin alustus
 const forumIcon = (
   <svg
     version="1.1"
@@ -26,6 +27,7 @@ const forumIcon = (
   </svg>
 );
 
+// Heart-ikonin alustus
 const heartIcon = (
   <svg
     version="1.1"
@@ -52,6 +54,7 @@ const heartIcon = (
   </svg>
 );
 
+// Palvelun lisäys-ikonin alustus
 const plusIcon = (
   <svg
     version="1.1"
@@ -66,6 +69,7 @@ const plusIcon = (
   </svg>
 );
 
+// FAQ-ikonin alustus
 const faqIcon = (
   <svg
     version="1.1"
@@ -80,9 +84,11 @@ const faqIcon = (
   </svg>
 );
 
+//Navbarin alustus
 const Nav = props => {
+  //Autentikoinnin tarkistus
   const {isAuthenticated,user,setIsAuthenticated,setUser} = useContext(AuthContext);
-
+  //Logout-funktio, uloskirjautuessa muutetaan käyttäjän autentikaatio tilaan false
   const onClickLogout = () =>{
     AuthService.logout().then(data=>{
       if(data.success){
@@ -91,6 +97,7 @@ const Nav = props => {
       }
     });
   }
+  //Kirjautumattoman käyttäjän rajoitetun navbarin alustus
   const unauthenticatedNavbar = () =>{
     return (
       <>
@@ -103,25 +110,30 @@ const Nav = props => {
       </>
     );
   }
+
+  //Kirjautuneen käyttäjän rajoittamattoman navbarin alustus
   const authenticatedNavbar = () =>{
     return (
       <>
         <Link to="/JKL-Guide/Settings">
           <div className="dropdown-item">Settings</div>
         </Link>
+        {/* Tässä lisätään admin-rooliselle käyttäjälle linkki admintooliin*/}
         {
           user.role === "admin" ?
           <Link to="/JKL-Guide/Admin">
             <div className="dropdown-item">Admintool</div>
           </Link> : null
         }
-        <Link to="/">
+        {/* Tässä uloskirjaus*/}
+        <Link to="/">  
           <div className="dropdown-item" onClick={onClickLogout}>Log out</div>
-        </Link>
+        </Link> 
       </>
     );
   }
   
+  //Palautetaan navbarWrapper jossa määritelty sekä autentikoitu että autentikoimaton navbar
   return (
     <div id="navbarWrapper" className="container-fluid p-0">
       <nav className="colorLayer navbar navbar-expand-lg navbar-light shadow py-2">
@@ -131,6 +143,7 @@ const Nav = props => {
             <div className="navbar-brand py-0 pl-md-4 mr-0">JKL-Guide</div>
           </Link>
           <h1 className="navheader py-0 pl-md-4 mr-0 mb-0 align-self-center">
+            {/*Tässä välitetään selattavan sivun nimi headeriin*/}
             {props.siteName}
           </h1>
         </div>
@@ -171,13 +184,15 @@ const Nav = props => {
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
-                >
+                > 
+                  {/*Tässä painikkeessa näkyy joko "sign in" tai käyttäjänimi*/}
                   {!isAuthenticated ? <div>Sign In</div> : user.username}
                 </button>
                 <div
                   className="dropdown-menu shadow"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
+                  {/*Tässä erotellaan autentikoitu ja autentikoimaton navbar*/}
                   { !isAuthenticated ? unauthenticatedNavbar() : authenticatedNavbar()}
                 </div>
               </li> </> : <> <li className="nav-item px-1">
@@ -193,6 +208,7 @@ const Nav = props => {
                 </Link>
               </li>
               <li className="nav-item px-1">
+                {/*Huom! Blokattu,, harmaa foorumi-ikoni tässä*/}
                 <Link id="block" to="#" className="nav-link shadow">
                   <span id="block" className="blockedicon">{forumIcon}</span>
                   <span id="block" className="text">Forum</span>
@@ -212,12 +228,14 @@ const Nav = props => {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
+                {/*Tässä painikkeessa näkyy joko "sign in" tai käyttäjänimi*/}
                 {!isAuthenticated ? <div>Sign In</div> : user.username}
               </button>
               <div
                 className="dropdown-menu shadow"
                 aria-labelledby="navbarDropdownMenuLink"
               >
+                {/*Tässä erotellaan autentikoitu ja autentikoimaton navbar*/}
                 { !isAuthenticated ? unauthenticatedNavbar() : authenticatedNavbar()}
               </div>
             </li> </> }  
@@ -228,4 +246,5 @@ const Nav = props => {
   );
 }
 
+//Exportataan nav-komponentti
 export default Nav;

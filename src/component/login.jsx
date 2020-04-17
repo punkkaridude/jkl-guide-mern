@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Message from './message';
 import {Spring} from 'react-spring/renderprops';
 
+// JKL-Guiden logon alustus
 const JklGuideLogo = (
   <svg
       id="jklGuideLogo"
@@ -81,8 +82,9 @@ const JklGuideLogo = (
   </svg>
 );
 
+//Paluunuolen alustus
 const BackArrow = (
-  <svg
+    <svg
       id="backArrow"
       width="30" 
       height="30" 
@@ -97,21 +99,23 @@ const BackArrow = (
         L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
         c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
         c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
-        C492,219.198,479.172,207.418,464.344,207.418z"/
-    >
+        C492,219.198,479.172,207.418,464.344,207.418z"/>
   </svg>
 );
 
-const Login = props => {
+//Käytetään react-hookkeja, alustetaan statet tyhjiksi
+const Login = props => { 
   const [user, setUser] = useState({username : "", password : ""});
   const [message, setMessage] = useState(null);
   const authContext = useContext(AuthContext);
 
+  //Kirjautuneen käyttäjän tietojen asettaminen
   const onChange = e => {
     setUser( {...user,[e.target.name] : e.target.value});
     //console.log(user);
   }
   
+  //Välitetään kirjautumistiedot authservicelle
   const onLogin = e => {
     e.preventDefault();
     AuthService.login(user).then(data=>{
@@ -126,9 +130,11 @@ const Login = props => {
     })
   }
 
+  // Palautetaan logincontainer
   return (
     <div id="loginContainer" className="container-fluid p-0 m-0">
       <div className="colorLayer container-fluid d-flex flex-column align-items-center">
+        {/* JKL-guide- logo laskeutuu tässä*/}
         <Spring
               from={{ opacity: 0, marginTop: -500 }}
               to={{ opacity: 1, marginTop: 0 }}
@@ -141,6 +147,7 @@ const Login = props => {
               ) }
         </Spring>
         
+        {/*Kirjautumiskentät nousevat tässä*/}
         <Spring
               from={{ opacity: 0, marginTop: 1000 }}
               to={{ opacity: 1, marginTop: 0 }}
@@ -187,12 +194,14 @@ const Login = props => {
               </div>
             ) }
           </Spring>
+        {/*Viesti välittyy täältä*/}
         {message ? <Message message={message}/> : null}
       </div>
     </div>
   );
 }
 
+//Exportataan login-komponentti
 export default Login;
 
 
