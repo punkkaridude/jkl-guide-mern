@@ -35,7 +35,6 @@ export default class Addservice extends React.Component {
       longitude: '',
       latitude: ''
     }
-    this.componentDidMount = this.componentDidMount.bind(this);
     this.onChangeName = this.onChangeName.bind(this);
     this.onChangeAddress = this.onChangeAddress.bind(this);
     this.onChangePostal = this.onChangePostal.bind(this);
@@ -50,88 +49,84 @@ export default class Addservice extends React.Component {
     this.onChangeLatitude = this.onChangeLatitude.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  componentDidMount(){
-
-  }
-
+  // ReactMapGl viewport change event. Make map draggable!
   onViewportChange = viewport => {
     const {width, height, ...etc} = viewport
     this.setState({viewport: etc})
   }
-
-
+  // Gets value from name input and sets it in componen state
   onChangeName(e){
     this.setState({
       name: e.target.value
     });
   }
-
+  // Gets value from address input and sets it in componen state
   onChangeAddress(e){
     this.setState({
       address: e.target.value
     });
   }
-
+  // Gets value from postalcode input and sets it in componen state
   onChangePostal(e){
     this.setState({
       postalcode: e.target.value
     });
   }
-
+  // Gets value from city input and sets it in componen state
   onChangeCity(e){
     this.setState({
       city: e.target.value
     });
   }
-
+  // Gets value from country input and sets it in componen state
   onChangeCountry(e){
     this.setState({
       country: e.target.value
     });
   }
-
+  // Gets value from email input and sets it in componen state
   onChangeEmail(e){
     this.setState({
       email: e.target.value
     });
   }
-
+  // Gets value from phone input and sets it in componen state
   onChangePhone(e){
     this.setState({
       phone: e.target.value
     });
   }
-
+  // Gets value from website input and sets it in componen state
   onChangeWebsite(e){
     this.setState({
       website: e.target.value
     });
   }
-
+  // Gets value from details input and sets it in componen state
   onChangeDetails(e){
     this.setState({
       details: e.target.value
     });
   }
-
+  // Gets value from image url input and sets it in componen state
   onChangeImage(e){
     this.setState({
       image: e.target.value
     });
   }
-
+  // Gets value from longitude input and sets it in componen state
   onChangeLongitude(e){
     this.setState({
       longitude: e.target.value,
     });
   }
-
+  // Gets value from latitude input and sets it in componen state
   onChangeLatitude(e){
     this.setState({
       latitude: e.target.value,
     });
   }
-
+  //Execute on submit event. Sets components state values in service object and post it in database collection
   onSubmit(e) {
     e.preventDefault();
     const service = {
@@ -148,12 +143,11 @@ export default class Addservice extends React.Component {
       longitude: this.state.longitude,
       latitude: this.state.latitude
     };
-    
-    console.log(service);
-
+    // console.log(service);
     axios.post('/JKL-Guide/Add-service', service)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
+        // clear component states
         this.setState({
             name: '',
             address: '',
@@ -176,6 +170,7 @@ export default class Addservice extends React.Component {
       });
   }
 
+  /*ReactMapGl draggable marker START*/
   _logDragEvent(name, event) {
     this.setState({
       events: {
@@ -202,7 +197,8 @@ export default class Addservice extends React.Component {
       }
     });
   };
-  
+   /*ReactMapGl draggable marker END*/
+
   render() {
     const { viewport, marker } = this.state;
     return (
@@ -264,6 +260,7 @@ export default class Addservice extends React.Component {
               <div className="d-flex flex-wrap align-content-start">
                 <label className="col-form-label pb-0">Drag to choose coordinates</label>
                 <div id="map" className="container-fluid px-0 rounded shadow mt-0">
+                  {/*ReactMapGl Map for choosing coordinates for service*/}
                   <ReactMapGL
                     height="100%"
                     width="100%"
@@ -275,6 +272,7 @@ export default class Addservice extends React.Component {
                     transitionDuration={500}
                     transitionInterpolator= {new FlyToInterpolator()}
                   >
+                    {/*Draggable marker that sets coordinate input values*/}
                     <Marker
                       longitude={marker.longitude}
                       latitude={marker.latitude}
