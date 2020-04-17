@@ -1,5 +1,7 @@
+//Nämä määrittelyt toimivat admin-sivulla
 #adminWrapper{
 
+//Oma tyylittely otsikolle
 h2{
     font-family: $FontFamHeading;
     color: $PrimaryFontCol;
@@ -12,6 +14,7 @@ h2{
     }
 }
 
+//Oma tyylittely table headerille
 th{
     font-family: $FontFamHeading;
     font-weight: lighter;

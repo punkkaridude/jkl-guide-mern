@@ -1,3 +1,4 @@
+//Nämä määrittelyt toimivat foorumi- ja suosikkisivuilla
 #forumContainer,
 #favoriteContainer {
   padding: 0;
@@ -13,6 +14,8 @@
   > .card {
     background-color: $PrimaryFontCol;
     border: $border;
+
+    //Cardin otsikko, favoriteissa kohteen nimi näkyy tässä
     .card-header {
       @include smallerHFont();
       &.title {
@@ -30,6 +33,7 @@
             font-size: 1rem;
           }
         }
+        //Päivämäärä
         > p.date {
           padding: 0;
           margin: 0;
@@ -42,6 +46,7 @@
         }
       }
     }
+    //Kohteen tai keskustelun tiedot näkyvät tässä
     .card-body {
       overflow: auto;
       max-height: 15vh;
@@ -60,11 +65,12 @@
     }
   }
 }
-
+//Wrapperin lasten lisäys
 #forumWrapper:nth-child(1) {
   > div.card {
     position: relative;
   }
+  //Forum-sivun leveä containerdivi
   #fContainer {
     border: $border;
     @include media-breakpoint-between(lg, xl) {
