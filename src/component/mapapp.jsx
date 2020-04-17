@@ -207,10 +207,11 @@ export default class mapApp extends Component {
         };
         axios.post('/JKL-Guide/Favorites/alreadyFavorited', service).then(res => {
             this.setState({
-            popupInfo: result,
-            alreadyFav: res.data
+                popupInfo: result,
+                alreadyFav: res.data
             });
         });
+        this.forceUpdate();
     }
 
     Popup() {

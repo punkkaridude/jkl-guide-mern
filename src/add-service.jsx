@@ -3,7 +3,8 @@ import ReactMapGL,
   { FlyToInterpolator, 
     NavigationControl, 
     ScaleControl, 
-    GeolocateControl } from 'react-map-gl';
+    GeolocateControl,
+    Marker } from 'react-map-gl';
 import axios from "axios";
 import { Spring } from 'react-spring/renderprops';
 
@@ -16,6 +17,11 @@ export default class Addservice extends React.Component {
         longitude: 25.746282419998817,
         zoom: 11.179489616683279,
       },
+      marker: {
+        latitude: 62.23815925225172,
+        longitude: 25.746282419998817
+      },
+      events: {},
       name: '',
       address: '',
       postalcode: '',
@@ -43,7 +49,6 @@ export default class Addservice extends React.Component {
     this.onChangeLongitude = this.onChangeLongitude.bind(this);
     this.onChangeLatitude = this.onChangeLatitude.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.onViewportChange = this.onViewportChange.bind(this);
   }
   componentDidMount(){
 
@@ -117,13 +122,13 @@ export default class Addservice extends React.Component {
 
   onChangeLongitude(e){
     this.setState({
-      longitude: e.target.value
+      longitude: e.target.value,
     });
   }
 
   onChangeLatitude(e){
     this.setState({
-      latitude: e.target.value
+      latitude: e.target.value,
     });
   }
 
@@ -161,14 +166,45 @@ export default class Addservice extends React.Component {
             details: '',
             image: '',
             longitude: '',
-            latitude: ''
+            latitude: '',
+            marker: {
+              longitude: '',
+              latitude: ''
+            }
         });
         window.location = "/JKL-Guide/Add-service";
       });
   }
+
+  _logDragEvent(name, event) {
+    this.setState({
+      events: {
+        ...this.state.events,
+        [name]: event.lngLat
+      }
+    });
+  }
+
+  _onMarkerDragStart = event => {
+    this._logDragEvent('onDragStart', event);
+  };
+
+  _onMarkerDrag = event => {
+    this._logDragEvent('onDrag', event);
+  };
+
+  _onMarkerDragEnd = event => {
+    this._logDragEvent('onDragEnd', event);
+    this.setState({
+      marker: {
+        longitude: event.lngLat[0],
+        latitude: event.lngLat[1]
+      }
+    });
+  };
   
   render() {
-    const { viewport } = this.state;
+    const { viewport, marker } = this.state;
     return (
       <Spring
           from={{ opacity: 0 }}
@@ -211,43 +247,48 @@ export default class Addservice extends React.Component {
                   <label className="col-form-label pb-0">Website</label>
                   <input className="form-control" type='text' placeholder='https://' onChange={this.onChangeWebsite}></input>
                 </div>
+                <div className="col-12 p-0">
+                  <label className="col-form-label pb-0">Image url</label>
+                  <input className="form-control" type='text' placeholder='https://' onChange={this.onChangeImage}></input>
+                </div>
               </div>
               <div className="d-flex flex-wrap flex-fill mb-3">
-                <div className="col-sm-8 p-0 d-flex flex-column flex-fill mr-sm-3">
+                <div className="col-sm-12 p-0 d-flex flex-column flex-fill">
                   <label className="col-form-label pb-0">Service details</label>
                   <textarea className="form-control flex-fill" type='text' onChange={this.onChangeDetails}></textarea>
                 </div>
-                <div className="p-0 d-flex flex-column flex-fill">
-                  <label className="col-form-label pb-0">Image</label>
-                  <div id="imgbase" className="form-control" type='text' onChange={this.onChangeImage}><p>.jpg .png .gif</p></div>
-                </div>    
               </div>
-              <div className="input-group shadow">
-                <div className="input-group-prepend">
-                  <span className="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                </div>
-                <div className="custom-file">
-                  <input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"/>
-                  <label className="custom-file-label" htmlFor="inputGroupFile01">Choose image</label>
-                </div>
-              </div> 
+
             </div>
             <div className="col-md-5 d-flex flex-column justify-content-between pr-xl-5">
               <div className="d-flex flex-wrap align-content-start">
-                <label className="col-form-label pb-0">Coordinates</label>
+                <label className="col-form-label pb-0">Drag to choose coordinates</label>
                 <div id="map" className="container-fluid px-0 rounded shadow mt-0">
                   <ReactMapGL
                     height="100%"
                     width="100%"
                     interactive
+                    onClick={()=>console.log("testi")}
                     {...viewport}
                     mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
                     onViewportChange={viewport => this.onViewportChange(viewport)}
-                    transitionDuration={1000}
+                    transitionDuration={500}
                     transitionInterpolator= {new FlyToInterpolator()}
                   >
+                    <Marker
+                      longitude={marker.longitude}
+                      latitude={marker.latitude}
+                      offsetTop={-20}
+                      offsetLeft={-10}
+                      draggable
+                      onDragStart={this._onMarkerDragStart}
+                      onDrag={this._onMarkerDrag}
+                      onDragEnd={this._onMarkerDragEnd}
+                    >
+                      <div className="marker"></div>
+                    </Marker>
                     <div style={{position: 'absolute', right: 0}}>
-                        <NavigationControl />
+                        <NavigationControl onViewportChange={viewport => this.onViewportChange(viewport)}/>
                     </div>
                     <ScaleControl />
                     <GeolocateControl
@@ -258,12 +299,12 @@ export default class Addservice extends React.Component {
                   </ReactMapGL>
                 </div>  
                 <div id="coordinates" className="form-inline justify-content-between mt-sm-3 col-12 p-0 mb-3">
-                  <input className="form-control mt-3 mt-sm-0 col-sm-6" type='text' placeholder="Longitude" onChange={this.onChangeLongitude}></input>
-                  <input className="form-control mt-3 mt-sm-0 col-sm-6" type='text' placeholder="Latitude" onChange={this.onChangeLatitude}></input>
+                  <label>Longitude: </label><input className="form-control mt-3 mt-sm-0 col-sm-12" type='text' placeholder="Longitude" onChange={this.onChangeLongitude} value={marker.longitude}></input>
+                  <label>Latitude: </label><input className="form-control mt-3 mt-sm-0 col-sm-12" type='text' placeholder="Latitude" onChange={this.onChangeLatitude} value={marker.latitude}></input>
                 </div>
               </div>
-              <div className="text-right">
-                <button type="submit" className="btn-lg col-sm-6">Submit</button>
+              <div  className="text-right">
+                <button id="addservSubmit" type="submit" className="btn-lg col-sm-6">Submit</button>
               </div>
             </div>
           </form>

@@ -18,9 +18,10 @@ export default class Favorite extends Component {
         super(props);
         this.state = {
             ready: false,
-            favorited: null
+            favorited: this.props.fav
         }
     }
+
     postFavorite = (e) => {
         e.preventDefault();
         const service = { 
@@ -33,7 +34,7 @@ export default class Favorite extends Component {
         if(fav===false){
             axios.post('/JKL-Guide/Favorites/add', service).then(res => {
                 console.log(res.data)
-                this.setState({favorited: true})
+                this.setState({favorited: true});
             });
         }
         else if(fav===true){
@@ -45,9 +46,9 @@ export default class Favorite extends Component {
         }
     }
     render(){
-        const { fav } = this.props;
+        const { favorited } = this.state;
         return( 
-            <FontAwesomeIcon icon={faHeart} style={fav ? isFavorited : notFavorited} onClick={(e) => this.postFavorite(e)} type='button' name='favButton'/>  
+            <FontAwesomeIcon icon={faHeart} style={favorited ? isFavorited : notFavorited} onClick={(e) => this.postFavorite(e)} type='button' name='favButton'/>  
         );
     }
 }
