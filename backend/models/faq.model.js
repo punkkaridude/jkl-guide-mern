@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+//UKK:n skeema/modeli
 const faqSchema = new mongoose.Schema({
     header: {
         type: String,

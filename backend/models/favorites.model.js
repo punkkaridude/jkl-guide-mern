@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+//Suosikkien skeema/modeli
 const favorite = new mongoose.Schema({
     name: {
         type: String,

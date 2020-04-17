@@ -28,10 +28,13 @@ class App extends React.Component {
   render() {
     return (
       <div id="componentWrapper">
+        {/* PublicRoute = Kirjautumattomille
+            PrivateRoute = Kirjautuneille käyttäjille
+            Roles-attribuutissa vielä eritelty admin ja user (ks. Admin-sivu) */}
         <Route exact path="/" component={Home} />
         <PublicRoute path="/Login" component={Login} />
         <PublicRoute path="/Register" component={Register} />
-        <Route path="/JKL-Guide"  component={Frontpage}/>  {/* Pysyy vielä aukinaisena, jotta kirjautumattomat käyttäjät voivat käyttää. */}
+        <Route path="/JKL-Guide"  component={Frontpage}/>
         <PrivateRoute path="/JKL-Guide/Add-service" roles={["user","admin"]} component={Addservice}/>
         <PrivateRoute path="/JKL-Guide/Favorites" roles={["user","admin"]} component={Favorites}/>
         <PrivateRoute path="/JKL-Guide/Admin" roles={["admin"]} component={Admin}/>
@@ -46,6 +49,6 @@ ReactDOM.render(
     <Router>
       <App />
     </Router>
-  </AuthProvider>, //kuuluuko tähän, vai routerin sisään?
+  </AuthProvider>,
   document.getElementById("app")
 );

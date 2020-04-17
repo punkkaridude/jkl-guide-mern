@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+//Palveluiden skeema/modeli
 const ServiceSchema = new mongoose.Schema({
     name: {
         type: String,

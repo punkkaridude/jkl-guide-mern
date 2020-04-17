@@ -37,6 +37,7 @@ export default class Settings extends Component {
             message: null,
             user: []
         }
+        //onChange-handlerit
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeNewpassword = this.onChangeNewpassword.bind(this);
@@ -81,6 +82,7 @@ export default class Settings extends Component {
             email: e.target.value
         });
     }
+    //Arvot tietokantaan, käytetään buttonien onClick-funktioissa
     onSubmitUsername(e) {
         e.preventDefault();
         const { username } = this.state;

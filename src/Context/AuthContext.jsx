@@ -16,7 +16,7 @@ export default ({ children })=>{
         });
     },[]);
 
-    return ( //tarvitaanko ollenkaan?
+    return (
         <div>
             {!isLoaded ? <h1> Loading </h1> : 
             <AuthContext.Provider value={{user,setUser,isAuthenticated,setIsAuthenticated}}>

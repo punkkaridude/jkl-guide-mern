@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-
+//Käyttäjien skeema/model tietokantaa varten
 const UserSchema = new mongoose.Schema({
     fullname: {
         type: String,
@@ -31,6 +31,7 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
+//Hashataan salasana
 UserSchema.pre('save', function(next){
     if(!this.isModified('password'))
         return next();
@@ -41,6 +42,7 @@ UserSchema.pre('save', function(next){
     });
 });
 
+//Tarkistetaan, että salasana täyttää kriteerit
 UserSchema.methods.validPassword = function(password, cb){
     bcrypt.compare(password, this.password, (err, isMatch)=>{
         if(err) return cb(err);
