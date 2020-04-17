@@ -247,5 +247,29 @@ Kokoustimme torstaina klo 10:30 - 15*
 * Rumat sanat poistettu käyttäjätiedoista ja faq-osiosta esittelyä varten
 * Myöhäisilta meni nätittäessä admin-sivua, tuli melko purkkaviritys
 
+-------------------------
+-------------------------
+
+### Perjantai 17.4.2020 - Salasanan vaihtoa, kommentointia ja nätittelyä
+
+*Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
+Kokoustimme perjantaina klo 12 - 16:30*
+
+#### Settings- sivun viimeistelyä
+*  Kristian koodaili salasanan vaihtoa
+*  Iina yhtenäisti settingspagea samannäköiseksi kuin kohteitten lisäyssivu.. Buttoneita ja input fieldejä muuteltu hieman
+
+#### Adminpagen purkkavirityksen fiksaus ja muita pieniä fiksejä
+* kristian neuvoi miten table datan saa toistumaan nätimmin sivulla
+* Favorites -pagen suosikkilistaa muutettu siten että scrollautuu nätisti
+* messageitten korjailua loginiin
+
+#### Koodin kommentointi (suomeksi)
+* SCSS-tiedostoista kommentoitu kaikki muu paitsi map.scss
+* JSX-tiedostoista kommentoitu add-favorite, login, nav, register, add-service, admin, home
+* Modelit ja routet kommentoimatta
+
+
+
 
 
