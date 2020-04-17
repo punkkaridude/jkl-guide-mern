@@ -39,14 +39,11 @@ export default class Admin extends React.Component {
 
     displayServices = (services) => {
         if (!services.length) return null;
-        
-        
         return services.map((service, index) => (
-                    <tr key={index}>
-                    <td scope="row">{service.name}</td>
-                    <td scope="row">{service.address}</td>
-                    </tr>
-                
+            <tr key={index}>
+            <td scope="row">{service.name}</td>
+            <td scope="row">{service.address}</td>
+            </tr>   
         ));
     };
 
@@ -94,7 +91,6 @@ export default class Admin extends React.Component {
                                 </tr>
                             </thead>
                             <tbody>{this.displayUsers(this.state.users)}</tbody>
-                            
                         </table>
                     </div>
                             
