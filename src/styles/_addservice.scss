@@ -1,3 +1,4 @@
+//Nämä määrittelyt toimivat add service-sivulla
 #addserviceWrapper {
   #imgbase {
     border: $border;
@@ -21,6 +22,8 @@
       flex: 1 0 auto;
     }
   }
+
+  //Osoiterivi
   #addressline {
     > input:nth-child(2) {
       border-radius: 0.25rem 0 0 0.25rem;
@@ -30,6 +33,7 @@
       border-radius: 0 0.25rem 0.25rem 0;
     }
   }
+  //Koordinaattiboksit
   #coordinates {
     > input:nth-child(1) {
       border-radius: 0.25rem 0 0 0.25rem;
@@ -46,6 +50,7 @@
       }
     }
   }
+  //Teksti-inputtien määrittelyitä
   input,
   textarea {
     background-color: $inputbackColor;
@@ -60,13 +65,14 @@
       font-style: italic;
     }
   }
+  // Fokus tekee hienot reunat kun input aktiivisena
   input[type="text"]:focus,
   textarea:focus {
     border-color: rgb(131, 131, 131);
     outline: 0;
     box-shadow: inset 0 1px 1px rgba(168, 168, 168, 0.486), 0 0 8px rgba(196, 196, 196, 0.6);
   }
-
+  // Mozillaa varten tehty määritys, jotta numerokenttien tyyli pysyy samana
   input[type="number"] {
     -moz-appearance: textfield;
     &::-webkit-outer-spin-button,
@@ -75,7 +81,8 @@
       margin: 0;
     }
   }
-
+  
+  //Nämä vanhoja määrittelyitä, tutkitaan mihin kuuluvat
   form > div.col-md-6.d-flex.flex-column.pl-xl-5 > div.input-group {
     input,
     span,
@@ -83,16 +90,12 @@
       border: $border;
       cursor: pointer;
     }
-    .custom-file-input:focus ~ .custom-file-label {
-      outline: 0;
-      box-shadow: none;
-    }
 
     span:hover {
       background-color: rgb(219, 219, 219);
     }
   }
-
+  //Submit-painikkeen tyylittely
   #addservSubmit {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
     transition: all 0.2s;

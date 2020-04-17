@@ -49,84 +49,84 @@ export default class Addservice extends React.Component {
     this.onChangeLatitude = this.onChangeLatitude.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  // ReactMapGl viewport change event. Make map draggable!
+  // ReactMapGl viewport change event. Tekee kartasta raahattavan!
   onViewportChange = viewport => {
     const {width, height, ...etc} = viewport
     this.setState({viewport: etc})
   }
-  // Gets value from name input and sets it in componen state
+  // Saa arvon name-inputista ja settaa sen komoponentin stateen
   onChangeName(e){
     this.setState({
       name: e.target.value
     });
   }
-  // Gets value from address input and sets it in componen state
+  // Saa arvon address-inputista ja settaa sen komoponentin stateen
   onChangeAddress(e){
     this.setState({
       address: e.target.value
     });
   }
-  // Gets value from postalcode input and sets it in componen state
+  // Saa arvon postalcode-inputista ja settaa sen komoponentin stateen
   onChangePostal(e){
     this.setState({
       postalcode: e.target.value
     });
   }
-  // Gets value from city input and sets it in componen state
+  // Saa arvon city-inputista ja settaa sen komoponentin stateen
   onChangeCity(e){
     this.setState({
       city: e.target.value
     });
   }
-  // Gets value from country input and sets it in componen state
+  // Saa arvon country-inputista ja settaa sen komoponentin stateen
   onChangeCountry(e){
     this.setState({
       country: e.target.value
     });
   }
-  // Gets value from email input and sets it in componen state
+  // Saa arvon email-inputista ja settaa sen komoponentin stateen
   onChangeEmail(e){
     this.setState({
       email: e.target.value
     });
   }
-  // Gets value from phone input and sets it in componen state
+  // Saa arvon phone-inputista ja settaa sen komoponentin stateen
   onChangePhone(e){
     this.setState({
       phone: e.target.value
     });
   }
-  // Gets value from website input and sets it in componen state
+  // Saa arvon website-inputista ja settaa sen komoponentin stateen
   onChangeWebsite(e){
     this.setState({
       website: e.target.value
     });
   }
-  // Gets value from details input and sets it in componen state
+  // Saa arvon details-inputista ja settaa sen komoponentin stateen
   onChangeDetails(e){
     this.setState({
       details: e.target.value
     });
   }
-  // Gets value from image url input and sets it in componen state
+  // Saa arvon image url-inputista ja settaa sen komoponentin stateen
   onChangeImage(e){
     this.setState({
       image: e.target.value
     });
   }
-  // Gets value from longitude input and sets it in componen state
+  // Saa arvon longitude-inputista ja settaa sen komoponentin stateen
   onChangeLongitude(e){
     this.setState({
       longitude: e.target.value,
     });
   }
-  // Gets value from latitude input and sets it in componen state
+  // Saa arvon latitude-inputista ja settaa sen komoponentin stateen
   onChangeLatitude(e){
     this.setState({
       latitude: e.target.value,
     });
   }
-  //Execute on submit event. Sets components state values in service object and post it in database collection
+  // Suoritetaan onSubmit-eventillä. Settaa komponenttien statejen arvot service-objektiin ja postaa sen databaseen
   onSubmit(e) {
     e.preventDefault();
     const service = {
@@ -170,7 +170,7 @@ export default class Addservice extends React.Component {
       });
   }
 
-  /*ReactMapGl draggable marker START*/
+  /*ReactMapGl raahattava markkeri START*/
   _logDragEvent(name, event) {
     this.setState({
       events: {
@@ -197,7 +197,7 @@ export default class Addservice extends React.Component {
       }
     });
   };
-   /*ReactMapGl draggable marker END*/
+   /*ReactMapGl raahattava markkeri END*/
 
   render() {
     const { viewport, marker } = this.state;
@@ -260,7 +260,7 @@ export default class Addservice extends React.Component {
               <div className="d-flex flex-wrap align-content-start">
                 <label className="col-form-label pb-0">Drag to choose coordinates</label>
                 <div id="map" className="container-fluid px-0 rounded shadow mt-0">
-                  {/*ReactMapGl Map for choosing coordinates for service*/}
+                  {/*ReactMapGl Kartta lisättävän palvelun koordinattien valitsemista varten*/}
                   <ReactMapGL
                     height="100%"
                     width="100%"
@@ -272,7 +272,7 @@ export default class Addservice extends React.Component {
                     transitionDuration={500}
                     transitionInterpolator= {new FlyToInterpolator()}
                   >
-                    {/*Draggable marker that sets coordinate input values*/}
+                    {/*Raahattava markkeri joka settaa annettavat input valuet*/}
                     <Marker
                       longitude={marker.longitude}
                       latitude={marker.latitude}
