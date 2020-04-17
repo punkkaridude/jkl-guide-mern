@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { Link } from 'react-router-dom';
-import AuthService from './Services/AuthService';
+import axios from "axios"; 
+import { Link } from 'react-router-dom'; //Linkkien syntaksi tällä
 //import Message from './message';
 
+//Paluunuolen alustus
 const BackArrow = (
     <svg
         id="backArrow"
@@ -24,6 +24,7 @@ const BackArrow = (
     </svg>
 );
 
+//Alustetaan kenttien statet tyhjiksi
 export default class Settings extends Component {
     constructor(props) {
         super(props);
@@ -51,6 +52,7 @@ export default class Settings extends Component {
         })
     }
 
+    //Välitetään input-kenttien arvot
     onChangeUsername(e){
         this.setState({
             username: e.target.value
@@ -106,11 +108,12 @@ export default class Settings extends Component {
                 <form className="text-center">
                     <div className="pt-5 pb-0 d-flex flex-column align-items-center">
                         <div className="form-group col-sm-4 mb-0 mb-sm-3">
-                            <label className="col-form-label-lg mb-0 mb-sm-1">Username</label>
+                            <label className="col-form-label pb-0">Username</label>
                             <input
                                 name="username"
-                                className="form-control form-control-lg shadow"
+                                className="form-control shadow"
                                 type="text"
+                                placeholder='Enter new username'
                                 minLength="5"
                                 defaultValue={this.state.user.username}
                                 onChange={this.onChangeUsername}
@@ -119,50 +122,51 @@ export default class Settings extends Component {
                             ></input>
                             <button id="reg"
                                 type="button"
-                                className="col-6 btn-lg shadow mt-4 mt-sm-2"
+                                className="col-4 btn-md shadow pt-1 mt-4 mt-sm-2"
                                 onClick={this.onSubmitUsername}
                             >
                                 Change username
                             </button>
                         </div>
                         <div className="form-group col-sm-4 mb-0 mb-sm-3">
-                            <label className="col-form-label-lg mb-0 mb-sm-1">Email</label>
+                            <label className="col-form-label pb-0">Email</label>
                             <input
                                 name="email"
-                                className="form-control form-control-lg shadow"
+                                className="form-control shadow"
                                 type="email"
+                                placeholder='Enter new email'
                                 defaultValue={this.state.user.email}
                                 onChange={this.onChangeEmail}
                                 value={email}
                             ></input>
                             <button id="reg"
                                 type="button"
-                                className="col-6 btn-lg shadow mt-4 mt-sm-2"
+                                className="col-4 btn-md shadow pt-1 mt-4 mt-sm-2"
                                 onClick={this.onSubmitEmail}
                             >
                                 Change email
                             </button>
                         </div>
                         <div className="form-group col-sm-4 mb-0 mb-sm-3">
-                            <label className="col-form-label-lg mb-0 mb-sm-1"> Old password</label>
+                            <label className="col-form-label pb-0"> Old password</label>
                             <input
                                 name="oldpassword"
-                                className="form-control form-control-lg shadow"
+                                className="form-control shadow"
                                 type="password"
                                 placeholder="*******"
                             ></input>
                         </div>
                         <div className="form-group col-sm-4 mb-0 mb-sm-3">
-                            <label className="col-form-label-lg mb-0 mb-sm-1">New password</label>
+                            <label className="col-form-label pb-0">New password</label>
                             <input
                                 name="newpassword"
-                                className="form-control form-control-lg shadow"
+                                className="form-control shadow"
                                 type="password"
                                 placeholder="********"
                             ></input>
                             <button id="reg"
                                 type="button"
-                                className="col-6 btn-lg shadow mt-4 mt-sm-2"
+                                className="col-4 btn-md shadow pt-1 mt-4 mt-sm-2"
                                 onChange={this.onChangePassword}
                             >
                                 Change password
