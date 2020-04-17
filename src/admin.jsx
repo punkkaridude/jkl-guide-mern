@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from "axios";
 
+//Alustetaan kohteitten ja käyttäjien statet tyhjiksi
 export default class Admin extends React.Component {
     constructor(props) {
         super(props);
@@ -9,7 +10,7 @@ export default class Admin extends React.Component {
             users: []
         }
     }
-
+    //Haetaan kohteitten data axios-kutsulla ja setataan niiden state
     getServices = () => {
         axios.get('/JKL-Guide/Service/')
         .then((response) => {
@@ -20,7 +21,7 @@ export default class Admin extends React.Component {
             console.log(error);
         })
     }
-
+    //Haetaan käyttäjädata axios-kutsulla ja setataan niiden state
     getUsers = () => {
         axios.get('/JKL-Guide/Admin/Allusers')
         .then((response) => {
@@ -36,7 +37,7 @@ export default class Admin extends React.Component {
         this.getServices();
         this.getUsers();
     }
-
+    // Tämä funktio näyttää kaikki kohteet tabledatan riveinä, jos ei dataa niin mitään ei tulosteta
     displayServices = (services) => {
         if (!services.length) return null;
         return services.map((service, index) => (
@@ -46,7 +47,7 @@ export default class Admin extends React.Component {
             </tr>   
         ));
     };
-
+    // Tämä funktio näyttää kaikki käyttäjät tabledatan riveinä, jos ei dataa niin mitään ei tulosteta
     displayUsers = (users) => {
         if (!users.length) return null;
         return users.map((user, index) => (
@@ -58,7 +59,7 @@ export default class Admin extends React.Component {
             </tr>
         ));
     };
-
+    // Tämä palauttaa displayServices- ja displayUsers-datan table bodyyn
     render(){
         return(
             <div id="adminWrapper" className="d-flex justify-content-around flex-wrap">

@@ -1,8 +1,10 @@
+//Nämä määrittelyt toimivat FAQ-sivulla
 #faqWrapper:nth-child(1) {
   div.card {
     position: relative;
     border: $border;
   }
+  //Leveä kysymyscontainer
   #qContainer {
     @include media-breakpoint-between(lg, xl) {
       position: absolute;
@@ -10,6 +12,7 @@
       overflow-x: hidden;
       overflow-y: auto;
     }
+    //Yksittäinen kysymys
     > div.card {
       border-left: none;
       border-right: none;
@@ -17,6 +20,7 @@
       border-radius: 0%;
     }
   }
+  //Kysymyksen otsikko
   h4 {
     font-weight: lighter;
   }

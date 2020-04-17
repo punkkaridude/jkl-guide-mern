@@ -178,7 +178,7 @@ export default class Favorites extends React.Component {
             </div>
             <div className="col-lg-3 pl-lg-0 mr-xl-5 mr-lg-3">
               <div id="favoriteContainer" className="container-fluid">
-                <div className="card shadow d-flex flex-column">
+                <div className="card h-auto shadow d-flex flex-column">
                   <div className="card-header shadow">YOUR FAVORITES</div>
                   {this.renderFavorites()}
                 </div>

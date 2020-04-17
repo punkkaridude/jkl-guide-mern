@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Message from './message';
 import {Spring} from 'react-spring/renderprops';
 
+// JKL-Guiden logon alustus
 const JklGuideLogo = (
   <svg
       id="jklGuideLogo"
@@ -81,8 +82,9 @@ const JklGuideLogo = (
   </svg>
 );
 
+//Paluunuolen alustus
 const BackArrow = (
-  <svg
+    <svg
       id="backArrow"
       width="30" 
       height="30" 
@@ -101,16 +103,19 @@ const BackArrow = (
   </svg>
 );
 
-const Login = props => {
+//Käytetään react-hookkeja, alustetaan statet tyhjiksi
+const Login = props => { 
   const [user, setUser] = useState({username : "", password : ""});
   const [message, setMessage] = useState({message: {msgBody: "", msgError: false}});
   const authContext = useContext(AuthContext);
 
+  //Kirjautuneen käyttäjän tietojen asettaminen
   const onChange = e => {
     setUser( {...user,[e.target.name] : e.target.value});
     //console.log(user);
   }
   
+  //Välitetään kirjautumistiedot authservicelle
   const onLogin = e => {
     e.preventDefault();
     AuthService.login(user).then(data=>{
@@ -127,9 +132,11 @@ const Login = props => {
     })
   }
 
+  // Palautetaan logincontainer
   return (
     <div id="loginContainer" className="container-fluid p-0 m-0">
       <div className="colorLayer container-fluid d-flex flex-column align-items-center">
+        {/* JKL-guide- logo laskeutuu tässä*/}
         <Spring
               from={{ opacity: 0, marginTop: -500 }}
               to={{ opacity: 1, marginTop: 0 }}
@@ -142,6 +149,7 @@ const Login = props => {
               ) }
         </Spring>
         
+        {/*Kirjautumiskentät nousevat tässä*/}
         <Spring
               from={{ opacity: 0, marginTop: 1000 }}
               to={{ opacity: 1, marginTop: 0 }}
@@ -174,6 +182,7 @@ const Login = props => {
                         ></input>
                       </div>
                     <div className="col-12 px-0 pt-2">
+                      {/*Viesti välittyy täältä*/}
                     {message.msgError && <Message message={message}/>}
                       <button
                         type="submit"
@@ -194,6 +203,7 @@ const Login = props => {
   );
 }
 
+//Exportataan login-komponentti
 export default Login;
 
 
