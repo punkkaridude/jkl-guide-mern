@@ -30,7 +30,7 @@ class App extends React.Component {
       <div id="componentWrapper">
         {/* PublicRoute = Kirjautumattomille
             PrivateRoute = Kirjautuneille käyttäjille
-            Roles-attribuutissa vielä eritelty admin ja user (ks. Admin-sivu) */}
+            Roles-attribuutissa vielä eritelty erikseen roolit admin ja user */}
         <Route exact path="/" component={Home} />
         <PublicRoute path="/Login" component={Login} />
         <PublicRoute path="/Register" component={Register} />

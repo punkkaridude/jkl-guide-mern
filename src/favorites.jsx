@@ -44,7 +44,7 @@ export default class Favorites extends React.Component {
   componentDidMount(){
     this.getFavorites();
   }
-
+//Haetaan käyttäjän suosikit
   getFavorites(){
     let url = '/JKL-Guide/Favorites'
     axios.get(url).then(result => {
@@ -55,6 +55,7 @@ export default class Favorites extends React.Component {
     })
   }
 
+//Renderöidään käyttäjän suosikit
   renderFavorites() {
     const { favorites } = this.state;
     return(
@@ -75,6 +76,8 @@ export default class Favorites extends React.Component {
     );
     
   }
+
+  //Renderöidään palvelun popup-ikkuna
   renderPopup() {
     const {popupInfo, alreadyFav} = this.state;
     return(
@@ -100,6 +103,8 @@ export default class Favorites extends React.Component {
       </Popup>    
     )
   }
+
+  //Renderöidään palvelun merkki kartalle
   renderMarkers() {
     const {favorites} = this.state;
     return(

@@ -82,7 +82,7 @@ export default class Settings extends Component {
             email: e.target.value
         });
     }
-    //Arvot tietokantaan, käytetään buttonien onClick-funktioissa
+    //Arvot tietokantaan, näitä käytetään buttonien onClick-funktioissa
     onSubmitUsername(e) {
         e.preventDefault();
         const { username } = this.state;
@@ -138,7 +138,7 @@ export default class Settings extends Component {
             })
         }
     }
-
+//Renderöidään formi
     render() {
         const {message} = this.state;
         return(

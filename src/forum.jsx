@@ -8,7 +8,7 @@ export default class Forum extends React.Component {
     this.state = {};
     this.renderDiscussions = this.renderDiscussions.bind(this);
   }
-
+//Renderöidään YKSI keskustelu
   renderDiscussions() {
     return (
       <div className="card">
@@ -28,6 +28,8 @@ export default class Forum extends React.Component {
       </div>
     );
   }
+
+//Renderöidään foorumi, jonka sisällä vielä pienempi "ForumSmall"-komponentti
   render() {
     return (
         <Spring

@@ -18,7 +18,7 @@ export default class Faq extends React.Component {
   componentDidMount(){
     this.getResults();
   }
-
+//Haetaan kysymykset tietokannasta
   getResults(){
     let url = '/JKL-Guide/Faq'
     axios.get(url).then(result => {
@@ -27,7 +27,7 @@ export default class Faq extends React.Component {
       })
     })
   }
-   
+//Kysymyksien renderöinti
   renderQuestions() {
     const { questions } = this.state;
     return (
@@ -49,6 +49,7 @@ export default class Faq extends React.Component {
     );
   }
 
+//Renderöidään kysymykset ja vastaukset taulukkoon
   render() {
     return (
         <Spring

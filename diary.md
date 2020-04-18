@@ -266,7 +266,7 @@ Kokoustimme perjantaina klo 12 - 16:30*
 #### Koodin kommentointi (suomeksi)
 * SCSS-tiedostoista kommentoitu kaikki muu paitsi map.scss
 * JSX-tiedostoista kommentoitu add-favorite, login, nav, register, add-service, admin, home
-
+* Routesit ja modelit kommentoitu (alustavasti ainakin, onkohan riittävä)
 
 
 
