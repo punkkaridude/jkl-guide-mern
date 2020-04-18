@@ -237,7 +237,6 @@ Kokoustimme torstaina klo 10:30 - 15*
 
 #### Käyttäjätietojen muutoksia
 *  Kristian ja Veeti saivat käyttäjätunnuksen ja sähköpostin muutoksen käyttöliittymästä käsin toimimaan
-*  Toimiiko salasanan muuttaminen jo?
 
 #### Suosikkien lisäyksen fixaus
 * Kristian fiksasi suosikkien lisäystä siten, että sydänikonia painamalla kohde siirtyy suosikkeihin ja myös sieltä pois. 
@@ -267,8 +266,6 @@ Kokoustimme perjantaina klo 12 - 16:30*
 #### Koodin kommentointi (suomeksi)
 * SCSS-tiedostoista kommentoitu kaikki muu paitsi map.scss
 * JSX-tiedostoista kommentoitu add-favorite, login, nav, register, add-service, admin, home
-* Modelit ja routet kommentoimatta
-
 
 
 
