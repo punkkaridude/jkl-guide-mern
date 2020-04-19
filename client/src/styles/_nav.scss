@@ -1,0 +1,254 @@
+//Tämä määrittely toimii navbarissa
+#navbarWrapper {
+  background-color: $SecondBgroundCol;
+  background-image: url("../img/bg1.png");
+  background-size: 70%;
+  z-index: 999;
+
+  //Taustakuva-animaation breakpointit tässä
+  animation: bgMove 5s linear alternate infinite; 
+  @include media-breakpoint-only(xs){
+      background-size: 85%;
+      animation: bgMove 100s linear alternate infinite;
+  }
+  @include media-breakpoint-only(sm){
+      background-size: 85%;
+      animation: bgMove 100s linear alternate infinite;
+  }
+  @include media-breakpoint-only(md){
+      background-size: 85%;
+      animation: bgMove 100s linear alternate infinite;
+  }
+  @include media-breakpoint-between(lg, xl){
+      background-size: 85%;
+      animation: bgMove 100s linear alternate infinite;
+  }
+  //Turkoosi värilayeri kartan päällä
+  > .colorLayer{
+    height: 100%;
+    background-color: rgba(196, 242, 241, 0.829);
+}
+// Kartta liikkuu edestakaisin oikealta vasemmalle
+    @keyframes bgMove {
+        from {
+            background-position: 0 2%;
+        }
+        to{
+            background-position: 100% 2%;
+        }
+    }
+
+  // Erillinen classi navbarille johon taustakuvan liike välittyy
+  nav {
+   flex-wrap: wrap;
+
+    @include media-breakpoint-between(xs, lg) {
+    background-size: 50%;
+    }
+    @include media-breakpoint-between(xs, sm) {
+      background-size: 60%;
+    }
+    @include media-breakpoint-between(md, lg){
+      background-size: 40%;
+    }
+   
+    .flex-columns {
+      @include media-breakpoint-between(xs, lg) {
+        flex-direction: column;
+      }
+    }
+
+    .navbar-toggler:focus {
+      outline: none;
+    }
+
+    //Pienen navin otsikkotekstin määrityksiä
+    .navheader {
+       
+      font-family: $FontFamHeading;
+      color: $accentColor;
+      text-shadow: 2px 2px 4px #8b8b8b;
+      @include media-breakpoint-between(xs, lg) {
+        margin-top: -15px;
+      }
+      @include media-breakpoint-between(xs, sm) {
+        font-size: 1.3rem;
+      }
+      @include media-breakpoint-between(md, lg) {
+        font-size: 2rem;
+      }
+    }
+
+
+    //JKL-guide logo
+    .navbar-brand {
+      position: left;
+      justify-self: center;
+      transition: all 0.2s ease 0s;
+      &:hover {
+        transform: scale(1.02);
+      }
+      @include media-breakpoint-between(xs, sm) {
+        @include bigHFont();
+        margin-top: -15px;
+      }
+      @include media-breakpoint-between(md, xl) {
+        @include bigHFont();
+      }
+    }
+
+    //Kompassi-ikoni
+    .navbar-brand-img{
+      max-width: 100px;
+      max-height: auto;
+    }
+    
+    //Blokattu harmaa foorumi-ikoni
+    #block{
+      background-color: #8b8b8b !important;
+      border-radius: 50%;
+      &:hover {
+        transform: none !important;
+        pointer-events: none !important;
+        }
+      }
+
+    //Oikean yläkulman dropdown-buttoni
+    #navbarDropdownMenuLink {
+      transition: all 0.1s ease 0s;
+      height: 50px;
+      background-color: $accentColor;
+      color: $PrimaryFontCol;
+      font-family: $FontFamHeading;
+      font-size: 20px;
+      letter-spacing: 1px;
+      border: none;
+      border-radius: 4px;
+
+      @include media-breakpoint-between(xs, md) {
+        height: auto;
+        width: auto;
+        margin-bottom: 8px;
+        padding-left: 24px;
+      }
+      &:focus {
+        outline: none !important;
+      }
+      &:hover {
+        transform: scale(1.01);
+        @include media-breakpoint-between(xs, md) {
+          background-color: #ecece6;
+        }
+      }
+    }
+    #navbarNavDropdown > ul > li.nav-item.dropdown.pl-1.show > div {
+      @include media-breakpoint-between(xs, md) {
+        margin-bottom: 8px;
+      }
+    }
+
+    //Pyöreät navipallukat
+    #navbarNavDropdown {
+      > ul > li {
+        > a {
+          transition: all 0.1s ease 0s;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          height: 50px;
+          width: 50px;
+          background-color: $PrimaryFontCol;
+          border-radius: 50%;
+          border: $border;
+          &:hover {
+            transform: scale(1.048);
+            @include media-breakpoint-between(xs, md) {
+              background-color: #ecece6;
+            }
+          }
+          @include media-breakpoint-between(xs, md) {
+            height: auto;
+            width: auto;
+            border: none;
+            background: none;
+            border-radius: 10px;
+            padding-left: 24px;
+            background-color: $PrimaryFontCol;
+            margin-top: 8px;
+            border: $border;
+            color: $accentColor;
+          }
+
+          // Navipallukoitten svg-ikonit 
+          .icon {
+            height: 20px;
+            width: 20px;
+            @include media-breakpoint-between(sm, xl) {
+              display: flex;
+              fill: $blackColor;
+              align-self: center;
+            }
+            @include media-breakpoint-between(xs, md) {
+              display: none;
+            }
+            svg {
+              fill: rgb(85, 85, 85);
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          //Blokatun navipallukan ikoni
+          .blockedicon {
+            pointer-events: none !important;
+            height: 20px;
+            width: 20px;
+            @include media-breakpoint-between(sm, xl) {
+              display: flex;
+              fill: $blackColor;
+              align-self: center;
+            }
+            @include media-breakpoint-between(xs, md) {
+              display: none;
+            }
+            svg {
+              fill: #706f6f;
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .text {
+            display: flex;
+            @include media-breakpoint-between(lg, xl) {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .nav-item.dropdown {
+        @include media-breakpoint-between(xs, md) {
+          padding: 8px 0 8px 0;
+        }
+      }
+    }
+    .dropdown-toggle::after {
+      display: none;
+    }
+    //Oikean yläkulman painikkeen dropdown
+    .dropdown-menu {
+      position: absolute;
+      border-radius: 10px;
+      background-color: $PrimaryFontCol;
+      .dropdown-item {
+        font-family: $FontFamHeading;
+
+        &:hover {
+          transform: scale(1.02);
+          background: none;
+        }
+      }
+    }
+  }
+}

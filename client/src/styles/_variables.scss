@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css?family=Bebas+Neue|Roboto:300,300i,400,700&display=swap&subset=latin-ext");
+
+$BackGroundCol: #4b3f3f;
+$SecondBgroundCol: rgba(196, 242, 241, 0.829);
+$PrimaryFontCol: #fefefa;
+$placeholderFontCol: #b1b1b1;
+$blackColor: #242424;
+$borderColor: #b1b1b142;
+$inputbackColor: #f2f2f2;
+$accentColor: #6d6767c0;
+$buttonColor: #a4d15c;
+$buttonHover: #8bc52f;
+$button2Color: #5fad8d;
+$button2Hover: #7ab89e;
+$buttonborderColor: #737a73;
+$buttonBorder: 2px $buttonborderColor solid;
+$border: 2px $borderColor solid;
+$FontFam: "Roboto", sans-serif;
+$FontFamHeading: "Bebas neue", cursive;
+
+@mixin bigHFont {
+  font-family: $FontFamHeading;
+  color: $PrimaryFontCol;
+  font-size: 62px;
+  text-shadow: 2px 2px 4px #555555;
+}
+
+@mixin smallHFont {
+  font-family: $FontFamHeading;
+  color: $PrimaryFontCol;
+  font-size: 40px;
+  text-shadow: 2px 2px 4px #555555;
+}
+
+@mixin smallerHFont {
+  font-family: $FontFamHeading;
+  color: $blackColor;
+  font-size: 18.5px;
+}

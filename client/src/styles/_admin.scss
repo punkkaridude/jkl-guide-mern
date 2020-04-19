@@ -1,0 +1,22 @@
+//Nämä määrittelyt toimivat admin-sivulla
+#adminWrapper{
+
+//Oma tyylittely otsikolle
+h2{
+    font-family: $FontFamHeading;
+    color: $PrimaryFontCol;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px #8b8b8b;
+    padding: 0;
+    margin-top: 2rem;
+    @include media-breakpoint-between(xs, md) {
+      font-size: 1rem;
+    }
+}
+
+//Oma tyylittely table headerille
+th{
+    font-family: $FontFamHeading;
+    font-weight: lighter;
+    }
+}

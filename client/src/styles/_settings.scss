@@ -1,0 +1,91 @@
+//Nämä määrittelyt toimivat settings-sivulla
+#settingsContainer{
+
+    font-family: $FontFam;
+    label{
+        @include media-breakpoint-between(xs,sm){
+            font-size: 0.9rem;
+        }
+    }
+
+    h1{
+        @include bigHFont();
+        font-size: 5rem;
+        @include media-breakpoint-between(xs,sm){
+            font-size: 2.5rem;
+        }
+    }
+    h2{
+        @include smallHFont();
+        font-size: 1.6rem;
+        margin: 5px;
+        @include media-breakpoint-between(xs,sm){
+            font-size: 2rem;
+            padding: 0;
+        }
+    }
+
+
+    input{
+        transition: all .2s; 
+        background-color: $inputbackColor;
+        border: $border;
+        &::placeholder{
+            color: $placeholderFontCol;
+            font-style: italic; 
+        }
+        &:hover{
+            background-color: #e2dfdf;
+        }
+    }
+
+    //Tekstikenttien korostusfokus 
+    input:focus,
+        textarea:focus {
+          border-color: rgb(131, 131, 131);
+          outline: 0;
+          box-shadow: inset 0 1px 1px rgba(168, 168, 168, 0.486), 0 0 8px rgba(196, 196, 196, 0.6);
+        }
+
+    label{
+        color: $blackColor;
+    }
+    button{
+        font-family: $FontFamHeading;
+        letter-spacing: 1px; 
+        color: $blackColor;
+        min-width: 9rem;
+        &#reg{
+            transition: all .2s;
+            background-color: $buttonColor;
+            border: $buttonBorder;
+            &:hover{
+                transform: scale(1.02);
+                background-color: $buttonHover;
+                border: $buttonBorder;
+            }
+        }
+    }
+
+    //Paluunapin määritykset tässä
+    .backButton{
+        transition: all .2s;
+        margin-top: 0.3rem;
+        filter: drop-shadow( 2px 2px 4px #555555);
+        :hover{
+            transform: scale(1.05);
+        }
+    }
+
+    .settingsBtn{
+        transition: all .2s;
+        background-color: $buttonColor;
+        border: $buttonBorder;
+        &:hover{
+            transform: scale(1.02);
+            background-color: $buttonHover;
+            border: $buttonBorder;
+        }
+    }
+   
+}

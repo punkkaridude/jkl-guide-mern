@@ -1,0 +1,112 @@
+//Nämä määrittelyt toimivat add service-sivulla
+#addserviceWrapper {
+  #imgbase {
+    border: $border;
+    background-color: #ffffff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    @include media-breakpoint-only(xs) {
+      height: 20vh;
+      width: 25vh;
+    }
+    @include media-breakpoint-only(sm) {
+      height: 15vh;
+    }
+    @include media-breakpoint-only(md) {
+      height: 20vh;
+    }
+    @include media-breakpoint-between(lg, xl) {
+      flex: 1 0 auto;
+    }
+  }
+
+  //Osoiterivi
+  #addressline {
+    > input:nth-child(2) {
+      border-radius: 0.25rem 0 0 0.25rem;
+    }
+    > input:nth-child(3) {
+      border-left: 0;
+      border-radius: 0 0.25rem 0.25rem 0;
+    }
+  }
+  //Koordinaattiboksit
+  #coordinates {
+    > input:nth-child(1) {
+      border-radius: 0.25rem 0 0 0.25rem;
+      @include media-breakpoint-only(xs) {
+        border-radius: 0.25rem;
+      }
+    }
+    > input:nth-child(2) {
+      border-left: 0;
+      border-radius: 0 0.25rem 0.25rem 0;
+      @include media-breakpoint-only(xs) {
+        border-left: $border;
+        border-radius: 0.25rem;
+      }
+    }
+  }
+  //Teksti-inputtien määrittelyitä
+  input,
+  textarea {
+    background-color: $inputbackColor;
+    border: $border;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    &:hover {
+      background-color: #e7e7e7;
+    }
+    &::placeholder {
+      font-size: small;
+      color: #7c7b76;
+      font-style: italic;
+    }
+  }
+  // Fokus tekee hienot reunat kun input aktiivisena
+  input[type="text"]:focus,
+  textarea:focus {
+    border-color: rgb(131, 131, 131);
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(168, 168, 168, 0.486), 0 0 8px rgba(196, 196, 196, 0.6);
+  }
+  // Mozillaa varten tehty määritys, jotta numerokenttien tyyli pysyy samana
+  input[type="number"] {
+    -moz-appearance: textfield;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+  
+  //Nämä vanhoja määrittelyitä, tutkitaan mihin kuuluvat
+  form > div.col-md-6.d-flex.flex-column.pl-xl-5 > div.input-group {
+    input,
+    span,
+    label {
+      border: $border;
+      cursor: pointer;
+    }
+
+    span:hover {
+      background-color: rgb(219, 219, 219);
+    }
+  }
+  //Submit-painikkeen tyylittely
+  #addservSubmit {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    transition: all 0.2s;
+    font-family: $FontFamHeading;
+    letter-spacing: 1px;
+    background-color: $buttonColor;
+    border: $buttonBorder;
+    &:hover {
+      transform: scale(0.98);
+      background-color: $buttonHover;
+      border: $buttonBorder;
+    }
+  }
+}

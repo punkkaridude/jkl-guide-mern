@@ -1,0 +1,198 @@
+// Nämä määrittelyt toimivat sekä login- että registersivulla
+#loginContainer,  #regContainer{ 
+        height: 100vh;
+        background-image: url("../img/bg1.png");
+        background-color: $SecondBgroundCol;
+        background-position: 0 0;
+        background-repeat: repeat;
+        background-size: 130%;
+        position: relative;
+
+        // Taustakuva-animaation breakpointit tässä
+        animation: bgMove 50s linear alternate infinite;
+        @include media-breakpoint-only(xs){
+            background-size: 300%;
+            animation: bgMove 50s linear alternate infinite;
+        }
+        @include media-breakpoint-only(sm){
+            animation: bgMove 50s linear alternate infinite;
+        }
+        @include media-breakpoint-only(md){
+            animation: bgMove 50s linear alternate infinite;
+        }
+        @include media-breakpoint-between(lg,xl){
+
+            animation: bgMove 50s linear alternate infinite;
+        }
+        // Turkoosi värilayeri kartan päällä
+        > .colorLayer{
+            position: absolute;
+            height: 100%;
+            background-color:rgba(196, 242, 241, 0.829);
+        }
+        // Kartta liikkuu edestakaisin oikealta vasemmalle
+        @keyframes bgMove {
+            from {
+                background-position: 0 0; ;
+            }
+            to{
+                background-position: -100% 0;;
+            }
+        
+        }
+        font-family: $FontFam;
+        label{
+            @include media-breakpoint-between(xs,sm){
+                font-size: 0.9rem;
+            }
+        }
+    
+        h1{
+            @include bigHFont();
+            font-size: 5rem;
+            @include media-breakpoint-between(xs,sm){
+                font-size: 2.5rem;
+            }
+        }
+        h2{
+            @include smallHFont();
+            font-size: 1.6rem;
+            margin: 5px;
+            @include media-breakpoint-between(xs,sm){
+                font-size: 2rem;
+                padding: 0;
+            }
+        }
+
+        //Input-kenttien tyylittely
+        input{
+            transition: all .2s; 
+            background-color: $inputbackColor;
+            border: $border;
+            &::placeholder{
+                color: $placeholderFontCol;
+                font-style: italic; 
+            }
+            &:hover{
+                background-color: #e2dfdf;
+            }
+        }
+        label{
+            color: $blackColor;
+        }
+        // Erilliset tyylit login- ja regbuttoneille
+        button{
+            font-family: $FontFamHeading;
+            letter-spacing: 1px; 
+            color: $blackColor;
+            &#login{
+                transition: all .2s;
+                background-color:  $buttonColor;
+                border: $buttonBorder;
+                &:hover{
+                    transform: scale(1.02);
+                    background-color: $buttonHover;
+                    border: $buttonBorder;
+                }
+            }
+            &#reg{
+                transition: all .2s;
+                background-color: $button2Color;
+                border: $buttonBorder;
+                &:hover{
+                    transform: scale(1.02);
+                    background-color: $button2Hover;
+                    border: $buttonBorder;
+                }
+            }
+        }
+        
+        //Paluunapin määritykset tässä
+        .backButton{
+            transition: all .2s;
+            margin-top: 2rem;
+            filter: drop-shadow( 2px 2px 4px #555555);
+            :hover{
+                transform: scale(1.05);
+            }
+        }
+
+    // Animoitu SVG-teksti tässä
+
+    @keyframes lineAnim{
+        to{ stroke-dashoffset: 0;}
+    }
+    @keyframes svgFill{
+        from { fill: transparent;}
+        to{ fill: #FEFEFA;}
+    }
+
+    #jklGuideLogo{
+        @include media-breakpoint-between(xs,md){
+            height: 100%;
+            width: 100%;
+        }
+        svg, path{
+            overflow: visible;
+        }
+
+        filter: drop-shadow( 2px 2px 4px #555555);
+        animation: svgFill 0.5s ease forwards 3s; 
+        > path{
+            &:nth-child(1){
+                stroke-dasharray: 2251.20362854003906;
+                stroke-dashoffset: 251.20362854003906;
+                animation: lineAnim 2s ease forwards;
+                stroke-linecap: square;
+            }
+            &:nth-child(2){
+                stroke-dasharray: 455.8145751953125;
+                stroke-dashoffset: 455.8145751953125;
+                animation: lineAnim 2s ease forwards 0.2s;
+                stroke-linecap: square;
+            }
+            &:nth-child(3){
+                stroke-dasharray: 285.407958984375;
+                stroke-dashoffset: 285.407958984375;
+                animation: lineAnim 2s ease forwards 0.4s;
+                stroke-linecap: square;
+            }
+            &:nth-child(4){
+                stroke-dasharray: 92.16009521484375;
+                stroke-dashoffset: 92.16009521484375;
+                animation: lineAnim 2s ease forwards 0.6s;
+                stroke-linecap: square;
+            }
+            &:nth-child(5){
+                stroke-dasharray: 456.2260437011719;
+                stroke-dashoffset: 456.2260437011719;
+                animation: lineAnim 2s ease forwards 0.8s;
+                stroke-linecap: square;
+            }
+            &:nth-child(6){
+                stroke-dasharray: 449.2141418457031;
+                stroke-dashoffset: 449.2141418457031;
+                animation: lineAnim 2s ease forwards 1s;
+                stroke-linecap: square;
+            }
+            &:nth-child(7){
+                stroke-dasharray:  233.280029296875;
+                stroke-dashoffset:  233.280029296875;
+                animation: lineAnim 2s ease forwards 1.2s;
+                stroke-linecap: square;
+            }
+            &:nth-child(8){
+                stroke-dasharray: 448.39813232421875;
+                stroke-dashoffset: 448.39813232421875;
+                animation: lineAnim 2s ease forwards 1.4s;
+                stroke-linecap: square;
+            }
+            &:nth-child(9){
+                stroke-dasharray: 386.2078857421875;
+                stroke-dashoffset: 386.2078857421875;
+                animation: lineAnim 2s ease forwards 1.6s;
+                stroke-linecap: square;
+            }
+        }
+    }
+}
