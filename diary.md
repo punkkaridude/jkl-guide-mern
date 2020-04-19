@@ -268,5 +268,28 @@ Kokoustimme perjantaina klo 12 - 16:30*
 * JSX-tiedostoista kommentoitu add-favorite, login, nav, register, add-service, admin, home
 * Routesit ja modelit kommentoitu (alustavasti ainakin, onkohan riittävä)
 
+-------------------------
+-------------------------
+
+### Sunnuntai 19.4.2020 - Raportointia ja julkaisutoimenpiteitä
+
+*Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
+Kokoustimme sunnuntaina klo 15 - 17*
+
+#### Rakennekaavio
+* Iina piirteli ruman, mutta toimivahkon rakennekaavion pädillä
+
+####  Projektin wiki-sivun täydennys
+* Homepage on ryhmätyökommentointia vailla valmis
+* Front-sivu on aika laila valmis.
+* Back-sivu muuten valmis, mutta reiteistä ei vielä kerrottu.
+* Sovelluksen rakenteelle lisätty oma sivu
+
+#### Backendin kommentointia
+* Veeti kommentoinut settings.jsx, index.jsx, forum.jsx, favorites.jsx, faq.jsx 
+
+#### Julkaisu Herokuun
+* Kristian aloitti sovelluksen julkaisua Herokuun.
+
 
 
