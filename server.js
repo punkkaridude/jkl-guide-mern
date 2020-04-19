@@ -11,7 +11,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 //Connect MongoDB usind local variable DB_URI
-const uri = process.env.DB_URI;
+const uri = process.env.MONGODB_URI;
 mongoose.connect(uri, {
     useUnifiedTopology: true,
     useNewUrlParser: true, 
