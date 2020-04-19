@@ -56,6 +56,7 @@
       "ie 9"
     ]
   },
+  "proxy": "http://localhost:5000",
   "devDependencies": {
     "sass-loader": "^8.0.2"
   }
