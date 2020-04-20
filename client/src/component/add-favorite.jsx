@@ -29,7 +29,6 @@ export default class Favorite extends Component {
             serviceId : this.props.res._id,
             name: this.props.res.name
         };
-        const { fav } = this.props;
         const { favorited } = this.state;
         // console.log(this.props.res)
         // console.log(this.props.fav)

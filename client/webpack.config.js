@@ -1,7 +1,4 @@
 export const module = {
-    devServer: {
-        historyApiFallback: true
-    },
     rules: [
         {
             test: /\.s[ac]ss$/i,

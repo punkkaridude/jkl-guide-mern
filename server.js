@@ -2,6 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 
 //Import local variables from .env files.
 require('dotenv').config();
@@ -44,6 +45,10 @@ app.use('/', userRouter);
 app.use('/JKL-Guide/', serviceRouter);
 app.use('/JKL-Guide/Faq', faqRouter);
 app.use('/JKL-Guide/Favorites', favRouter);
+
+app.get('*', (req, res) => {                       
+    res.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));                               
+});
 
 app.listen(port, (err) => { // 
     if(err) console.log(err)
