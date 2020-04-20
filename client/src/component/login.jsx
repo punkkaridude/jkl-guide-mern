@@ -107,7 +107,7 @@ const BackArrow = (
 const Login = props => { 
   const [user, setUser] = useState({username : "", password : ""});
   const [message, setMessage] = useState({message: {msgBody: "", msgError: false}});
-  const authContext = useContext(AuthContext);
+  const authContext = useContext(AuthContext); //käytetään authContext.jsx. Asetetaan käyttää stateen ja palautetaan isAuthenticated jos on on rekisteröitynyt ja tiedot vastaa.
 
   //Kirjautuneen käyttäjän tietojen asettaminen
   const onChange = e => {
@@ -122,7 +122,7 @@ const Login = props => {
       // console.log(data)
       const {isAuthenticated,user,message} = data;
       if(isAuthenticated){
-        console.log("perkele")
+        // console.log("perkele")
         authContext.setUser(user);
         authContext.setIsAuthenticated(isAuthenticated);
         props.history.push('/JKL-Guide');

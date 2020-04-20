@@ -1,3 +1,5 @@
+/*All authentication services in one jsx*/
+
 export default {
     login : user =>{
         return fetch('/Login',{

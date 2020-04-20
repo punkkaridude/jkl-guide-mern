@@ -9,6 +9,7 @@ import Forum from "./forum";
 import Favorites from "./favorites";
 import Admin from "./admin";
 import Settings from "./settings";
+
 export default class Frontpage extends React.Component {
   constructor(props) {
     super(props);

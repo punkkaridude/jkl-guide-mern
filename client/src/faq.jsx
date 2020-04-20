@@ -12,7 +12,6 @@ export default class Faq extends React.Component {
     };
     this.renderQuestions = this.renderQuestions.bind(this);
     this.getResults = this.getResults.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentDidMount(){

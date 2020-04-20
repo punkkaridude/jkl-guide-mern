@@ -12,11 +12,12 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuoteLeft, faHome, faPhone, faMapPin } from '@fortawesome/free-solid-svg-icons'
 
+//React porttaus FontAwesome iconeista kättämällä importattua fortawesome-pakettia
 const iconAddress = <FontAwesomeIcon icon={faMapPin} />
 const iconPhone = <FontAwesomeIcon icon={faPhone} />
 const iconHome = <FontAwesomeIcon icon={faHome} />
 const iconQuote = <FontAwesomeIcon icon={faQuoteLeft} />
-
+//suurennuslasi iconi hakukentän painikkeessa.
 const searchIcon = (
     <svg
       version="1.1"
@@ -53,7 +54,6 @@ export default class mapApp extends Component {
 
         this.handleChange = this.handleChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this);
-        this.resetStates = this.resetStates.bind(this);
         this.renderResults = this.renderResults.bind(this);
         this.resultSelected = this.resultSelected.bind(this);
         this.handleonKeyDown = this.handleonKeyDown.bind(this);
@@ -64,23 +64,10 @@ export default class mapApp extends Component {
     
     componentDidMount(){
         // console.log("did mount!")
-        this.searchInput.current.focus();
-        
+        this.searchInput.current.focus(); //Focus in searchinput after componen render()
     }
 
-    componentDidUpdate(){
-        //console.log("will update")
-    }
-
-    resetStates(){
-        this.setState({
-            searchvalue: '',
-            results: [],
-            cursor: -1,
-            temp: ''
-        })
-    }
-
+    // clears states when focused on spesific result adn use result name to getResult()-function
     resultSelected(active) {
         // console.log("resultSelected");
         // console.log(active);
@@ -92,7 +79,7 @@ export default class mapApp extends Component {
         });
         this.getResults(active);
     }
-
+    // get results from database using axios and RegExp filter.
     getResults(value){
         const expression = new RegExp(`${value}`, "i");
         const url = "/JKL-Guide/Service";   
@@ -101,9 +88,9 @@ export default class mapApp extends Component {
             //console.log("kaikki res:");
             //console.log(result.data);
             result.data.map( value => {
-                //console.log(value);
+                // console.log(value);
                 //console.log(index);
-                if(expression.test(value.name)){
+                if(expression.test(value.name)){ // set result in object
                     const service = {
                         name: value.name,
                         address: value.address,
@@ -117,12 +104,13 @@ export default class mapApp extends Component {
                         latitude: value.latitude,
                         _id: value._id
                     }
-                    res.push(service);
+                    res.push(service); // push result object to array
                     //console.log(res);
                 }
+                return value;
             });
             if(res.length === 1 && this.state.addMarkers){
-                this.setState({
+                this.setState({ 
                     results: res,
                     viewport: {
                         longitude: res[0].longitude,
@@ -142,10 +130,12 @@ export default class mapApp extends Component {
             // console.log("result:")
             // console.log(this.state.searchvalue)
             // console.log(this.state.results)
+            return result;
         });
-        this.searchInput.current.focus();
+        this.searchInput.current.focus(); //focus back to input after submit
     }
 
+    // handle changes in searchinput and removes markers and popup
     handleChange(e) {
         const value = e.target.value;
         this.setState({addMarkers: false})
@@ -160,7 +150,7 @@ export default class mapApp extends Component {
             cursor: -1
         });
     };
-
+    // show markers if there is searchvalue
     addMarkers = () => {
         const { searchvalue } = this.state;
         if(searchvalue === ''){
@@ -180,7 +170,7 @@ export default class mapApp extends Component {
             // console.log("addMarkers: ", this.state.viewport, this.state.addMarkers, this.state.searchvalue)
         }
     }
-
+    // create markers if there is results
     Marker() {
         const {results} = this.state;
         return(
@@ -193,27 +183,28 @@ export default class mapApp extends Component {
                     offsetLeft={-20}
                     offsetTop={-40}
                 >
-                    <div className="marker" onClick={()=>this.addPopup(result)}></div>
+                    <div className="marker" onClick={()=>this.addPopup(result)}></div> 
                 </Marker>        
             ) : null
         )
     }
-
+    // show popups
     addPopup = result => {
         // console.log("addPopup")
         const service = { 
             serviceId : result._id,
             name: result.name
         };
+        // check if service is favorited or not
         axios.post('/JKL-Guide/Favorites/alreadyFavorited', service).then(res => {
             this.setState({
-                popupInfo: result,
-                alreadyFav: res.data
+                popupInfo: result, // service details in popup
+                alreadyFav: res.data // true if favorited, false if not
             });
         });
         this.forceUpdate();
     }
-
+    // create popups if there is state popupInfo
     Popup() {
         const {popupInfo, alreadyFav} = this.state;
         return(
@@ -245,9 +236,9 @@ export default class mapApp extends Component {
         e.preventDefault();
         // console.log(this.state.results);
         // console.log("submit");
-        this.addMarkers();
+        this.addMarkers(); // onsubmit show markers from results coordinates
     }
-
+    // keydown event in serachinput and result list. 
     handleonKeyDown(e) {
         // console.log("keydown")
         const { results, cursor, temp, searchvalue } = this.state;
@@ -301,7 +292,7 @@ export default class mapApp extends Component {
         }
 
     }
-
+    // render result list
     renderResults() {
         const { searchvalue, results, cursor } = this.state;
         return (
@@ -339,13 +330,13 @@ export default class mapApp extends Component {
             </ul> : null
         );
     }
-
+    // sets map as draggable
     onViewportChange = viewport => {
         const {width, height, ...etc} = viewport
         this.setState({viewport: etc})
         //console.log(this.state.viewport)
     }
-
+    
     render(){
         const { viewport, results, searchvalue } = this.state;
         return(
@@ -398,7 +389,7 @@ export default class mapApp extends Component {
                     {...viewport}
                     mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
                     onViewportChange={viewport => this.onViewportChange(viewport)}
-                    transitionDuration={1000}
+                    transitionDuration={400}
                     transitionInterpolator= {new FlyToInterpolator()}
                 >
                     <div style={{position: 'absolute', right: 0}}>

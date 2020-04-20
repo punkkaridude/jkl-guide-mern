@@ -3,6 +3,7 @@ import ForumSmall from "./forumsmall";
 import MapApp from "./mapapp";
 import { Spring, config } from "react-spring/renderprops";
 
+//MOTHER COMPONENT IN FRONTPAGE
 export default class Fbcomponent extends React.Component {
   constructor(props) {
     super(props);

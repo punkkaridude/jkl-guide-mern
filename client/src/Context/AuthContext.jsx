@@ -3,6 +3,7 @@ import AuthService from '../Services/AuthService';
 
 export const AuthContext = createContext();
 
+// create context, use in private and public routes. Check if user is authenticated.
 export default ({ children })=>{
     const[user,setUser] = useState(null);
     const[isAuthenticated,setIsAuthenticated] = useState(false);

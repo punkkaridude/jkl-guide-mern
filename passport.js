@@ -4,6 +4,7 @@ const JwtStrategy = require('passport-jwt').Strategy;
 const User = require('./models/user.model');
 
 
+// create acces_token cookie if there is request and return it
 const cookieExtractor = req => {
     let token = null;
     if(req && req.cookies){
@@ -14,7 +15,7 @@ const cookieExtractor = req => {
 
 // authorization
 passport.use(new JwtStrategy({
-    jwtFromRequest : cookieExtractor,
+    jwtFromRequest : cookieExtractor, // use function to make accestoken when making new strategy 
     secretOrKey : "authCode"
 },(payload,done)=>{
     User.findById({_id : payload.sub},(err,user)=>{

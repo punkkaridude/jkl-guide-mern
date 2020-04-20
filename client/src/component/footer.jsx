@@ -5,27 +5,7 @@ import { ReactComponent as Linkd } from "../img/linkd.svg";
 import { ReactComponent as Twitter } from "../img/twitter.svg";
 
 export default class Footer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ///footer: false
-    };
-    ///this.handleonClick = this.handleonClick.bind(this);
-  }
-  /*handleonClick(e){
-        const { footer } = this.state;
-        footer ? ( 
-            $(".sticky-footer").animate({height: ''}) 
-        ) 
-        : ( 
-            $(".sticky-footer").animate({height: "30vh"}) 
-        )
-        this.setState(prevState => ({
-            footer: !prevState.footer            
-        }));
-        
-    }*/
-
+  
   render() {
     return (
       <div id="sticky-footer" className="container-fluid p-0">
