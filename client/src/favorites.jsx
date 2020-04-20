@@ -46,7 +46,7 @@ export default class Favorites extends React.Component {
   }
 //Haetaan käyttäjän suosikit
   getFavorites(){
-    let url = '/JKL-Guide/Favorites'
+    let url = '/JKL-Guide/Favorites/all'
     axios.get(url).then(result => {
       this.setState({
         favorites: result.data
