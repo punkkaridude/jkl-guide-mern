@@ -59,7 +59,6 @@ export default class mapApp extends Component {
         this.handleonKeyDown = this.handleonKeyDown.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
         this.getResults = this.getResults.bind(this);
-        this.componentDidUpdate = this.componentDidUpdate.bind(this);
     }
     
     componentDidMount(){
