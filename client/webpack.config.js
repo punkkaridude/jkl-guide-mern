@@ -1,4 +1,7 @@
 export const module = {
+    devServer: {
+        historyApiFallback: true
+    },
     rules: [
         {
             test: /\.s[ac]ss$/i,
@@ -12,5 +15,5 @@ export const module = {
             test: /\.svg$/,
             use: ['@svgr/webpack'],
         }
-    ],
+    ]
 };
