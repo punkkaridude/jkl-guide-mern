@@ -140,8 +140,8 @@ export default class Addservice extends React.Component {
       website: this.state.website,
       details: this.state.details,
       image: this.state.image,
-      longitude: this.state.longitude,
-      latitude: this.state.latitude
+      longitude: this.state.marker.longitude,
+      latitude: this.state.marker.latitude
     };
     // console.log(service);
     axios.post('/JKL-Guide/Add-service', service)
@@ -162,8 +162,8 @@ export default class Addservice extends React.Component {
             longitude: '',
             latitude: '',
             marker: {
-              longitude: '',
-              latitude: ''
+              longitude: 62.23815925225172,
+              latitude: 25.746282419998817
             }
         });
         window.location = "/JKL-Guide/Add-service";

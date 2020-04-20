@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+let Favorite = require('../models/favorites.model');
 //Käyttäjien skeema/model tietokantaa varten
 const UserSchema = new mongoose.Schema({
     fullname: {
@@ -28,7 +29,8 @@ const UserSchema = new mongoose.Schema({
     isDeleted:{
         type: Boolean,
         default: false
-    }
+    },
+    favorites:[]
 });
 
 //Hashataan salasana

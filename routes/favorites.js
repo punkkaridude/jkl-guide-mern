@@ -3,34 +3,31 @@
 const express = require('express');
 const favRouter = express.Router();
 const passport = require('passport');
-const JWT = require('jsonwebtoken');
-const passportConfig = require('../passport');
 let User = require('../models/user.model');
 let Favorite = require('../models/favorites.model');
 let Service = require('../models/service.model');
 
 //Haetaan käyttäjän suossuosikit ID:n perusteella
 favRouter.get('/', passport.authenticate('jwt',{session : false}),(req, res)=>{
-    Favorite.find( {'userFrom': req.user._id})
-    .then(favorite => res.json(favorite))
-    .catch(err => res.status(400)
-    .json('Error: ' + err));
+    User.findOne( {_id: req.user._id}, (err, user) => {
+        if(err) res.status(500).json({message : {msgBody : "Erros has occured: " + err, msgError: true}});
+        res.send(user.favorites);
+    });
 });
 
 //Suosikkien lisäys
 favRouter.post('/add', passport.authenticate('jwt',{session : false}),(req, res)=>{
-    
-    const serviceId = req.body.serviceId;
+    console.log("add")
+    const servId = req.body.serviceId;
     // console.log(serviceId)
     //Etsitään palvelu tietokannasta ID:n perusteella, jos ID:tä ei löydy, error 400.
-    Service.findOne({_id : serviceId}, function (err, service){
+    Service.findOne({_id : servId}, function (err, service){
         if(err) res.status(500).json({message : {msgBody : "Erros has occured: " + err, msgError: true}});
-        if(!service) res.status(400).json({message : {msgBody : "No service with id: " + serviceId, msgError: true}});
+        if(!service) res.status(400).json({message : {msgBody : "No service with id: " + servId, msgError: true}});
         //Suosikin asettaminen käyttäjälle
         else{
             const newFav = new Favorite({
-                serviceId: serviceId,
-                userFrom : req.user._id,
+                serviceId: servId,
                 name : service.name,
                 address : service.address,
                 postalcode : service.postalcode,
@@ -43,63 +40,79 @@ favRouter.post('/add', passport.authenticate('jwt',{session : false}),(req, res)
                 image : service.image,
                 longitude : service.longitude,
                 latitude : service.latitude,
-                isDeleted : service.isDeleted,
                 added : Date.now()
             });
+            console.log(newFav)
             //Suosikkien tallennus
-            newFav.save(err=>{
-                if(err) res.status(500).json({message : {msgBody : "Erros has occured in adding favorite", msgError: true}});
-                else res.status(200).json({message : {msgBody : "Service succesfully favorited!", msgError: false}})
-            });
+            User.findOne({_id: req.user._id},(err, user) => {
+                if(err) res.status(500).json({message : {msgBody : "Erros has occured in finding user" + err, msgError: true}});
+                else{
+                    //console.log(user)
+                    //console.log(newFav)
+                    if(!user.favorites.some(service => service.serviceId === servId)){
+                        user.favorites.push(newFav)
+                        //console.log(user.favorites)
+                        
+                    }
+                    user.save(err => {
+                        if(err) res.status(500).json({message : {msgBody : "Erros has occured in saving user" + err, msgError: true}});
+                        else res.status(200).json({message : {msgBody : "Service" + newFav + " succesfully favorited!", msgError: false}})
+                    });
+                }
+            })      
         }
     });
 });
 
 //Suosikkien poistaminen käyttäjältä
 favRouter.post('/remove', passport.authenticate('jwt',{session : false}),(req, res)=>{
-    Favorite.findOneAndRemove({
-        $and : [
-            { $or: [
-                {serviceId : req.body.serviceId},
-                {name: req.body.name}
-            ]},
-            {userFrom : req.user._id}] }, (err, removed) => {
-        if(err) {
-            res.status(400).json({message : {msgBody : "Error has occured when removing favorite!", msgError: true}});
-        }
-        else if(!removed) {
-            res.status(400).json({message : {msgBody : "No such favorite!", msgError: true}});
-        }
-        else {
-            res.status(204).json({message : {msgBody : "Succesfully removed " + removed + "!", msgError: false}});
+    console.log("remove");
+    const { serviceId, name } = req.body;
+    User.findOne({_id: req.user._id},(err, user) => {
+        if(err) res.status(500).json({message : {msgBody : "Erros has occured in finding user" + err, msgError: true}});
+        else{
+            user.favorites.map((favorite, index) => {
+                if(favorite.serviceId === serviceId || favorite.name === name){
+                    user.favorites.splice(index, 1);
+                }     
+            })
+            user.save((err) => {
+                if(err) res.status(500).json({message : {msgBody : "Erros has occured in saving user" + err, msgError: true}});
+                else res.status(200).json({message : {msgBody : "Service succesfully removed from favorites!", msgError: false}})
+            })
         }
     })
 });
 
 //Jo valmiiksi suosikeissa olevan palvelun lisäysyritys suosikkeihin
 favRouter.post('/alreadyFavorited', passport.authenticate('jwt',{session : false}),(req, res)=>{
+    console.log("alreadyFavorited")
     //console.log("favRouter", req.body.serviceId)
-    Favorite.exists({
-        $and : [
-            { $or: [
-                {serviceId : req.body.serviceId},
-                {name: req.body.name}
-            ]},
-            {userFrom : req.user._id}] }, function(err, result){
-        if(err){
-            res.send(err)
+    const { serviceId, name } = req.body;
+    User.findOne({_id:req.user._id}, (err, user) => {
+        if(err) res.status(500).json({message : {msgBody : "Erros has occured in finding user" + err, msgError: true}});
+        let isFavorited = false;
+        console.log(user.username)
+        if(user.favorites && user.favorites.length > 0){
+            console.log("favorites")
+            user.favorites.map(favorite => {
+                console.log(name, serviceId)
+                console.log(favorite.name)
+                if(serviceId === favorite.serviceId || name === favorite.name){
+                    isFavorited = true;
+                }
+                return isFavorited;
+            })
+            res.send(isFavorited)
         }
-        else {
-            res.send(result)
+        else{
+            res.send(isFavorited)
         }
-    });
+    })
 });
 
 favRouter.post('/favoriteCount', passport.authenticate('jwt',{session : false}),(req, res)=>{
-    Favorite.find({serviceId: req.body.serviceId}).exec((err, favorited) => {
-        if(err) return res.status(400).json({message : {msgBody : "Error had occured when fetching count!", msgError: true}});
-        res.status(200).json({favCount: favorited.length});
-    });
+    
 });
 
 module.exports = favRouter;

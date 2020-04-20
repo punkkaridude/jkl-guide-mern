@@ -107,7 +107,7 @@ const BackArrow = (
 const Login = props => { 
   const [user, setUser] = useState({username : "", password : ""});
   const [message, setMessage] = useState({message: {msgBody: "", msgError: false}});
-  const authContext = useContext(AuthContext); //käytetään authContext.jsx. Asetetaan käyttää stateen ja palautetaan isAuthenticated jos on on rekisteröitynyt ja tiedot vastaa.
+  const authContext = useContext(AuthContext); //käytetään authContext.jsx. Asetetaan käyttää stateen ja palautetaan isAuthenticated jos on on rekisteröitynyt ja tiedot vastaa. 
 
   //Kirjautuneen käyttäjän tietojen asettaminen
   const onChange = e => {

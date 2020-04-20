@@ -40,10 +40,6 @@ const favorite = new mongoose.Schema({
     added:{
         type: Date
     },
-    userFrom:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
     serviceId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Service'

@@ -30,11 +30,12 @@ export default class Favorite extends Component {
             name: this.props.res.name
         };
         const { fav } = this.props;
+        const { favorited } = this.state;
         // console.log(this.props.res)
         // console.log(this.props.fav)
 
         //Jos ei suosikeissa, lisää objekti suosikki-collectioniin
-        if(fav===false){
+        if(favorited===false){
             axios.post('/JKL-Guide/Favorites/add', service).then(res => {
                 // console.log(res.data)
                 // Settaa objektin state niin että se on käyttäjän suosikki
@@ -42,7 +43,7 @@ export default class Favorite extends Component {
             });
         }
         //jos objekti on favoriteissa, poistetaan se sieltä
-        else if(fav===true){
+        else if(favorited===true){
             axios.post('/JKL-Guide/Favorites/remove', service).then(res => {
                 // console.log(res.data)
                 // Settaa objekti niin ettei se ole käyttäjän suosikki + page reload 

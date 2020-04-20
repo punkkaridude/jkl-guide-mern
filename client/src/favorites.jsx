@@ -122,6 +122,7 @@ export default class Favorites extends React.Component {
               name: favorite.name
             };
             axios.post('/JKL-Guide/Favorites/alreadyFavorited', service).then(res => {
+              console.log(res.data)
               this.setState({
                 popupInfo: favorite,
                 alreadyFav: res.data
