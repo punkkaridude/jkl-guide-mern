@@ -288,8 +288,9 @@ Kokoustimme sunnuntaina klo 15 - 17*
 #### Backendin kommentointia
 * Veeti kommentoinut settings.jsx, index.jsx, forum.jsx, favorites.jsx, faq.jsx 
 
-#### Julkaisu Herokuun
-* Kristian aloitti sovelluksen julkaisua Herokuun.
+#### Kansioitten siistiminen ja viimeinen silaus ennen julkaisua
+* Projektin kansiot siivottu lopulliseen järjestykseensä.
+* Kristian hoiti sovelluksen julkaisemisen Herokuun. Sovellus löytyy osoitteesta http://jklguide.herokuapp.com
 
 
 
