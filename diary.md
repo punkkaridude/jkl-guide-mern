@@ -292,5 +292,29 @@ Kokoustimme sunnuntaina klo 15 - 17*
 * Projektin kansiot siivottu lopulliseen järjestykseensä.
 * Kristian hoiti sovelluksen julkaisemisen Herokuun. Sovellus löytyy osoitteesta http://jklguide.herokuapp.com
 
+-------------------------
+-------------------------
+
+### Maanantai 20.4.2020 - FINISH HIM!
+
+*Vallitsevan koronavirustilanteen takia siirsimme projektiryhmän tapaamiset toistaiseksi Discord-yhteyden varaan. 
+Kokoustimme maanantaina klo 10:30 - 20*
+
+#### Ongelmat Heroku-julkaisussa
+* Huomasimme Herokuun noston aiheuttavan ihanan cannot GET / -virheen, tätä ratkottiin pitkä päivä
+* Myös suosikkien lisäyksessä ilmeni ongelma tietokannan kanssa, kohdetta ei voinut lisätä suosikkeihin jos joku toinen käyttäjä oli lisännyt sen suosikkeihinsa jo aiemmin. Suosikit listattu uudessa versiossa array-muodossa user-objektin alle.
+
+#### Projektin wiki-sivun täydennys
+* Viimeistelyt wiki-sivuun tehty ja lisätty mm. pohdinta ryhmätyöstä ja lopulliset kommentit projektin etenemisestä.
+* Lähteitä lisätty myös
+
+#### Viimeisiä sovelluksen testauksia
+* Testattu sovelluksen toimivuutta ja huomioitu muutamia löydettyjä bugeja. Esim. hampparivalikko ei toimi mobiilissa ollenkaan.
+
+#### Zippaus ja palautus
+* Projekti viimeistelty palautuskuntoon ja zipattu Arskalle.
+
+
+
 
 
