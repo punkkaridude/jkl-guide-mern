@@ -16,7 +16,7 @@
     "jquery": "^3.4.1",
     "jquery-ui": "^1.12.1",
     "moment": "^2.24.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "popper.js": "^1.16.1",
     "react": "^16.13.0",
     "react-animate-on-change": "^2.2.0",
